@@ -19,6 +19,7 @@ a {
     margin-left: -4px;
     padding-left: 4px;
     padding-right: 6px;
+    height: 100%;
 }
 
 h1 { /*big type for navigation and title*/
@@ -146,6 +147,27 @@ input[type="checkbox"]::before {
   .pic {
     width: 100%;
   }
+
+  .pic2 {
+    width: 100%;
+    display: block;
+    height: 100%;
+  }
+
+  .pic21 {
+    width: 49%;
+    height: 100%;
+    display: inline-block;
+  }
+
+  .pic22 {
+    width: 49%;
+    float: right;
+    height: 100%;
+    display: inline-block;
+  }
+
+
 
 /*Scroll Bar*/
 ::-webkit-scrollbar {
