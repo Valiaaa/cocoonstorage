@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
 
 * {
     margin-top: 2px;
-    cursor: url('pointer.png'),auto !important;
+    cursor: url('default.png'),auto;
 }
 
 /*Type*/
@@ -20,6 +21,7 @@ a {
     padding-left: 4px;
     padding-right: 6px;
     height: 100%;
+    cursor: url('pointer.png') 15 0,auto;
 }
 
 h1 { /*big type for navigation and title*/
@@ -41,12 +43,12 @@ h1 a {
     text-decoration: none;
 }
 
-h2 { /*tags*/
+h2 { /*intro text*/
     font-family: 'Inter', sans-serif;
     font-weight: 300;
-    font-size: 24px;
-    line-height: 32px;
-    color: cornflowerblue;
+    font-size: 18px;
+    line-height: 24px;
+    color: rgb(62, 114, 212);
     margin-bottom: 0px;
 }
 
@@ -60,6 +62,17 @@ h2 a {
     text-decoration: none;
 }
 
+h3 { /*annotationt*/
+  font-family: 'Noto Sans Mono', monospace;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgb(110, 110, 110);
+  margin-bottom: 0px;
+  z-index: 1;
+  position: relative;
+}
+
 hr {
     background: cornflowerblue;
     position: relative;
@@ -67,6 +80,12 @@ hr {
     margin-top: 14px;
     margin-bottom: 16px;
     height: 3px;
+}
+
+.disable {
+  pointer-events: none;
+  user-select: none;
+  color: rgb(200, 219, 254);
 }
 
 /*Page Segments*/
@@ -84,6 +103,24 @@ hr {
     display: inline-block;
 }
 
+.info1 {
+  width: 19%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.info2 {
+  width: 30%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.info3 {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
@@ -96,6 +133,7 @@ input[type="checkbox"] {
     transform: translateY(7px);
     place-content: center;
     display: grid;
+    cursor: url('pointer.png') 15 0,auto;
 }
 
 input[type="checkbox"]::before {
@@ -144,6 +182,10 @@ input[type="checkbox"]::before {
     color: white;
   }
   
+  .pica {
+    cursor: url('pointer.png') 15 0,auto;
+  }
+
   .pic {
     width: 100%;
   }
