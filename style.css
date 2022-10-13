@@ -187,6 +187,10 @@ input[type="checkbox"]::before {
     cursor: url('pointer.png') 15 0,auto;
   }
 
+  /* .pica:hover {
+    box-shadow: 0 0 0 3px cornflowerblue;
+  } */
+
   .pic {
     width: 100%;
   }
@@ -207,7 +211,7 @@ input[type="checkbox"]::before {
     width: 49%;
     float: right;
     height: 100%;
-    display: inline-block;
+    display: block;
   }
 
 
@@ -227,3 +231,13 @@ input[type="checkbox"]::before {
 	::-webkit-scrollbar-thumb:hover {
 	background: rgb(67, 111, 192);  
 	}
+
+
+
+  /*Screen Adaptation*/
+  @media screen and (max-width: 1560px) {
+    h1 {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
