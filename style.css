@@ -21,6 +21,7 @@ a {
     padding-left: 4px;
     padding-right: 6px;
     height: 100%;
+    text-decoration: none;
     cursor: url('pointer.png') 15 0,auto;
 }
 
@@ -220,7 +221,6 @@ input[type="checkbox"]::before {
 ::-webkit-scrollbar {
 	width: 14px;
 	height: 0px;
-
 	}
 
 ::-webkit-scrollbar-thumb {
