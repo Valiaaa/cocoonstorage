@@ -16,7 +16,42 @@
         <link rel="icon" href="../../icon.png">
     </head>
 
+    <style>
+        #sketch {
+            width:30%; 
+            display:inline-block; 
+            vertical-align:top; 
+            transform: translateY(-19.5%); 
+            z-index: -1; 
+            position: relative;
+        }
+
+        #c4d {
+            width: 69.5%; 
+            display:inline-block; 
+            vertical-align:top
+        }
+
+        @media screen and (max-width: 830px) {
+            #sketch {
+                width: 100%;
+                transform: translateY(-12%);
+            }
+            
+            #c4d {
+                margin-top: -14%;
+                width: 100%;
+            } 
+        }
+    </style>
+
     <body>
+        <div class="vnavigation">
+            <h2 style="width:fit-content; float: left; margin-left: 6px;"><a href="index.html">Valia Liu</a></h2>
+            <h2 style="width:fit-content; float:right;"><a href="mailto:valialiuwork@gmail.com" target="_blank">Email&#8599</a></h2>
+            <h2 style="width:fit-content; float:right; margin-right: 3%;"><a href="about.html">About</a></h2>
+        </div>
+
         <div class="navigation">
             <h1><a href="../../index.html">Valia Liu</a></h1>
             <hr>
@@ -58,14 +93,14 @@
             <br><br>
             <img src="cover.png" style="width:100%;">
             <br><br>
-            <div style="width:30%; display:inline-block; vertical-align:top; transform: translateY(-19.5%); z-index: -1; position: relative;">
+            <div id="sketch">
                 <video width="100%" height="auto" autoplay muted loop>
                     <source src="butterfly sketch.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <!-- <h3 style="transform:translateY(-80%)">&#8593 Sketching process.<br>&#8594 Cinema 4D workspace screenshot.</h3> -->
             </div>
-            <img src="c4d.png" style="width: 69.5%; display:inline-block; vertical-align:top">  
+            <img src="c4d.png" id="c4d">  
             
 
 

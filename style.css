@@ -371,6 +371,21 @@ input[type="checkbox"]::before {
   .pic22 {
     width: 48.4%;
   }
+
+  .info1 {
+    width: fit-content;
+    margin-right: 4%;
+  }
+  
+  .info2 {
+    width: fit-content;
+  }
+  
+  .info3 {
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+  }
 }
 
 @media screen and (max-width: 640px) {
@@ -381,6 +396,5 @@ input[type="checkbox"]::before {
   #poo2 {
     width: 30%;
     transform: translateY(-1px);
-  }
-  
+  } 
 }
