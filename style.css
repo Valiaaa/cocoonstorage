@@ -99,6 +99,10 @@ hr {
     display: inline-block;
 }
 
+.vnavigation {
+  display: none;
+}
+
 .home {
     margin-left: 30%;
     width:69%;
@@ -287,11 +291,96 @@ input[type="checkbox"]::before {
 }
 
 
+/*main img*/
+#poo1 {
+  width: 67%; 
+  display: inline-block; 
+  box-shadow: 0px 6px 10px #cecece;
+}
 
-  /*Screen Adaptation*/
-  @media screen and (max-width: 1560px) {
-    h1 {
-      font-size: 32px;
-      line-height: 40px;
-    }
+#poo2 {
+  width: 31%; 
+  display: block; 
+  float: right; 
+  transform: translateY(-3px);
+}
+
+
+
+/*Screen Adaptation*/
+@media screen and (max-width: 1620px) {
+  h1 {
+    font-size: 32px;
+    line-height: 40px;
   }
+
+  .category {
+    margin-left: 80px;
+  }
+
+  input[type="checkbox"] {
+    width: 28px;
+    height: 28px;
+    transform: translateY(6px);
+  }
+
+  input[type="checkbox"]::before {
+      width: 16px;
+      height: 16px;
+  }
+}
+
+@media screen and (max-width: 1360px) {
+  .category {
+    font-size: 22px;
+    line-height: 28px;
+    margin-left: 60px;
+  }
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    transform: translateY(5px);
+    border: 2px solid currentColor;
+  }
+
+  input[type="checkbox"]::before {
+      width: 12px;
+      height: 12px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .vnavigation {
+    display: block;
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  .home {
+    width: 100%;
+    margin-left: 0%;
+  }
+
+  .pic21 {
+    width: 48.4%;
+  }
+
+  .pic22 {
+    width: 48.4%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #poo1 {
+    width: 65%; 
+  }
+  
+  #poo2 {
+    width: 30%;
+    transform: translateY(-1px);
+  }
+  
+}
