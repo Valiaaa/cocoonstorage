@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-$('#posterc').change(function(){
-        if ($(this).is(':checked')) {
-            
-        };
-      });
+  $('#posterc').change(function(){
+    if ($(this).is(':checked')) {
+        
+    };
+  });
 
 });

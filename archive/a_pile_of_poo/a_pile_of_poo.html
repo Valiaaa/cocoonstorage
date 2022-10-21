@@ -44,21 +44,115 @@
             <h2 class="info2" style="margin-top: 36px;">
                 2021.12<br>
                 7 Weeks<br>
-                28-Page Zine &<br>
-                Website<br>
-                5′′ × 7.25′′ &<br>
-                Responsive
+                Website &<br>
+                28-Page Zine<br>
+                Responsive &<br>
+                5′′ × 7.25′′
             </h2>
             <h2 class="info3" style="margin-top: 36px;">
-                There are two parts of this project: a zine and an interactive website, both based on an article written by Aditya Mukerjee, that discuss the racial issue for Unicode. I focused on the features of different mediums to better present the same content under similar visual system. For example, I chose two different way of annotating to fit the medium I was working on. And for the website, both computer and phone display were considered.<br><br>
+                There are two parts of this project: an interactive website and a zine, both based on an article written by Aditya Mukerjee, that discuss the racial issue for Unicode. I focused on the features of different mediums to better present the same content under similar visual system. For example, I chose two different way of annotating to fit the medium I was working on. And for the website, both computer and phone display were considered.<br><br>
                 <h3 style="width: 50%; left: 49.6%;">* Due to the platform that I used to create the website, it is private. The documentation of the site is presented instead.</h3>
             </h2>
             <br><br><hr>
-            <img src="web1.png" style="width:67%; display: inline-block; box-shadow: 0px 6px 10px #cecece;">
+            <img src="web1.png" style="width:70.8%; display: inline-block; box-shadow: 0px 6px 10px #cecece;">
+            <img src="phone1.png" style="width:26.6%; display: block; float: right; box-shadow: 0px 6px 10px #cecece;">
+            <br><br>
+            <img src="phone2.png" style="width:26.6%; display: inline-block; box-shadow: 0px 6px 10px #cecece;">
+            <img src="web2.png" style="width:70.8%; display: block; float: right; box-shadow: 0px 6px 10px #cecece;">
+            <br><br>
+            <video width="100%" height="auto" poster="videoclip.png" controls>
+                <source src="poo web.mov" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <br>
 
+            <img src="0.png" class="pic">
+            <br><br>
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                <img src="pages/3.png" style="width:80%">
+                </div>
 
+                <div class="mySlides fade">
+                    <img src="pages/4.png" style="width:80%">
+                </div>
+                
+                <div class="mySlides fade">
+                    <img src="pages/5.png" style="width:80%">
+                </div>
 
-            <br><hr>
-            <h1 onclick="history.back()" style="cursor: url('../../pointer.png') 15 0,auto;float: right;">&#8592 Go Back</h1>
+                <div class="mySlides fade">
+                    <img src="pages/6.png" style="width:80%">
+                </div>
+                
+                <div class="mySlides fade">
+                    <img src="pages/7.png" style="width:80%">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="pages/8.png" style="width:80%">
+                </div>
+                
+                <div class="mySlides fade">
+                    <img src="pages/9.png" style="width:80%">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="pages/10.png" style="width:80%">
+                </div>
+                
+                <div class="mySlides fade">
+                    <img src="pages/11.png" style="width:80%">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="pages/12.png" style="width:80%">
+                </div>
+                
+                <div class="mySlides fade">
+                    <img src="pages/13.png" style="width:80%">
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="pages/1.png" style="width:80%">
+                </div>
+                
+                <div class="mySlides fade">
+                    <img src="pages/2.png" style="width:80%">
+                </div>
+            
+                <a class="prev" onclick="plusSlides(-1)">&#60;</a>
+                <a class="next" onclick="plusSlides(1)">&#62;</a>
+            </div>
+            <br><br><br>
+            <img src="process3.png" class="pic21" style="box-shadow: 0px 6px 10px #cecece;">
+            <img src="process4.png" class="pic22" style="box-shadow: 0px 6px 10px #cecece;">
+
+        <br><hr>
+        <h1 onclick="history.back()" style="cursor: url('../../pointer.png') 15 0,auto;float: right;">&#8592 Go Back</h1>
     </body>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slides[slideIndex-1].style.display = "block";  
+        }
+    </script>
 </html>
