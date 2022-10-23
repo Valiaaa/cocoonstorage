@@ -417,14 +417,3 @@ input[type="checkbox"]::before {
     vertical-align: top;
   }
 }
-
-@media screen and (max-width: 640px) {
-  #poo1 {
-    width: 65%; 
-  }
-  
-  #poo2 {
-    width: 30%;
-    transform: translateY(-1px);
-  } 
-}
