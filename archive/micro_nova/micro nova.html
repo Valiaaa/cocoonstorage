@@ -22,7 +22,7 @@
             <h2 style="width:fit-content; float:right;"><a href="mailto:valialiuwork@gmail.com" target="_blank">Email&#x2197;&#xFE0E;</a></h2>
             <h2 style="width:fit-content; float:right; margin-right: 3%;"><a href="../../about.html">About</a></h2>
         </div>
-
+        
         <div class="navigation">
             <h1><a href="../../index.html">Valia Liu</a></h1>
             <hr>
@@ -40,7 +40,7 @@
             <h1><a href="mailto:valialiuwork@gmail.com" target="_blank">Email↗</a></h1>
         </div>
         <div class="home">
-            <h1 style="font-style: italic;">Caught In the Middle</h1>
+            <h1 style="font-style: italic;">MicroNova</h1>
             <h2 class="info1" style="margin-top: 36px;">
                 Finishing Date:<br>
                 Duration:<br>
@@ -48,27 +48,44 @@
                 Dimension:
             </h2>
             <h2 class="info2" style="margin-top: 36px;">
-                2022.10<br>
-                5 Weeks<br>
-                Poster<br>
-                70cm × 100cm
+                2020.7<br>
+                3 Weeks<br>
+                0′07′′ Animation<br>
+                1280 × 720 px
             </h2>
             <h2 class="info3" style="margin-top: 36px;">
-                This poster set is made for Alec Benjamin's 2019 world tour, "Caught In the Middle". Starting from the collage of pictures that I took, I focus on the keyword "middle". Thus, I create the picture in frame composition, as well as placing the title in the middle of the chair. The tone of the poster and the type choice are both echoing with the sentimental music that the artist make.
+                <a href="https://www.youtube.com/channel/UCb8fHtW9Z5MNCCOf1cQ9drg/featured"  target="_blank">Youtube Channel ↗</a>
+                <br><br>
+                This stop motion animation is created as the beginning of “Micro Nova”, a youtube channel that explores and introduces a variety of events happening in a easy and playful way. Based on the virtual character of the youtubers, I created this animation, expressing how they are experiencing all the colorful things in the universe. And based on the topic of special episode, things floating in the universe can be adjusted.
             </h2>
             <br><br><hr>
-            <div id="caughtmiddle2"><img src="display.png" class="pic"></div>
-            <br>
-            <img src="dis1.JPG" class="pic21">
-            <img src="dis2.JPG" class="pic22">
+                <video width="100%" height="auto" poster="videoclip.png" autoplay loop>
+                    <source src="micro nova.MP4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
             <br><br>
-            <img src="process1.png" class="pic31">
-            <img src="process2.png" class="pic32">
-            <img src="process3.png" class="pic33">
-
+            <div id="frame">
+                <img src="1.png" class="pic31">
+                <img src="2.png" class="pic32">
+                <img src="3.png" class="pic33">
+                <br><br>
+                <img src="4.png" class="pic31">
+                <img src="5.png" class="pic32">
+                <img src="6.png" class="pic33">
+            </div>
 
 
             <br><hr>
             <h1 onclick="history.back()" style="cursor: url('../../pointer.png') 15 0,auto;float: right;">&#8592 Go Back</h1>
     </body>
+
+    <script>
+        $(document).ready(function(){
+
+            if ($(window).width() < 640) {
+            $("#frame").html("<img src='1.png' class='pic21'><img src='2.png' class='pic22'><br><br><img src='3.png' class='pic21'><img src='4.png' class='pic22'><br><br><img src='5.png' class='pic21'><img src='6.png' class='pic22'>")
+            }
+
+        });
+    </script>
 </html>
