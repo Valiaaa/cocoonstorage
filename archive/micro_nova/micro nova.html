@@ -18,9 +18,8 @@
 
     <style>
         @media screen and (max-width: 640px) {
-            #profile, #ending {
+            #profile {
                 width: 100% !important;
-                float: none !important;
             }
         }
     </style>
@@ -68,11 +67,12 @@
                 Collaborating with the youtube channel "MicroNova", I create a set of work under the same visual: profile picture, as well as the beginning and ending animation for each episode. I choose a light and playful visual to match with the style of the channel. And based on the topic of special episode, things floating in the universe can be adjusted.
             </h2>
             <br><br><hr>
-                <video width="100%" height="auto" poster="videoclip.png" autoplay loop>
-                    <source src="micro nova.MP4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-            <br><br>
+                <div id="animation">
+                    <video width="100%" height="auto" autoplay loop>
+                        <source src="micro nova.MP4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video></div>
+            <br>
             <div id="frame">
                 <img src="1.png" class="pic31">
                 <img src="2.png" class="pic32">
@@ -85,11 +85,11 @@
             <br>
 
             <img src="profile.png" id="profile" style="display:inline-block; width:35%;">
-            <span id="space"></span>
-            <video width="62.3%" height="auto" style="display:block; float:right;" id="ending" autoplay loop>
+            <span class="ending">
+                <video width="62.3%" height="auto" style="display:block; float:right;" autoplay loop>
                 <source src="ending.mp4" type="video/mp4">
               Your browser does not support the video tag.
-            </video>
+            </video></span>
 
 
             <br><hr>
@@ -101,7 +101,8 @@
 
             if ($(window).width() < 640) {
             $("#frame").html("<img src='1.png' class='pic21'><img src='2.png' class='pic22'><br><br><img src='3.png' class='pic21'><img src='4.png' class='pic22'><br><br><img src='5.png' class='pic21'><img src='6.png' class='pic22'>")
-            $("#space").html("<br><br>")
+            $(".ending").html("<br><br><video width='100%'' height='auto' style='display:block;' controls loop><source src='ending.mp4' type='video/mp4'>Your browser does not support the video tag.</video>")
+            $("#animation").html("<video width='100%'' height='auto' controls loop><source src='micro nova.MP4' type='video/mp4'>Your browser does not support the video tag.</video>")
             }
 
         });
