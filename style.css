@@ -235,8 +235,10 @@ input[type="checkbox"]::before {
   }
 
   .slide {
-    width: 100%;
-    height: 82vh;
+    width: 64%;
+    height: 23.6vw;
+    display: block;
+    float: right;
     overflow-y: scroll;
     overflow-x: hidden;
     border: 3px solid cornflowerblue;
