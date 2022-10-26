@@ -16,6 +16,15 @@
         <link rel="icon" href="../../icon.png">
     </head>
 
+    <style>
+        @media screen and (max-width: 640px) {
+            #profile, #ending {
+                width: 100% !important;
+                float: none !important;
+            }
+        }
+    </style>
+
     <body>
         <div class="vnavigation">
             <h2 style="width:fit-content; float: left; margin-left: 6px;"><a href="../../index.html">Valia Liu</a></h2>
@@ -56,7 +65,7 @@
             <h2 class="info3" style="margin-top: 36px;">
                 <a href="https://www.youtube.com/channel/UCb8fHtW9Z5MNCCOf1cQ9drg/featured"  target="_blank">Youtube Channel ↗</a>
                 <br><br>
-                This stop motion animation is created as the beginning of “Micro Nova”, a youtube channel that explores and introduces a variety of events happening in a easy and playful way. Based on the virtual character of the youtubers, I created this animation, expressing how they are experiencing all the colorful things in the universe. And based on the topic of special episode, things floating in the universe can be adjusted.
+                Collaborating with the youtube channel "MicroNova", I create a set of work under the same visual: profile picture, as well as the beginning and ending animation for each episode. I choose a light and playful visual to match with the style of the channel. And based on the topic of special episode, things floating in the universe can be adjusted.
             </h2>
             <br><br><hr>
                 <video width="100%" height="auto" poster="videoclip.png" autoplay loop>
@@ -73,6 +82,14 @@
                 <img src="5.png" class="pic32">
                 <img src="6.png" class="pic33">
             </div>
+            <br>
+
+            <img src="profile.png" id="profile" style="display:inline-block; width:35%;">
+            <span id="space"></span>
+            <video width="62.3%" height="auto" style="display:block; float:right;" id="ending" autoplay loop>
+                <source src="ending.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
 
 
             <br><hr>
@@ -84,6 +101,7 @@
 
             if ($(window).width() < 640) {
             $("#frame").html("<img src='1.png' class='pic21'><img src='2.png' class='pic22'><br><br><img src='3.png' class='pic21'><img src='4.png' class='pic22'><br><br><img src='5.png' class='pic21'><img src='6.png' class='pic22'>")
+            $("#space").html("<br><br>")
             }
 
         });
