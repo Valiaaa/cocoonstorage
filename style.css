@@ -26,8 +26,8 @@ a {
 h1 { /*big type for navigation and title*/
     font-family: 'Inter', sans-serif;
     font-weight: 300;
-    font-size: 38px;
-    line-height: 46px;
+    font-size: 36px;
+    line-height: 44px;
     color: cornflowerblue;
     margin-bottom: 0px;
 }
@@ -35,15 +35,16 @@ h1 { /*big type for navigation and title*/
 h1 a:hover, h2 a:hover, .back:hover {
     background-color: cornflowerblue;
     color: white;
-    margin-left: -4px;
-    margin-right: -6px;
-    padding-left: 4px;
-    padding-right: 6px;
 }
 
 h1 a {
     color: cornflowerblue;
     text-decoration: none;
+}
+
+.title {
+  width: 100;
+  text-align: center;
 }
 
 h2 { /*intro text*/
@@ -89,7 +90,7 @@ hr {
 
 /*Page Segments*/
 .navigation {
-    width: 28%;
+    width: 22%;
     padding: 8px;
     position: fixed;
     display: inline-block;
@@ -100,8 +101,8 @@ hr {
 }
 
 .home {
-    margin-left: 30%;
-    width:69%;
+    margin-left: 24%;
+    width: 76%;
     padding: 8px;
     display: inline-block;
 }
@@ -133,7 +134,7 @@ input[type="checkbox"] {
     width: 34px;
     height: 34px;
     border: 3px solid currentColor;
-    transform: translateY(7px);
+    transform: translateY(6px);
     place-content: center;
     display: grid;
     cursor: url('pointer.png') 15 0,auto;
@@ -189,9 +190,9 @@ input[type="checkbox"]::before {
     cursor: url('pointer.png') 15 0,auto;
   }
 
-  /* .pica:hover {
+  .pica:hover, .videoa:hover {
     box-shadow: 0 0 0 3px cornflowerblue;
-  } */
+  }
 
   .pic {
     width: 100%;
@@ -204,13 +205,13 @@ input[type="checkbox"]::before {
   }
 
   .pic21 {
-    width: 49%;
+    width: 49.2%;
     height: 100%;
     display: inline-block;
   }
 
   .pic22 {
-    width: 49%;
+    width: 49.2%;
     float: right;
     height: 100%;
     display: block;
@@ -349,8 +350,8 @@ input[type="checkbox"]::before {
 /*Screen Adaptation*/
 @media screen and (max-width: 1620px) {
   h1, .back {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 30px;
+    line-height: 38px;
   }
 
   .category {
