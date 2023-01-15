@@ -16,7 +16,46 @@
         <link rel="icon" href="icon.png">
     </head>
 
+    <style>
+        .abt {
+            width: 60%; 
+            display:inline-block;
+        }
+        .portraitf {
+            width: 38%;
+            display: block; 
+            float: right;
+            overflow: hidden;
+        }
+
+        .portrait {
+                width: 100%;
+            }
+
+        @media screen and (max-width: 640px) {
+
+            .portraitf {
+                width: 28vw;
+                height: 28vw;
+            }
+
+            .portrait {
+                transform: scale(1.5) translate(8px, 14px);
+            }
+
+            .abt {
+            width: 70%; 
+        }
+        }
+    </style>
+
     <body>
+        <div class="vnavigation">
+            <h2 style="width:fit-content; float: left; margin-left: 6px;"><a href="index.html">Valia Liu</a></h2>
+            <h2 style="width:fit-content; float:right;"><a href="mailto:valialiuwork@gmail.com" target="_blank">Email&#x2197;&#xFE0E;</a></h2>
+            <h2 style="width:fit-content; float:right; margin-right: 3%;"><a href="about.html">About</a></h2>
+        </div>
+
         <div class="navigation">
             <h1><a href="index.html">Valia Liu</a></h1>
             <hr>
@@ -34,7 +73,7 @@
         </div>
 
         <div class="home">
-            <h2 style="width: 60%; display:inline-block;">
+            <h2 class="abt">
                 A graphic designer specializing in creative direction, typographic systems, web design, and decorative form design. Had more than 170 individual customers as freelance designer, illustrator and craftsman.
                 <br><br>
                 BFA in Graphic Design from <a href="https://risd.gd/" target="_blank" style="text-decoration:underline;">Rhode Island School of Design</a>.
@@ -50,7 +89,9 @@
                 <a href="https://www.shsymphony.com/" target="_blank" style="text-decoration:underline;">Shanghai Symphony Orchestra</a> – Designer assistant.<br>
                 <a href="https://www.shphschool.com/" target="_blank" style="text-decoration:underline;">Shanghai Pinghe Bilingual School</a> – Visual identities for school size activities and ceremonies, yearbook cover for the class of 2019.
             </h2>
-            <img src="portrait.jpg" style="width: 38%; display:block; float: right;">
+            <div class="portraitf">
+                <img src="portrait.jpg" class="portrait">
+            </div>
         </div>
     </body>
 </html>
