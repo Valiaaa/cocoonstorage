@@ -17,6 +17,10 @@
     </head>
 
     <style>
+        #animation {
+            margin-bottom: 1.8%;
+        }
+
         @media screen and (max-width: 640px) {
             #profile {
                 width: 100% !important;
@@ -59,10 +63,8 @@
             </h2>
             <br><br><hr>
                 <div id="animation">
-                    <video width="100%" height="auto" autoplay loop>
-                        <source src="micro nova.MP4" type="video/mp4">
-                      Your browser does not support the video tag.
-                    </video></div>
+                    <div style="padding:56.39% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/789396542?autoplay=1&loop=1&autopause=0&muted=1"  frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Second Best"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                </div>
             <div id="frame">
                 <img src="1.png" class="pic31">
                 <img src="2.png" class="pic32">
@@ -88,8 +90,8 @@
 
             if ($(window).width() < 640) {
             $("#frame").html("<img src='1.png' class='pic21'><img src='2.png' class='pic22'><br><img src='3.png' class='pic21'><img src='4.png' class='pic22'><br><img src='5.png' class='pic21'><img src='6.png' class='pic22'>")
-            $(".ending").html("<video width='100%'' height='auto' style='display:block;' poster='ending.png' controls loop><source src='ending.mp4' type='video/mp4'>Your browser does not support the video tag.</video>").css({"padding-top":"4px", "margin-bottom":"12px", "float":"none", "display":"block"})
-            $("#animation").html("<video width='100%'' height='auto' poster='1.png' controls loop><source src='micro nova.MP4' type='video/mp4'>Your browser does not support the video tag.</video>").css("margin-bottom","12px")
+            $(".ending").html("<video width='100%' height='auto' style='display:block;' poster='ending.png' controls loop><source src='ending.mp4' type='video/mp4'>Your browser does not support the video tag.</video>").css({"padding-top":"4px", "margin-bottom":"12px", "float":"none", "display":"block"})
+            $("#animation").html("<div style='padding:56.39% 0 0 0;position:relative;'><iframe src='https://player.vimeo.com/video/789396542?autoplay=1&loop=1&autopause=0&muted=1'  frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen style='position:absolute;top:0;left:0;width:100%;height:100%;' title='Second Best'></iframe></div><script src='https://player.vimeo.com/api/player.js'></>").css("margin-bottom","18px")
             }
 
         });
