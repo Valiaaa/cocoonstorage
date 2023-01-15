@@ -218,25 +218,25 @@ input[type="checkbox"]::before {
   }
 
   .pic31 {
-    width: 31.8%;
+    width: calc(100% / 3 - 1.05%);
     display: inline-block;
   }
 
   .pic32 {
-    width: 31.8%; 
+    width: calc(100% / 3 - 1.05%); 
     display: inline-block; 
-    margin-left: 1.2vw; 
-    margin-right: 1vw;
+    margin-left: 1.2%; 
+    margin-right: 1.2%;
   }
 
   .pic33 {
-    width: 31.8%; 
+    width: calc(100% / 3 - 1.05%); 
     display: block; 
     float: right;
   }
 
   .slide {
-    width: 64%;
+    width: 66.2%;
     height: 23.6vw;
     display: block;
     float: right;

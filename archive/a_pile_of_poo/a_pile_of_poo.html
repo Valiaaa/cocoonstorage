@@ -17,6 +17,22 @@
     </head>
 
     <style>
+        .web {
+            width:71.3%; 
+            display: inline-block; 
+            box-shadow: 0px 6px 10px #cecece;
+        }
+
+        .phone {
+            width:26.8%; 
+            display: inline-block; 
+            box-shadow: 0px 6px 10px #cecece;
+        }
+
+        .pg {
+            width: 80%;
+        }
+
         @media screen and (max-width: 1360px) {
             h3 {
                 left: 44.8% !important;
@@ -30,6 +46,13 @@
                 width: 100% !important;
             }
         }
+
+        @media screen and (max-width: 640px) {
+            .phone {
+                display: none !important;
+            }
+        }
+
     </style>
 
     <body>
@@ -42,9 +65,8 @@
         <div class="navigation">
         </div>
 
-
         <div class="home">
-            <h1 style="font-style: italic;">I Can Text You A Pile Of Poo, But I Can’t Write My Name.</h1>
+            <h1>I Can Text You A Pile Of Poo, But I Can’t Write My Name.</h1>
             <h2 class="info1" style="margin-top: 36px;">
                 Medium:<br><br>
                 Dimension:<br><br>
@@ -64,81 +86,77 @@
                 <h3 style="width: 50%;left: 49.6%;">* Due to the platform that I used to create the website, it is private. The video documentation of the site is presented instead.</h3>
             </h2>
             <br><br><hr>
-            <img src="web1.png" style="width:70.8%; display: inline-block; box-shadow: 0px 6px 10px #cecece;">
-            <img src="phone1.png" style="width:26.6%; display: block; float: right; box-shadow: 0px 6px 10px #cecece;">
-            <br><br>
-            <img src="phone2.png" style="width:26.6%; display: inline-block; box-shadow: 0px 6px 10px #cecece;">
-            <img src="web2.png" style="width:70.8%; display: block; float: right; box-shadow: 0px 6px 10px #cecece;">
-            <br><br>
-            <video width="100%" height="auto" poster="videoclip.png" controls>
+            <img src="web1.png" class="web">
+            <img src="phone1.png" class="phone" style="float: right;">
+            <img src="phone2.png" class="phone">
+            <img src="web2.png" class="web" style="float: right;">
+            <div id="phone"></div>
+            <video width="100%" height="auto" poster="videoclip.png" id="docu" controls>
                 <source src="poo web.mov" type="video/mp4">
               Your browser does not support the video tag.
             </video>
-            <br>
-
             <img src="0.png" class="pic">
-            <br><br>
             <div class="slideshow-container">
                 <div class="mySlides fade">
-                <img src="pages/3.png" style="width:80%">
+                <img src="pages/3.png" class="pg">
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="pages/4.png" style="width:80%">
+                    <img src="pages/4.png" class="pg">
                 </div>
                 
                 <div class="mySlides fade">
-                    <img src="pages/5.png" style="width:80%">
+                    <img src="pages/5.png" class="pg">
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="pages/6.png" style="width:80%">
+                    <img src="pages/6.png" class="pg">
                 </div>
                 
                 <div class="mySlides fade">
-                    <img src="pages/7.png" style="width:80%">
+                    <img src="pages/7.png" class="pg">
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="pages/8.png" style="width:80%">
+                    <img src="pages/8.png" class="pg">
                 </div>
                 
                 <div class="mySlides fade">
-                    <img src="pages/9.png" style="width:80%">
+                    <img src="pages/9.png" class="pg">
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="pages/10.png" style="width:80%">
+                    <img src="pages/10.png" class="pg">
                 </div>
                 
                 <div class="mySlides fade">
-                    <img src="pages/11.png" style="width:80%">
+                    <img src="pages/11.png" class="pg">
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="pages/12.png" style="width:80%">
+                    <img src="pages/12.png" class="pg">
                 </div>
                 
                 <div class="mySlides fade">
-                    <img src="pages/13.png" style="width:80%">
+                    <img src="pages/13.png" class="pg">
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="pages/1.png" style="width:80%">
+                    <img src="pages/1.png" class="pg">
                 </div>
                 
                 <div class="mySlides fade">
-                    <img src="pages/2.png" style="width:80%">
+                    <img src="pages/2.png" class="pg">
                 </div>
             
                 <a class="prev" onclick="plusSlides(-1)">&#60;</a>
                 <a class="next" onclick="plusSlides(1)">&#62;</a>
             </div>
-            <br><br><br>
+
             <img src="process3.png" class="pic21" style="box-shadow: 0px 6px 10px #cecece;">
             <img src="process4.png" class="pic22" style="box-shadow: 0px 6px 10px #cecece;">
 
-        <br><hr>
+        <hr>
         <div onclick="history.back()" class="back">&#8592 Go Back</div>
     </body>
 
@@ -164,5 +182,15 @@
         }
         slides[slideIndex-1].style.display = "block";  
         }
+
+        $(document).ready(function(){
+
+            if ($(window).width() < 640) {
+                $("#phone").html("<img src='phone1.png' class='pic21' style='box-shadow: 0px 6px 10px #cecece;'><img src='phone2.png' class='pic22' style='box-shadow: 0px 6px 10px #cecece;'>");
+                $("#docu").css({"padding-top":"8px", "margin-bottom":"8px"});
+                $(".pg").css({"width":"80%", "margin-left":"auto", "margin-right":"auto"});
+            }
+
+        });
     </script>
 </html>

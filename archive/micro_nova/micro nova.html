@@ -21,6 +21,10 @@
             #profile {
                 width: 100% !important;
             }
+
+            .pic21, .pic22 {
+                margin-bottom: 12px;
+            }
         }
     </style>
 
@@ -34,9 +38,8 @@
         <div class="navigation">
         </div>
 
-        
         <div class="home">
-            <h1 style="font-style: italic;">MicroNova</h1>
+            <h1>MicroNova</h1>
             <h2 class="info1" style="margin-top: 36px;">
                 Medium:<br>
                 Dimension:<br>
@@ -60,27 +63,23 @@
                         <source src="micro nova.MP4" type="video/mp4">
                       Your browser does not support the video tag.
                     </video></div>
-            <br>
             <div id="frame">
                 <img src="1.png" class="pic31">
                 <img src="2.png" class="pic32">
                 <img src="3.png" class="pic33">
-                <br><br>
                 <img src="4.png" class="pic31">
                 <img src="5.png" class="pic32">
                 <img src="6.png" class="pic33">
             </div>
-            <br>
-
-            <img src="profile.png" id="profile" style="display:inline-block; width:35%;">
+            <img src="profile.png" id="profile" style="display:inline-block; width:35.4%;">
             <span class="ending">
-                <video width="62.3%" height="auto" style="display:block; float:right;" autoplay loop>
+                <video width="63%" height="auto" style="display:block; float:right;" autoplay loop>
                 <source src="ending.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video></span>
 
 
-            <br><hr>
+            <hr>
             <h1 onclick="history.back()" class="back">&#8592 Go Back</h1>
     </body>
 
@@ -88,9 +87,9 @@
         $(document).ready(function(){
 
             if ($(window).width() < 640) {
-            $("#frame").html("<img src='1.png' class='pic21'><img src='2.png' class='pic22'><br><br><img src='3.png' class='pic21'><img src='4.png' class='pic22'><br><br><img src='5.png' class='pic21'><img src='6.png' class='pic22'>")
-            $(".ending").html("<br><br><video width='100%'' height='auto' style='display:block;' poster='ending.png' controls loop><source src='ending.mp4' type='video/mp4'>Your browser does not support the video tag.</video>")
-            $("#animation").html("<video width='100%'' height='auto' poster='1.png' controls loop><source src='micro nova.MP4' type='video/mp4'>Your browser does not support the video tag.</video>")
+            $("#frame").html("<img src='1.png' class='pic21'><img src='2.png' class='pic22'><br><img src='3.png' class='pic21'><img src='4.png' class='pic22'><br><img src='5.png' class='pic21'><img src='6.png' class='pic22'>")
+            $(".ending").html("<video width='100%'' height='auto' style='display:block;' poster='ending.png' controls loop><source src='ending.mp4' type='video/mp4'>Your browser does not support the video tag.</video>").css({"padding-top":"4px", "margin-bottom":"12px", "float":"none", "display":"block"})
+            $("#animation").html("<video width='100%'' height='auto' poster='1.png' controls loop><source src='micro nova.MP4' type='video/mp4'>Your browser does not support the video tag.</video>").css("margin-bottom","12px")
             }
 
         });

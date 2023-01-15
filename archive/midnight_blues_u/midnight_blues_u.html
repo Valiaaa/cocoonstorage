@@ -28,9 +28,9 @@
 
         #c4d {
             width: 69%; 
-            display:inline-block; 
+            display:block;
+            float: right;
             margin-left: 0.4%;
-            vertical-align:top;
         }
 
         #sketch2 {
@@ -66,7 +66,7 @@
 
         
         <div class="home">
-            <h1 style="font-style: italic;">Midnight (Blues) &U</h1>
+            <h1>Midnight <span style="font-style:italic;">(Blues)</span> &U</h1>
             <h2 class="info1" style="margin-top: 36px;">
                 Medium:<br><br>
                 Dimension:<br><br>
@@ -74,7 +74,7 @@
                 Duration:
             </h2>
             <h2 class="info2" style="margin-top: 36px;">
-                Rendered Pieces &<br>
+                Modeling &<br>
                 Vinyl Design<br>
                 2560px × 1600px &<br>
                 12" × 12"<br>
@@ -86,9 +86,7 @@
             </h2>
             <br><br><hr>
             <img src="midnight vinyl.png" class="pic">
-            <br><br>
             <img src="cover.png" style="width:100%;">
-            <br><br>
             <div id="sketch">
                 <video width="100%" height="auto" autoplay muted loop>
                     <source src="butterfly sketch.mp4" type="video/mp4">
@@ -105,7 +103,7 @@
             
 
 
-            <br><hr>
+            <hr>
             <div onclick="history.back()" class="back">&#8592 Go Back</div>
     </body>
 </html>
