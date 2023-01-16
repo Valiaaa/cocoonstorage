@@ -134,7 +134,7 @@ input[type="checkbox"] {
     width: 34px;
     height: 34px;
     border: 3px solid currentColor;
-    transform: translateY(6px);
+    transform: translateY(8px);
     place-content: center;
     display: grid;
     cursor: url('pointer.png') 15 0,auto;
@@ -184,6 +184,11 @@ input[type="checkbox"]::before {
   .category li:hover {
     background-color: cornflowerblue;
     color: white;
+  }
+
+  #album, #poster, #video, #editorial, #modeling, #branding {
+    width: fit-content;
+    cursor: url('pointer.png') 15 0,auto;
   }
 
   .filter {
@@ -386,7 +391,7 @@ input[type="checkbox"]::before {
   input[type="checkbox"] {
     width: 28px;
     height: 28px;
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
 
   input[type="checkbox"]::before {
@@ -409,7 +414,7 @@ input[type="checkbox"]::before {
   input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    transform: translateY(5px);
+    transform: translateY(7px);
     border: 2px solid currentColor;
   }
 

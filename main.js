@@ -1,6 +1,13 @@
 $(document).ready(function(){
 
-// filter checked or not
+  $('.category span').each(function(){
+    $(this).click(function(){
+      var txtbutton = $(this).attr("id") + "c"
+      $("#" + txtbutton).click();
+    });
+  });
+
+// filter
   $('.category').change(function(){
     if ($('input[type="checkbox"]').is(':checked')) {
       $('.main').hide();
