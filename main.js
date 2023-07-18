@@ -7,6 +7,18 @@ $(document).ready(function(){
     });
   });
 
+  $('#all').click(function(){
+    $('.category input[type="checkbox"]').prop("checked", true);
+    $('.main').hide();
+    $('.filter h2').css("display","inline-block");
+  });
+
+  $('#clear').click(function(){
+    $('.category input[type="checkbox"]').prop("checked", false);
+    $('.main').show();
+    $('.filter h2').hide();
+  });
+
 // filter
   $('.category').change(function(){
     if ($('input[type="checkbox"]').is(':checked')) {
