@@ -35,7 +35,8 @@ $(document).ready(function(){
       const myArray = theclass;
       var theclass1 = myArray[0];
       var theclass2 = myArray[1];
-      if ($("#" + theclass1 + "c").is(':checked') || $("#" + theclass2 + "c").is(':checked')){
+      var theclass3 = myArray[2];
+      if ($("#" + theclass1 + "c").is(':checked') || $("#" + theclass2 + "c").is(':checked') || $("#" + theclass3 + "c").is(':checked')){
         checkt = checkt +1;
       } else {
         checkt = checkt;
