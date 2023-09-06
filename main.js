@@ -36,7 +36,8 @@ $(document).ready(function(){
       var theclass1 = myArray[0];
       var theclass2 = myArray[1];
       var theclass3 = myArray[2];
-      if ($("#" + theclass1 + "c").is(':checked') || $("#" + theclass2 + "c").is(':checked') || $("#" + theclass3 + "c").is(':checked')){
+      var theclass4 = myArray[3];
+      if ($("#" + theclass1 + "c").is(':checked') || $("#" + theclass2 + "c").is(':checked') || $("#" + theclass3 + "c").is(':checked') || $("#" + theclass4 + "c").is(':checked')){
         checkt = checkt +1;
       } else {
         checkt = checkt;
