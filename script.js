@@ -4,6 +4,7 @@ $(document).ready(function(){
 
   $("img").css("margin-bottom","1.2%");
   $("video").css("margin-bottom","1.2%");
+  $("img.nospace").css("margin","0");
 
   if ($(window).width() < 640) {
     $("img").css({"width":"100%", "margin-bottom":"12px", "float":"none", "display":"block", "margin-left":"0"});
