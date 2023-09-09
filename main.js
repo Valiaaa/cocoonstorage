@@ -20,7 +20,8 @@ $(document).ready(function(){
   });
 
 // filter
-  $('.category').change(function(){
+
+  $('.category').click(function(){
     if ($('input[type="checkbox"]').is(':checked')) {
       $('.main').hide();
       $('.filter').show();
@@ -49,6 +50,14 @@ $(document).ready(function(){
       }
     });
   });
+
+  function filter() {
+    if ($('.category input[type="checkbox"]').is(':checked')) {
+      $('.category').click();
+    } else {};
+  }
+ 
+ setTimeout( filter, 1 ); // call "myfunc" after 3 seconds
 
   
 });
