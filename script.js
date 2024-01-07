@@ -15,17 +15,17 @@ $(document).ready(function(){
   
   var currentUrl = window.location.href;
 
-  // // Check if the current URL ends with ".html"
-  // if (currentUrl.endsWith(".html")) {
-  //     // Check if the slug is "index.html"
-  //     if (currentUrl.endsWith("index.html")) {
-  //         var newUrl = currentUrl.replace("index.html", "");
-  //     } else {
-  //         var newUrl = currentUrl.replace(".html", "");
-  //     }
+ // Check if the current URL ends with ".html"
+ if (currentUrl.endsWith(".html")) {
+  // Check if the slug is "index.html"
+  if (currentUrl.endsWith("index.html")) {
+      var newUrl = currentUrl.replace("index.html", "");
+  } else if (currentUrl.endsWith("about.html")){
+      var newUrl = currentUrl.replace(".html", "");
+  }
 
-  //     window.history.replaceState({}, document.title, newUrl);
-  // }
+  window.history.replaceState({}, document.title, newUrl);
+}
 
     // Get the current URL
     var currentUrl = window.location.href;
