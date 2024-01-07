@@ -26,4 +26,22 @@ $(document).ready(function(){
 
       window.history.replaceState({}, document.title, newUrl);
   }
+
+    // Get the current URL
+    var currentUrl = window.location.href;
+
+    // Check if the current URL matches the specified pattern
+    var match = currentUrl.match(/https:\/\/valialiu\.com\/archive\/([^\/]+)\/\1\.html/);
+  
+    if (match) {
+        // Extract the art_name from the URL
+        var artName = match[1];
+  
+        // Construct the new URL
+        var newUrl = "https://valialiu.com/" + artName;
+  
+        // Replace the current URL
+        window.history.replaceState({}, document.title, newUrl);
+    }
+    
 });
