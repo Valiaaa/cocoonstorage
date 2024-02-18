@@ -13,6 +13,22 @@
         <link rel="icon" href="../../icon.png">
     </head>
 
+    <style>
+        @media screen and (max-width: 375px) {
+            h2 {
+                font-size: 16px;
+                line-height: 22px;
+            }
+        }
+
+        @media screen and (max-width: 340px) {
+            h2 {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+    </style>
+
     <body>
         <div class="vnavigation">
             <h2 style="width:fit-content; float: left; margin-left: 6px;"><a href="../../index.html">Valia Liu</a></h2>
@@ -35,7 +51,7 @@
                 0'38" Video Trailer &<br>
                 8.5" × 11" Magazine &<br>
                 18" × 24" Poster Set &<br>
-                Responsive Web Design &<br>
+                Web Design &<br>
                 8.5" × 11" Newsprint<br>
                 2023.5<br>
                 14 Weeks
@@ -61,4 +77,10 @@
             <hr>
             <h1 onclick="history.back()" class="back">&#8592 Go Back</h1>
     </body>
+
+    <script>
+        if ($(window).width() < 1420) {
+            $(".info1").html("Medium &<br>Dimension:<br><br><br><br><br>Finishing Date:<br>Duration:")
+        };
+    </script>
 </html>
