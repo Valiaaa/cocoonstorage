@@ -9,6 +9,7 @@ $(document).ready(function(){
   if ($(window).width() < 640) {
     $("img").css({"width":"100%", "margin-bottom":"12px", "float":"none", "display":"block", "margin-left":"0"});
     $("video").css("margin-bottom","12px");
+    $(".video").css({"margin-bottom":"12px", "width":"100%"});
     $(".no").css({"display":"none"});
   }
 });

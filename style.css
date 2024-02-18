@@ -247,7 +247,7 @@ input[type="checkbox"]::before {
     height: 100%;
     overflow: hidden;
     object-fit: cover;
-  }x
+  }
 
   .filter h2{
     width: calc((100% - 12px - 3.6%) /3);
