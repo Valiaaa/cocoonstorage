@@ -1,0 +1,157 @@
+/* ==== 通用布局结构 ==== */
+#project-media {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+  }
+  
+  /* ==== media 单项结构 ==== */
+  .media-box {
+    flex: 0 0 auto;
+    height: auto;
+  }
+  
+  .media-box img,
+  .media-box iframe {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  
+  .media-box iframe.ratio-1-1 {
+    aspect-ratio: 1 / 1;
+  }
+  .media-box iframe.ratio-4-3 {
+    aspect-ratio: 4 / 3;
+  }
+  .media-box iframe.ratio-16-9 {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .media-item iframe {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* ==== media pair 结构 ==== */
+  .media-pair {
+    display: flex;
+    gap: var(--gap);
+  }
+  
+  .media-pair .media-item {
+    max-width: 100%;
+    flex: 1 1 auto;
+  }
+  
+  /* ⚠️ 注意：这条规则在小屏下会被我们 media query 覆盖 */
+  .media-pair .media-box {
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+  
+  /* ==== 图片样式辅助类 ==== */
+  .pic2 {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  
+  .pic149 {
+    width: 50%;
+    aspect-ratio: 14 / 9;
+    object-fit: cover;
+  }
+  
+  /* ==== 项目信息区 ==== */
+  .project h1 {
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    margin: 8px 0 0;
+  }
+  
+  .project-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+  
+  /* ==== individual 页面结构 ==== */
+  .individual-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 4fr;
+    gap: var(--gap);
+    margin-top: 32px;
+  }
+  
+  .title-col, .info-col, .description-col {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ==== video wrapper ==== */
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+  }
+  
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+  }
+  
+  .video-wrapper.square {
+    padding-top: 100%;
+  }
+  
+  .video-wrapper.fourthree {
+    padding-top: 75%;
+  }
+  
+  /* ==== 移动端适配（<=768px）==== */
+  @media screen and (max-width: 768px) {
+    .media-pair {
+      flex-direction: column;
+    }
+  
+    .media-pair .media-box,
+    .media-box {
+      width: 100% !important;
+      flex: none !important;
+      display: block !important;
+    }
+  
+    .media-box iframe,
+    .media-box img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+  
+    .project-info {
+      padding-top: 0;
+      width: 50vw;
+      margin-right: var(--gap);
+    }
+  
+    .individual-container {
+      grid-template-columns: 3fr 5fr;
+    }
+  
+    .individual-container > :nth-child(3) {
+      grid-column: 1 / -1;
+    }
+  }  

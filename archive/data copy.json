@@ -1,0 +1,81 @@
+{
+    "projects": [
+      {
+        "title": "5050Collective",
+        "filename": "5050collective",
+        "video": "https://player.vimeo.com/video/1067595877?autoplay=1&loop=1&autopause=0&muted=1",
+        "categories": ["website"],
+        "medium": "Website",
+        "dimension": "",
+        "date": "Jul 2024",
+        "collaborator": "",
+        "feature": false,
+        "description": "Project under construction...🛠️"
+      },
+      {
+        "title": "Graphic Design <span style='font-style:italic;'>*Jail*</span>",
+        "filename": "graphic_design_jail",
+        "video": "https://player.vimeo.com/video/844393114?autoplay=1&loop=1&autopause=0&muted=1",
+        "categories": ["website","printed","moving"],
+        "medium": "Thesis Project",
+        "dimension": "",
+        "date": "May 2023",
+        "collaborator": "",
+        "feature": false,
+        "description": "Project under construction...🛠️"
+      },
+      {
+        "title": "Last Words",
+        "filename": "last_words",
+        "video": "https://player.vimeo.com/video/844393756?autoplay=1&loop=1&autopause=0&muted=1",
+        "cover": "cover1.jpg",
+        "categories": ["album"],
+        "medium": "Album",
+        "dimension": "",
+        "date": "Jan 2023",
+        "collaborator": "",
+        "feature": false,
+        "description": "Project under construction...🛠️"
+      },
+      {
+        "title": "Charting the Present: Asian Modern & Contemporary Art",
+        "filename": "charting_the_present",
+        "video": "",
+        "cover": "cover1.jpg",
+        "categories": ["printed"],
+        "medium": "Magazine Layout",
+        "dimension": "8.5\" × 11\"",
+        "date": "Apr 2022",
+        "collaborator": "",
+        "feature": false,
+        "description": "A curated magazine archiving a collection of essays on East Asian contemporary art. The design follows a systematic approach—guided by an underlying grid system and precise margins, which lend a contemporary structure while subtly diverging from classical typographic conventions. Within this structure, each spread is designed to offer moments of visual tension and quiet surprise. The cover introduces a linear motif that echoes the internal grid, extending the system outward while alluding to the passage of time."
+      },
+      {
+        "title": "Jungle Daydreaming",
+        "filename": "jungle_daydreaming",
+        "video": "https://player.vimeo.com/video/806540127?autoplay=1&loop=1&autopause=0&muted=1",
+        "cover": "cover1.jpg",
+        "categories": ["moving"],
+        "medium": "Digital Collage",
+        "dimension": "1920px × 1080px",
+        "date": "Mar 2023",
+        "collaborator": "",
+        "feature": false,
+        "description": "A short-form digital collage exploring the intersection of motion and publication. Designed as a speculative exercise, the piece imagines an alternative future for digital reading—where pagination remains, but images move, loop, and distort. Natural forms and mechanical remnants collide across each spread: overgrown vehicles, outstretched limbs, and hyperreal parrots unfold in dreamlike rhythm, quietly unsettling the conventions of static editorial space."
+      },
+      {
+        "title": "Where have all the lost memories gone?",
+        "filename": "lost_memories",
+        "video": "https://player.vimeo.com/video/862104477?autoplay=1&loop=1&autopause=0&muted=1",
+        "cover": "cover1.jpg",
+        "categories": ["moving"],
+        "medium": "Digital Collage",
+        "dimension": "1920px × 1080px",
+        "date": "Apr 2023",
+        "collaborator": "",
+        "feature": false,
+        "description": "A short-form digital collage exploring dreamcore aesthetics through spatial tension and temporal compression. The piece blurs the boundary between real and rendered, evoking an eerie familiarity that lingers without resolution, like a place once visited but never fully seen."
+      }
+    ]
+  }
+  

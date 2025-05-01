@@ -1,0 +1,160 @@
+.featured-container {
+    width: 100%;
+}
+  
+.featured-projects {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+  
+.featured-project {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: calc(var(--body-padding) * 0.5);
+    margin-bottom: calc(var(--body-padding) * 1);
+    padding-bottom: calc(var(--body-padding) * 1.5);
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    border-bottom: var(--border-width) solid var(--txt-color);
+}
+  
+.featured-project.is-last {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+  
+
+.featured-project .media-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.featured-project img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.featured-project-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    width: auto;
+  }  
+
+
+
+
+
+.project-info {
+    width: 32%;
+}
+
+
+
+
+
+.vimeo-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+  
+.vimeo-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+  
+.image-group {
+    display: flex;
+    justify-content: center;
+    gap: var(--gap);
+    width: 100%;
+}
+  
+.image-group img {
+    flex: 1; 
+    height: auto;
+    max-height: 80vh; /* 控制最大高度，避免图片过长 */
+    object-fit: cover; /* 保持比例填充 */
+    cursor: var(--pointer-cursor);
+} 
+
+.media-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+}
+  
+
+
+
+  
+.media-grid > .full {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+.video-square, .image-square {
+    aspect-ratio: 1 / 1;
+}
+  
+.video-square iframe, .image-square img, .vimeo-container.with-bg iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.vimeo-container.with-bg iframe {
+    aspect-ratio: 16 / 9;
+    display: block;
+}  
+
+
+
+
+@media screen and (max-width: 768px) { 
+    .media-grid > div:first-child {
+        width: 100%;
+    }
+    
+    /* 隐藏右边的内容 */
+      .media-grid > div:last-child {
+        display: none;
+    }
+    
+    /* 让 media-grid 本身表现为单列 */
+      .media-grid {
+        display: block;
+    }
+  
+    .media-box {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        background-color: #000;
+    }
+    
+    .media-box img, .media-box iframe {
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .project-info {
+        width: 64%;
+    }
+}

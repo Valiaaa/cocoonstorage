@@ -1,351 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="style.css"> 
-        <script src="main.js"></script>
-        
-        <title>Valia Liu</title>
-        <link rel="icon" href="icon.png?">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Valia Liu</title>
+    <link rel="icon" href="assets/icons/icon.png">
 
-    <style>
-        @media screen and (max-width: 640px) {
-            .pic21 {
-                width: 100%;
-            }
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/project.css">
 
-            .pic22 {
-                display: none;
-            }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
 
-            h1 {
-                font-size: 24px;
-                line-height: 32px;
-            }
+<body class="is-home">
+    <div id="bg"><div class="noise nopc"></div></div>
+    <div class="mobile-nav">
+        <div class="noise"></div>
+        <h1 class="mobile-title"><a href="index.html">Valia Liu</a></h1>
+        <button class="hamburger-menu">
+            ☰
+        </button>
+    </div>
 
-            .home {
-                line-height: 0.2;
-            }
-
-            .title {
-                margin-top: 3%;
-            }
-
-            #lastwordsv, #millerknoll1, #charting2 {
-                display: none !important;
-            }
-
-            #millerknoll2 {
-                width: 100% !important;
-                margin-bottom: 24px;
-            }
-
-            #charting1 {
-                width: 100% !important;
-            }
+    <nav id="navigation"></nav>
+    <div class="container">
+  
+      <main class="home content">
+        <h1 class="title" style="margin-bottom: calc( var(--gap) * 3); display: inline-block;">
+          is a New York-based graphic designer specializing in visual identity, typography, and front-end web development.
+        </h1>
+        <section class="featured-container">
+          <div class="featured-projects">
+          </div>
+        </section>
+  
+        <div class="projects-grid">
+        </div>
+  
+      </main>
+    </div>
+  
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script>
+      $("#navigation").load("components/navigation.html", function () {
+        if (typeof bindNavigationEvents === "function") {
+          bindNavigationEvents();
         }
-    </style>
-
-    <body>
-        <div class="vnavigation">
-            <h2 style="width:fit-content; float: left; margin-left: 6px;"><a href="index.html">Valia Liu</a></h2>
-            <h2 style="width:fit-content; float:right;"><a href="mailto:valialiuwork@gmail.com" target="_blank">Email&#x2197;&#xFE0E;</a></h2>
-            <h2 style="width:fit-content; float:right; margin-right: 3%;"><a href="about.html">About</a></h2>
-        </div>
-
-        <div class="navigation">
-            <h1><a href="index.html">Valia Liu</a></h1>
-            <hr>
-            <h1 class="category">
-                <input type="checkbox" id="brandingc"><span id="branding">&nbsp Branding</span>
-                <input type="checkbox" id="websitec"><span id="website">&nbsp Website</span>
-                <input type="checkbox" id="editorialc"><span id="editorial">&nbsp Editorial</span>
-                <input type="checkbox" id="posterc"><span id="poster">&nbsp Poster</span>
-                <input type="checkbox" id="videoc"><span id="video">&nbsp Video</span>
-                <input type="checkbox" id="albumc"><span id="album">&nbsp Album</span>
-                <input type="checkbox" id="modelingc"><span id="modeling">&nbsp Modeling</span>
-            </h1>
-            <h1 class="button" id="all">All</h1>
-            <h1 class="button" id="clear">Clear</h1>
-            <hr>
-            <h1><a href="about.html">About</a></h1>
-            <h1><a href="mailto:valialiuwork@gmail.com" target="_blank">Email↗</a></h1>
-        </div>
-
-
-
-        <div class="home main">
-            <a href="archive/graphic_design_jail/graphic_design_jail.html">
-            <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/844393114?autoplay=1&loop=1&autopause=0&muted=1"  frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Second Best"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-            </a>
-            <br><br>
-            <h1 class="title">
-                <a href="archive/graphic_design_jail/graphic_design_jail.html">
-                    Graphic Design *<i>Jail </i>*<br>Multimedium Degree Project</a></h1>
-            <br><hr><br><br>
-
-            <a href="archive/millerknoll/millerknoll.html">
-                <img src="archive/millerknoll/logo.png" style="display:inline-block; width: 42.1%;" class="pica" id="millerknoll1">
-                <img src="archive/millerknoll/bc.jpg" style="display:block; width: 56.1%; float: right;" class="pica" id="millerknoll2">
-            </a>
-            <br><br>
-            <h1 class="title"><a href="archive/millerknoll/millerknoll.html">MillerKnoll Workspace Research Library<br>Branding</a></h1>
-            <br><hr><br><br>
-
-
-            <a href="archive/logofolio/logofolio.html">
-                <img src="archive/logofolio/cover2.jpg" class="pic21 pica" id="lofo1">
-                <img src="archive/logofolio/cover1.jpg" class="pic22 pica" id="lofo2">
-            </a>
-            <br><br>
-            <h1 class="title"><a href="archive/logofolio/logofolio.html">Logofolio 2023<br>Logo Design</a></h1>
-            <br><hr><br><br>
-
-
-            <a href="archive/my_monthly_trailer/my_monthly_trailer.html">
-                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/912322337?autoplay=1&loop=1&autopause=0&muted=1"  frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Second Best"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-                </a>
-                <br><br>
-                <h1 class="title">
-                    <a href="archive/my_monthly_trailer/my_monthly_trailer.html">
-                        My Monthly: Product Trailer<br>Animation</a></h1>
-                <br><hr><br><br>
-
-
-            <a href="archive/web_marks/web_marks.html">
-                <img src="archive/web_marks/mainpage.gif" class="pic pica">
-            </a>
-            <br><br>
-            <h1 class="title"><a href="archive/web_marks/web_marks.html">(Web)Marks<br>Website</a></h1>
-            <br><hr><br><br>
-
-
-            <div class="pic2">
-                <a href="archive/altoona/altoona.html">
-                    <img src="archive/altoona/cover.jpg" class="pic21 pica">
-                </a>
-                <a href="archive/altoona/altoona.html">
-                    <img src="archive/altoona/9.jpg" class="pic22 pica">
-                </a>
-            </div>
-            <br>
-            <h1 class="title">
-                <a href="archive/altoona/altoona.html">
-                    Altoona<br>Album Cover Design</a></h1>
-            <br><hr><br><br>
-
-
-            <div class="pic">
-                <a href="archive/charting_the_present/charting_the_present.html">
-                    <img src="archive/charting_the_present/cover2.jpg" class="pic21 pica" style="width: 42.1%" id="charting1">
-                </a>
-                <a href="archive/charting_the_present/charting_the_present.html">
-                    <img src="archive/charting_the_present/pages.jpg" class="pic22 pica" style="width: 56.2%" id="charting2">
-                </a>
-            </div>
-            <br>
-            <h1 class="title">
-                <a href="archive/charting_the_present/charting_the_present.html">
-                    Charting the Present<br>Magazine Design</a></h1>
-            <br><hr><br><br>
-
-
-            <a href="archive/jungledaydreaming/jungledaydreaming.html">
-                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/806540127?autoplay=1&loop=1&autopause=0&muted=1"  frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Second Best"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-            </a>
-            <br><br>
-            <h1 class="title">
-                <a href="archive/jungledaydreaming/jungledaydreaming.html">
-                    Jungle Daydreaming<br>Digital Compositing Video</a></h1>
-            <br><hr><br><br>
-
-        
-            <div class="pic2">
-                <a href="archive/contemporary_art_expression/contemporary_art_expression.html">
-                    <img src="archive/contemporary_art_expression/1.jpg" class="pic21 pica">
-                </a>
-                <a href="archive/contemporary_art_expression/contemporary_art_expression.html">
-                    <img src="archive/contemporary_art_expression/2.jpg" class="pic22 pica">
-                </a>
-            </div><br>
-            <h1 class="title"><a href="archive/contemporary_art_expression/contemporary_art_expression.html">Contemporary Art Expression<br>Poster Design</a></h1>
-            <br><hr><br><br>
-
-
-            <div class="pic2">
-                <a href="archive/stillness_geometric_nostalgia/stillness_geometric_nostalgia.html">
-                    <img src="archive/stillness_geometric_nostalgia/cover.jpg" class="pic21 pica">
-                </a>
-                <a href="archive/stillness_geometric_nostalgia/stillness_geometric_nostalgia.html">
-                    <img src="archive/stillness_geometric_nostalgia/inner.jpg" class="pic22 pica">
-                </a>
-            </div>
-            <br>
-            <h1 class="title">
-                <a href="archive/stillness_geometric_nostalgia/stillness_geometric_nostalgia.html">
-                    Stillness, Geometric, Nostalgia.<br>Interview & Newsprint Layout</a></h1>
-            <br><hr><br><br>
-
-
-            <a href="archive/second_best/second_best.html">
-                <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/789396762?autoplay=1&loop=1&autopause=0&muted=1"  frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Second Best"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-            </a>
-            <br><br>
-            <h1 class="title">
-                <a href="archive/second_best/second_best.html">
-                    Second Best<br>Frame-by-frame Animation</a></h1>
-            <br><hr><br><br>
-
-
-            <a href="archive/last_words/last_words.html">
-                <img src="archive/last_words/last words.jpg" class="pic21 pica">
-            </a>
-            <div style="width:49.2%; display:block; float:right; margin-top: -2px;" id="lastwordsv">
-                <div style="padding:100% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/844393756?autoplay=1&loop=1&autopause=0&muted=1"  frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Second Best"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-            </div>
-            <br><br>
-            <h1 class="title">
-                <a href="archive/last_words/last_words.html">
-                    Last Words<br>Album Cover & Spotify Canvas Design</a></h1>
-        </div>
-
-
-        <div class="home filter">
-
-            <h2 class="poster video editorial website">
-                <a href="archive/graphic_design_jail/graphic_design_jail.html">
-                    <img src="archive/graphic_design_jail/icon.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="branding website">
-                <a href="archive/millerknoll/millerknoll.html">
-                    <img src="archive/millerknoll/bc.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="branding">
-                <a href="archive/logofolio/logofolio.html">
-                    <img src="archive/logofolio/cover2.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="branding video">
-                <a href="archive/my_monthly_trailer/my_monthly_trailer.html">
-                    <img src="archive/my_monthly_trailer/5.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="website">
-                <a href="archive/web_marks/web_marks.html">
-                    <img src="archive/web_marks/phone1.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="album modeling">
-                <a href="archive/altoona/altoona.html">
-                    <img src="archive/altoona/cover.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="editorial">
-                <a href="archive/charting_the_present/charting_the_present.html">
-                    <img src="archive/charting_the_present/cover2.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="video">
-                <a href="archive/jungledaydreaming/jungledaydreaming.html">
-                    <img src="archive/jungledaydreaming/display.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="poster">
-                <a href="archive/contemporary_art_expression/contemporary_art_expression.html">
-                    <img src="archive/contemporary_art_expression/1.jpg" class="pica" style="object-position:0px -10px">
-                </a>
-            </h2>
-            <h2 class="editorial">
-                <a href="archive/stillness_geometric_nostalgia/stillness_geometric_nostalgia.html">
-                    <img src="archive/stillness_geometric_nostalgia/cover.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="video">
-                <a href="archive/second_best/second_best.html">
-                    <img src="archive/second_best/image.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="album">
-                <a href="archive/last_words/last_words.html">
-                    <img src="archive/last_words/last words.jpg" class="pica">
-                </a>
-            </h2>
-
-
-
-            <h2 class="album modeling">
-                <a href="archive/midnight_blues_u/midnight_blues_u.html">
-                    <img src="archive/midnight_blues_u/cover.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="website">
-                <a href="archive/bebon/bebon.html">
-                    <img src="archive/bebon/cover.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="website">
-                <a href="archive/shanshan/shanshan.html">
-                    <img src="archive/shanshan/cover.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="video">
-                <a href="archive/lost_memories/lost_memories.html">
-                    <img src="archive/lost_memories/cover.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="editorial website">
-                <a href="archive/a_pile_of_poo/a_pile_of_poo.html">
-                    <img src="archive/a_pile_of_poo/poo1.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="video">
-                <a href="archive/digital_escapades/digital_escapades.html">
-                    <img src="archive/digital_escapades/preview.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="video">
-                <a href="archive/chatbot_showcase/chatbot_showcase.html">
-                    <img src="archive/chatbot_showcase/cover.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="album">
-                <img src="archive/singles/do_not_hold_doors.jpg">
-            </h2>
-            <h2 class="album">
-                <img src="archive/moon_would_you/moon.jpg">
-            </h2>
-            <h2 class="poster video">
-                <img src="archive/black_mamba/poster2.jpg">
-            </h2>
-            <h2 class="website">
-                <a href="archive/moon-bound_express/moon-bound_express.html">
-                    <img src="archive/moon-bound_express/osmanthus1.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="album">
-                <img src="archive/singles/you_may_not_ask.jpg">
-            </h2>
-            <h2 class="album">
-                <img src="archive/singles/haleyon.jpg">
-            </h2>
-            <h2 class="video">
-                <a href="archive/micro_nova/micro_nova.html">
-                    <img src="archive/micro_nova/6.jpg" class="pica">
-                </a>
-            </h2>
-            <h2 class="modeling poster">
-                <a href="archive/letter_a/letter_a.html">
-                    <img src="archive/letter_a/purple.jpg" class="pica">
-                </a>
-            </h2>
-
-        </div>
-    </body>
+      });
+    </script>
+    
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/renderHome.js"></script>    
+  
+  </body>    
 </html>

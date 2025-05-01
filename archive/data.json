@@ -1,0 +1,71 @@
+{
+    "projects": [
+      {
+        "title": "My Monthly",
+        "filename": "my_monthly",
+        "cover": "cover.jpg",
+        "categories": ["branding","website","printed","moving"],
+        "medium": "Visual Identity",
+        "dimension": "",
+        "date": "Mar 2025",
+        "collaborator": ["My Monthly Team"],
+        "feature": true,
+        "description": "<a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a> is a cycle-tracking app designed to deepen communication in romantic relationships by reframing cycle care as a shared emotional space. The Branding team focused on expressing the core mission through a balance of soft and structured visuals by utilizing calm color palette that softens the communication and mood-based characters that make emotion feel tangible. These elements compose a system that is recognizably 'My Monthly.'<br><br>As the Branding Lead, I am responsible for the clarity and cohesion of the brand’s visual identity across all digital and physical platforms. My role centers on developing fresh visual directions—ranging from event-driven campaigns and animated brand stories to modular systems for social content—that create expressive moments to surprise and engage, while staying grounded in the brand’s core identity."
+      },
+      {
+        "title": "Altoona",
+        "filename": "altoona",
+        "video": "https://player.vimeo.com/video/962361008?autoplay=1&loop=1&autopause=0&muted=1",
+        "videoRatio": "1-1",
+        "cover": "cover.jpg",
+        "categories": ["album","modeling"],
+        "medium": "Album",
+        "dimension": "",
+        "date": "Jun 2024",
+        "collaborator": "",
+        "feature": true,
+        "description": "Visual direction for Harry’s album Altoona, centered on a 3D visualization of his lived space, reframed as a preserved memory. The contrast between precise modeling and a graphic and bold palette establishes a tone that is part archive, part dream. The project treats environment as narrative, with variations created for remix and reinterpretation."
+      },
+      {
+        "title": "it's cuffing season",
+        "filename": "its_cuffing_season",
+        "cover": "menu.jpg",
+        "cover2": "main.jpg",
+        "categories": ["branding","printed"],
+        "medium": "Campaign",
+        "dimension": "",
+        "date": "Oct 2024",
+        "collaborator": ["My Monthly Team"],
+        "feature": true,
+        "description": "it's cuffing season is speed dating event hosted by <a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a>, designed to foster genuine connection through lighthearted, guided interactions. As Branding Lead, I developed and executed the visual direction for the event across digital and physical touchpoints. The design builds on My Monthly’s core visual language, introducing playful seasonal elements while staying grounded in the brand’s tone and structure."
+      },
+      {
+        "title": "Second Best",
+        "filename": "second_best",
+        "video": "https://player.vimeo.com/video/789396762?autoplay=1&loop=1&autopause=0&muted=1",
+        "videoRatio": "4-3",
+        "categories": ["moving"],
+        "medium": "Animation",
+        "dimension": "1440px × 1080px",
+        "date": "May 2020",
+        "collaborator": "",
+        "feature": true,
+        "description": "This stop-motion animation explores themes of originality and self-worth through symbolic imagery and a restrained visual language. Grayscale visuals set a black-humor tone, while recurring motifs like pearls and eyes express the internal tension between self-perception and outside expectations. The piece reflects on the process of self-definition and the quiet strength of embracing one’s own voice."
+      },
+      {
+        "title": "Last Words",
+        "filename": "last_words",
+        "video": "https://player.vimeo.com/video/844393756?autoplay=1&loop=1&autopause=0&muted=1",
+        "videoRatio": "1-1",
+        "categories": ["moving","album"],
+        "medium": "Album",
+        "cover": "cover.jpg",
+        "dimension": "",
+        "date": "Jan 2023",
+        "collaborator": "",
+        "feature": true,
+        "description": "This project is a visual remake of the album cover for Kenny Beats’ “Last Words.” Inspired by the texture of aged, dusted photographs, the design adopts a faded and abstract aesthetic that echoes the haziness of memory. The composition evokes a sense of nostalgia and quiet introspection, aligning with the emotional tone of the track."
+      }
+    ]
+  }
+  

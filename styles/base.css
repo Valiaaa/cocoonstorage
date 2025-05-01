@@ -1,0 +1,242 @@
+@font-face {
+    font-family: "times New";
+    src: url(../assets/fonts/times-now-extra-light.woff);
+    font-weight: 200;
+}
+  
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+
+
+
+:root {
+    --txt-color: #2F2516;
+    --bg-color: #F0EFEC;
+    --default-bg-color: #E4E4E1;
+    --deco-color: #96B7F8;
+    --gradient: linear-gradient(to bottom, var(--bg-color) 70%, var(--deco-color) 100%);
+    --gap: 24px;
+    --body-padding: 16px;
+    --font-family-main: "times new", serif;
+    --font-family-secondary: 'lato', sans-serif;
+    --pointer-cursor: url('../assets/icons/pointer.png') 15 0, auto;
+    --border-width: 2.5px;
+    --big-font: 2.2vw;
+}
+
+
+
+
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--default-bg-color);
+    font-family: var(--font-family-main), times, serif;
+    cursor: url('../assets/icons/default.png'), auto;
+    box-sizing: border-box;
+    color: var(--txt-color);
+    padding-bottom: env(safe-area-inset-bottom);
+    position: relative;
+    z-index: -1000;
+    overflow-x: hidden;
+}
+
+#bg {
+    position: fixed;
+    background-attachment: fixed;
+    z-index: -999;
+    background: var(--gradient);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.noise {
+    position: absolute;
+    z-index: -998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(https://grainy-gradients.vercel.app/noise.svg);
+    mix-blend-mode: multiply;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+img {
+    width: 100%;
+}
+
+
+
+
+
+a {
+    text-decoration: none;
+    color: var(--txt-color);
+    cursor: var(--pointer-cursor);
+    width: fit-content;
+    display: block;
+}
+
+.title, h1 {
+    font-size: var(--big-font);
+    line-height: 110%;
+    -webkit-text-stroke: 1.2px;
+    transform: scaleY(1.4);
+    font-weight: 300;
+    color: var(--txt-color);
+    transform-origin: top left;
+    margin: 0;
+    width: fit-content;
+}
+
+.project-info h2, .tag {
+    font-family: var(--font-family-secondary);
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0px 10px;
+    border-radius: 20px;
+    border: var(--txt-color) 1.5px solid;
+    background: var(--deco-color);
+    margin-top: 16px;
+    margin-bottom: calc(var(--body-padding) * 3);
+    width: fit-content;
+    text-transform: capitalize;
+    -webkit-text-stroke: 0.4px;
+}
+
+h3 {
+    font-family: var(--font-family-secondary);
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    -webkit-text-stroke: 0.5px;
+    line-height: 130%;
+}
+
+p {
+    margin: 0;
+}
+
+.no-emoji-arrow {
+    font-family: "Courier", "Georgia", "Times New Roman", serif;
+    font-weight: lighter;
+}
+
+hr {
+    border: none;
+    height: var(--border-width);
+    background-color: var(--txt-color);
+    margin: var(--body-padding) 0;
+}
+
+
+
+
+
+.container {
+    display: grid;
+    grid-template-columns: 19% minmax(0, 1fr);;
+    gap: var(--gap);
+    padding: var(--body-padding);
+}
+  
+.content {
+    grid-column: 2 / -1; /* 跳过第一列，从第二列填充 */
+}
+
+
+
+
+
+.hidden {
+    display: none;
+}
+
+.nopc {
+    display: block;
+}
+
+.expanded{
+    left: 0 !important;
+    transition: 0.4s;
+}
+
+.two-line {
+    margin-top: 20px !important;
+}
+
+.data-block {
+    display: none;
+}
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: var(--txt-color);
+    border-radius: 0;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {   
+    :root {
+        --gap: 12px;
+    }
+
+    .title, h1 {
+        font-size: 5.4vw;
+    }
+
+    .project-info h2, .tag {
+        margin-bottom: calc(var(--body-padding)* 2);
+        margin-top: 10px;
+    }
+
+    .container, .about-container { 
+        grid-template-columns: 100%;
+    }
+
+    .content {
+        grid-column: 1 / -1; /* 让右侧内容填满整个屏幕 */
+        width: 100%;
+        padding-top: 34px;
+    }
+}
+
+@media screen and (min-width: 768px) {   
+    .noise {
+      position: fixed;
+    }
+
+    .project-info h2, .tag {
+        margin-top: 16px;
+    }
+
+    .nopc {
+        display: none;
+    }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Valia Liu</title>
+    <link rel="icon" href="assets/icons/icon.png">
+
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/archive.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+    <div id="bg"><div class="noise nopc"></div></div>
+    <div class="mobile-nav">
+        <div class="noise"></div>
+        <h1 class="mobile-title"><a href="index.html">Valia Liu</a></h1>
+        <button class="hamburger-menu">
+            ☰
+        </button>
+    </div>
+
+    <nav id="navigation"></nav>
+    
+    <div class="container">
+
+        <main class="content">
+            <img src="archive/projects/do_not_hold_doors.jpg">
+            <img src="archive/projects/haleyon.jpg">
+            <img src="archive/projects/you_may_not_ask.jpg">
+            <img src="archive/projects/moon.jpg">
+            <img src="archive/projects/sky 1 0-80.gif">
+            <img src="archive/projects/blackmambacut-ezgif.com-resize.gif">
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("#navigation").load(basePath + "../components/navigation.html", function(){
+          bindNavigationEvents();
+        });
+      });
+    </script>
+  
+    <script src="scripts/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+.content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+  }
+  
+
+
+
+
+  @media screen and (max-width: 768px) {
+    .content {
+      grid-template-columns: 1fr;
+    }
+  }
+  

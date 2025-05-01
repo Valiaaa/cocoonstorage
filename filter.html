@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valia Liu</title>
+    <link rel="icon" href="assets/icons/icon.png">
+
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div id="bg"><div class="noise nopc"></div></div>
+    <div class="mobile-nav">
+        <div class="noise"></div>
+        <h1 class="mobile-title"><a href="index.html">Valia Liu</a></h1>
+        <button class="hamburger-menu expanded">
+            ☰
+        </button>
+    </div>
+
+    <nav id="navigation" class="expanded"></nav>
+
+    <div class="container">
+
+        <main class="home content">
+            <div class="projects-grid" id="filtered-projects">
+            </div>
+        </main>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#navigation").load(basePath + "../components/navigation.html", function(){
+                bindNavigationEvents();
+            });
+        });
+    </script>
+
+    <script src="scripts/renderFilter.js"></script>
+    <script src="scripts/navigation.js"></script>
+</body>
+</html>

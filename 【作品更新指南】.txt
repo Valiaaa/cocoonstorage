@@ -1,0 +1,4 @@
+1. archive/data.json里，找到作品的位置，复制上一个作品的信息，填写。
+2. 在archive里建立：对应名字的文件夹。
+3. 在文件夹里建立：对应名字的html文件 & media.html。
+4. 对应名字的html文件格式复制黏贴其他作品即可。media.html里放所有图片assets的layout。

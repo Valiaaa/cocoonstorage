@@ -1,128 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="style.css"> 
-        <script src="main.js"></script>
-        
-        <title>Valia Liu</title>
-        <link rel="icon" href="icon.png">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Valia Liu</title>
+    <link rel="icon" href="assets/icons/icon.png">
 
-    <style>
-        .abt {
-            width: 60%; 
-            display:inline-block;
-        }
-        .portraitf {
-            width: 38%;
-            display: block; 
-            float: right;
-            overflow: hidden;
-        }
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="styles/navigation.css">
 
-        .portrait {
-                width: 100%;
-            }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
 
-        @media screen and (max-width: 640px) {
+<body>
+    <div id="bg"><div class="noise nopc"></div></div>
+    <div class="mobile-nav">
+        <div class="noise"></div>
+        <h1 class="mobile-title"><a href="index.html">Valia Liu</a></h1>
+        <button class="hamburger-menu">
+            ☰
+        </button>
+    </div>
 
-            .portraitf {
-                width: 50%;
-                height: 43vw;
-                margin-top: 20px;
-            }
+    <nav id="navigation"></nav>
+    
+    <div class="container">
 
-            .portrait {
-                transform: scale(1.2) translate(-3px, -10px);
-            }
-
-            .abt {
-                width: 100%;
-
-        }
-        }
-    </style>
-
-    <body>
-        <div class="vnavigation">
-            <h2 style="width:fit-content; float: left; margin-left: 6px;"><a href="index.html">Valia Liu</a></h2>
-            <h2 style="width:fit-content; float:right;"><a href="mailto:valialiuwork@gmail.com" target="_blank">Email&#x2197;&#xFE0E;</a></h2>
-            <h2 style="width:fit-content; float:right; margin-right: 3%;"><a href="about.html">About</a></h2>
-        </div>
-
-        <div class="navigation">
-            <h1><a href="index.html">Valia Liu</a></h1>
-            <hr>
-            <h1 class="category disable">
-                <input type="checkbox" id="brandingc"><span id="branding">&nbsp Branding</span>
-                <input type="checkbox" id="websitec"><span id="website">&nbsp Website</span>
-                <input type="checkbox" id="editorialc"><span id="editorial">&nbsp Editorial</span>
-                <input type="checkbox" id="posterc"><span id="poster">&nbsp Poster</span>
-                <input type="checkbox" id="videoc"><span id="video">&nbsp Video</span>
-                <input type="checkbox" id="albumc"><span id="album">&nbsp Album</span>
-                <input type="checkbox" id="modelingc"><span id="modeling">&nbsp Modeling</span>
-            </h1>
-            <h1 class="button disable" id="all">All</h1>
-            <h1 class="button disable" id="clear">Clear</h1>
-            <hr>
-            <h1><a href="about.html">About</a></h1>
-            <h1><a href="mailto:valialiuwork@gmail.com" target="_blank">Email↗</a></h1>
-        </div>
-
-        <div class="home">
-            <h2 class="abt">
-                Valia is a New York-based, brand-oriented graphic designer. With extensive experience in creating, refining, and rebranding, she is skilled at enhancing your brand, product, and projects. With a diverse skill set including web design, coding, motion graphics, video editing, and 3D modeling, Valia has worked with over 180 clients. This extensive experience has made her great at communicating and understanding their(your?) design needs.
-                <br><br>
-                BFA in Graphic Design from <a href="https://risd.gd/" target="_blank" style="text-decoration:underline;">Rhode Island School of Design</a>.
-                <br><br>
-                <a href="mailto:valialiuwork@gmail.com" target="_blank" style="text-decoration:underline;">Contact</a> for any work related inquiries. Resume and portfolio pdf available upon request.
-                <br><br>
-                <ul>
-                    <li>
-                        <a href="https://www.instagram.com/not_valya/?igshid=YmMyMTA2M2Y%3D" target="_blank" style="text-decoration:underline;">Instagram</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/Valiaaa" target="_blank" style="text-decoration:underline;">Github</a>
-                    </li>
-                    <li>
-                        <a href="https://vimeo.com/user189269341" target="_blank" style="text-decoration:underline;">Vimeo</a>
-                    </li>
-                </ul>
-                <br>
-                Currently Working On/For: <br>
-                <div class="ul2">
-                    <div class="li2">
-                        <a href="https://www.mymonthly.io/" target="_blank" style="text-decoration:underline;">My Monthly LLC</a> – Visual Identity Manager
-                    </div>
+        <main class="content about">
+            <div class="about-container">
+                <div class="about-text">
+                    <h1>
+                        is a New York-based graphic designer specializing in visual identity, typography, and front-end web development. Focused on crafting compelling brand narratives and seamless digital experiences. Currently Branding Lead @<a href="https://www.mymonthly.io/" target="_blank">My Monthly</a>.
+                        <br><br><br><br><br>
+                    </h1>
+                    <h3>
+                        <a href="mailto:valialiuwork@gmail.com" target="_blank">Contact</a> for work-related inquiries. Resume and portfolio available upon request.
+                        <br><br>
+                        BFA in Graphic Design @<a href="https://risd.gd/" target="_blank">Rhode Island School of Design</a> (2023).
+                        <br><br>
+                        ps. This website is hand-coded by me (with a little AI magic, of course).
+                        <ul class="social-links">
+                            <li><span class="no-emoji-arrow">&#8599;</span><a href="mailto:valialiuwork@gmail.com" target="_blank">valialiuwork@gmail.com</a></li>
+                            <li><span class="no-emoji-arrow">&#8599;</span><a href="https://www.instagram.com/not_valya/" target="_blank">Instagram</a></li>
+                            <li><span class="no-emoji-arrow">&#8599;</span><a href="https://www.linkedin.com/in/valialiu/" target="_blank">Linkedin</a></li>
+                        </ul>
+                    </h3>
                 </div>
-                <br>
-                Working History:<br>
-                <div class="ul2">
-                    <div class="li2">
-                        <a href="https://instalily.ai/" target="_blank" style="text-decoration:underline;">Instalily, Inc.</a> – Design Intern
-                    </div>
-                    <div class="li2">
-                        <a href="https://www.mymonthly.io/" target="_blank" style="text-decoration:underline;">My Monthly LLC</a> – Graphic Design and Branding Intern
-                    </div>
-                    <div class="li2">
-                        <a href="https://0xeden.com/" target="_blank" style="text-decoration:underline;">Eden</a> – Part-Time Graphic Designer
-                    </div>
-                    <div class="li2">
-                        <a href="https://www.shsymphony.com/" target="_blank" style="text-decoration:underline;">Shanghai Symphony Orchestra</a> – Design Intern<br>
-                    </div>
-                    <div class="li2">
-                        Shiyuan Consulting Co. – Part-Time Graphic Designer
-                    </div>
+                <div class="about-image">
+                    <img src="assets/images/portrait.jpg" alt="Valia Liu">
                 </div>
-            </h2>
-            <div class="portraitf">
-                <img src="portrait.jpg" class="portrait">
             </div>
-        </div>
-    </body>
+        </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("#navigation").load(basePath + "../components/navigation.html", function(){
+          bindNavigationEvents();
+        });
+      });
+    </script>
+  
+    <script src="scripts/navigation.js"></script>
+</body>
 </html>
