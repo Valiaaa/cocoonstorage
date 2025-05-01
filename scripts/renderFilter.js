@@ -6,9 +6,9 @@ function renderProjects() {
         projectContainer.innerHTML = ''; // 清空旧内容
 
         data.projects.forEach(project => {
-            const folderName = project.title.toLowerCase().replace(/ /g, "_");
+            const folderName = project.title.toLowerCase().replace(/'/g, "").replace(/ /g, "_");
             const projectLink = `archive/${folderName}/${folderName}.html`;
-            const projectCover = `archive/${folderName}/cover.jpg`;
+            const projectCover = `archive/${folderName}/cover.jpg`;            
 
             // 项目拥有的分类
             const projectClasses = project.categories.map(c => c.toLowerCase()).join(" ");
