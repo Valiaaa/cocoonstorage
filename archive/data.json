@@ -77,6 +77,43 @@
         "collaborator": "",
         "feature": true,
         "description": "A curated magazine archiving a collection of essays on East Asian contemporary art. The design follows a systematic approach—guided by an underlying grid system and precise margins, which lend a contemporary structure while subtly diverging from classical typographic conventions. Within this structure, each spread is designed to offer moments of visual tension and quiet surprise. The cover introduces a linear motif that echoes the internal grid, extending the system outward while alluding to the passage of time."
+      },
+      {
+        "title": "Jungle Daydreaming",
+        "filename": "jungle_daydreaming",
+        "video": "https://player.vimeo.com/video/806540127?autoplay=1&loop=1&autopause=0&muted=1",
+        "cover": "cover.jpg",
+        "categories": ["moving"],
+        "medium": "Digital Collage",
+        "dimension": "1920px × 1080px",
+        "date": "Mar 2023",
+        "collaborator": "",
+        "feature": false,
+        "description": "A short-form digital collage exploring the intersection of motion and publication. Designed as a speculative exercise, the piece imagines an alternative future for digital reading—where pagination remains, but images move, loop, and distort. Natural forms and mechanical remnants collide across each spread: overgrown vehicles, outstretched limbs, and hyperreal parrots unfold in dreamlike rhythm, quietly unsettling the conventions of static editorial space."
+      },
+      {
+        "title": "Where have all the lost memories gone?",
+        "filename": "lost_memories",
+        "cover": "cover.jpg",
+        "categories": ["moving"],
+        "medium": "Digital Collage",
+        "dimension": "1920px × 1080px",
+        "date": "Apr 2023",
+        "collaborator": "",
+        "feature": false,
+        "description": "A short-form digital collage exploring dreamcore aesthetics through spatial tension and temporal compression. The piece blurs the boundary between real and rendered, evoking an eerie familiarity that lingers without resolution, like a place once visited but never fully seen."
+      },
+      {
+        "title": "Chatbot Showcase",
+        "filename": "chatbot_showcase",
+        "cover": "cover.jpg",
+        "categories": ["moving"],
+        "medium": "Motion Graphics",
+        "dimension": "3728px × 1480px",
+        "date": "Nov 2023",
+        "collaborator": "",
+        "feature": false,
+        "description": "This motion graphic showcases Instalily’s AI-powered chatbot, using a wireframe aesthetic to communicate product functionality with clarity and restraint."
       }
     ]
   }

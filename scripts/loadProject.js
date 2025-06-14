@@ -1,6 +1,4 @@
 function loadProjectData(filename) {
-    console.log("🚀 loading project:", filename);
-  
     fetch("../../archive/data.json")
       .then(response => response.json())
       .then(data => {

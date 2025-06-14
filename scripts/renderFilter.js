@@ -6,7 +6,7 @@ function renderProjects() {
         projectContainer.innerHTML = ''; // 清空旧内容
 
         data.projects.forEach(project => {
-            const folderName = project.title.toLowerCase().replace(/'/g, "").replace(/ /g, "_");
+            const folderName = project.filename;
             const projectLink = `archive/${folderName}/${folderName}.html`;
             const projectCover = `archive/${folderName}/cover.jpg`;            
 

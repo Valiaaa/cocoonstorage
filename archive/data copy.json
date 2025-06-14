@@ -23,46 +23,6 @@
         "collaborator": "",
         "feature": false,
         "description": "Project under construction...🛠️"
-      },
-      {
-        "title": "Last Words",
-        "filename": "last_words",
-        "video": "https://player.vimeo.com/video/844393756?autoplay=1&loop=1&autopause=0&muted=1",
-        "cover": "cover1.jpg",
-        "categories": ["album"],
-        "medium": "Album",
-        "dimension": "",
-        "date": "Jan 2023",
-        "collaborator": "",
-        "feature": false,
-        "description": "Project under construction...🛠️"
-      },
-      {
-        "title": "Jungle Daydreaming",
-        "filename": "jungle_daydreaming",
-        "video": "https://player.vimeo.com/video/806540127?autoplay=1&loop=1&autopause=0&muted=1",
-        "cover": "cover1.jpg",
-        "categories": ["moving"],
-        "medium": "Digital Collage",
-        "dimension": "1920px × 1080px",
-        "date": "Mar 2023",
-        "collaborator": "",
-        "feature": false,
-        "description": "A short-form digital collage exploring the intersection of motion and publication. Designed as a speculative exercise, the piece imagines an alternative future for digital reading—where pagination remains, but images move, loop, and distort. Natural forms and mechanical remnants collide across each spread: overgrown vehicles, outstretched limbs, and hyperreal parrots unfold in dreamlike rhythm, quietly unsettling the conventions of static editorial space."
-      },
-      {
-        "title": "Where have all the lost memories gone?",
-        "filename": "lost_memories",
-        "video": "https://player.vimeo.com/video/862104477?autoplay=1&loop=1&autopause=0&muted=1",
-        "cover": "cover1.jpg",
-        "categories": ["moving"],
-        "medium": "Digital Collage",
-        "dimension": "1920px × 1080px",
-        "date": "Apr 2023",
-        "collaborator": "",
-        "feature": false,
-        "description": "A short-form digital collage exploring dreamcore aesthetics through spatial tension and temporal compression. The piece blurs the boundary between real and rendered, evoking an eerie familiarity that lingers without resolution, like a place once visited but never fully seen."
       }
     ]
   }
-  
