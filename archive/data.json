@@ -65,6 +65,18 @@
         "collaborator": "",
         "feature": true,
         "description": "This project is a visual remake of the album cover for Kenny Beats’ “Last Words.” Inspired by the texture of aged, dusted photographs, the design adopts a faded and abstract aesthetic that echoes the haziness of memory. The composition evokes a sense of nostalgia and quiet introspection, aligning with the emotional tone of the track."
+      },
+      {
+        "title": "Charting the Present",
+        "filename": "charting_the_present",
+        "categories": ["printed"],
+        "medium": "Magazine",
+        "cover": "cover.jpg",
+        "dimension": "8.5\" × 11\"",
+        "date": "Apr 2022",
+        "collaborator": "",
+        "feature": true,
+        "description": "A curated magazine archiving a collection of essays on East Asian contemporary art. The design follows a systematic approach—guided by an underlying grid system and precise margins, which lend a contemporary structure while subtly diverging from classical typographic conventions. Within this structure, each spread is designed to offer moments of visual tension and quiet surprise. The cover introduces a linear motif that echoes the internal grid, extending the system outward while alluding to the passage of time."
       }
     ]
   }
