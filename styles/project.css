@@ -5,6 +5,10 @@
     flex-direction: column;
     gap: var(--gap);
   }
+
+.back {
+  cursor: var(--pointer-cursor);
+}
   
   /* ==== media 单项结构 ==== */
   .media-box {

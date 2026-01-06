@@ -1,26 +1,26 @@
 {
+    "sealed 7am": {
+      "--txt-color": "#2F2516",
+      "--bg-color": "#F0EFEC",
+      "--default-bg-color": "#E3E1DE",
+      "--deco-color": "#96B7F8"
+    },  
     "sky in Ukiyo-e": {
       "--txt-color": "#2F2516",
       "--bg-color": "#5777B5",
       "--default-bg-color": "#506EA5",
       "--deco-color": "#cccccc"
     },
-    "night": {
-      "--txt-color": "#F0F0F0",
-      "--bg-color": "#111111",
-      "--default-bg-color": "#222222",
-      "--deco-color": "#333333"
+    "retro 2077": {
+      "--txt-color": "#C4D7F9",
+      "--bg-color": "#2F2516",
+      "--default-bg-color": "#2D2215",
+      "--deco-color": "#5E8DE8"
     },
     "white cube": {
       "--txt-color": "black",
       "--bg-color": "white",
-      "--default-bg-color": "#E9DBB2",
+      "--default-bg-color": "#F3F2F1",
       "--deco-color": "#E7E7E7"
-    },
-    "(seasonal) brat": {
-      "--txt-color": "black",
-      "--bg-color": "#89CC04",
-      "--default-bg-color": "#7C65C1",
-      "--deco-color": "#C3C3C3"
     }
 }

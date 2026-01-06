@@ -108,6 +108,27 @@
 
 
 
+.colorTheme {
+    position: absolute;
+    bottom: 40px;
+    font-family: var(--font-family-main);
+    line-height: 110%;
+    -webkit-text-stroke: 1.2px;
+    transform: scaleY(1.4);
+    font-weight: 300;
+    color: var(--txt-color);
+    transform-origin: bottom left;
+    margin: 0;
+    width: fit-content;
+}
+
+#colortheme {
+    font-weight: 100;
+}
+
+
+
+
 
 @media screen and (max-width: 768px) { 
     #navigation {

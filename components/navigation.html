@@ -1,32 +1,91 @@
 <div class="noise"></div>
 <nav class="navigation">
     <h1>
-        <a id="go-home">
+        <a id="go-home" class="hoverZoom">
           <span class="nav-label-desktop">Valia Liu</span>
           <span class="nav-label-mobile">Selected Works</span>
         </a>
     </h1>
     <hr>
     <div class="category">
-        <label><input type="checkbox" id="brandingc"> Visual Identity</label>
-        <label><input type="checkbox" id="websitec"> Website</label>
-        <label><input type="checkbox" id="printedc"> Printed Matter</label>
-        <label><input type="checkbox" id="movingc"> Moving Image</label>
-        <label><input type="checkbox" id="albumc"> Album</label>
-        <label><input type="checkbox" id="modelingc"> 3D Modeling</label>
+        <label class="hoverZoom"><input type="checkbox" id="brandingc"> Visual Identity</label>
+        <label class="hoverZoom"><input type="checkbox" id="websitec"> Website</label>
+        <label class="hoverZoom"><input type="checkbox" id="printedc"> Printed Matter</label>
+        <label class="hoverZoom"><input type="checkbox" id="movingc"> Moving Image</label>
+        <label class="hoverZoom"><input type="checkbox" id="albumc"> Album</label>
+        <label class="hoverZoom"><input type="checkbox" id="modelingc"> 3D Modeling</label>
     </div>       
     <div class="filter-controls">
-        <button id="all">All</button>
-        <button id="clear">Clear</button>
+        <button id="all" class="hoverZoom">All</button>
+        <button id="clear" class="hoverZoom">Clear</button>
     </div>
     <hr>
     <h1>
-        <a id="archive">Archive</a>
-        <a id="about">About</a>
-        <a href="mailto:valialiuwork@gmail.com">
+        <a id="archive" class="hoverZoom">Archive</a>
+        <a id="about" class="hoverZoom">About</a>
+        <a href="mailto:valialiuwork@gmail.com" class="hoverZoom">
             Email<span class="no-emoji-arrow">&#8599;</span>
         </a>
     </h1>
+
+        <form action="/action_page.php" class="colorTheme">
+                <label for="colortheme">Color Theme:</label>
+                <select name="colortheme" id="colortheme">
+                        <!-- options populated from /archive/palette.json -->
+                </select>
+        </form>
+
+        <script>
+        (function(){
+            const select = document.getElementById('colortheme');
+            if(!select) return;
+            fetch('/archive/palette.json')
+                .then(r=>r.json())
+                .then(data=>{
+                    // capture original gradient before applying any theme
+                    window.__originalGradient = getComputedStyle(document.documentElement).getPropertyValue('--gradient') || '';
+
+                    select.innerHTML = '';
+                    Object.keys(data).forEach(name=>{
+                        const opt = document.createElement('option');
+                        opt.value = name;
+                        opt.textContent = name;
+                        select.appendChild(opt);
+                    });
+
+                    const applyTheme = (name)=>{
+                        const vars = data[name] || {};
+                        Object.keys(vars).forEach(k=>{
+                            document.documentElement.style.setProperty(k, vars[k]);
+                        });
+                        localStorage.setItem('colorTheme', name);
+
+                        // only adjust gradient for retro 2077 theme
+                        if(name === 'retro 2077') {
+                            const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--bg-color').trim();
+                            const decoColor = getComputedStyle(document.documentElement).getPropertyValue('--deco-color').trim();
+                            const gradient = `linear-gradient(to bottom, ${bgColor} 80%, ${decoColor} 100%)`;
+                            document.documentElement.style.setProperty('--gradient', gradient);
+                        } else {
+                            // for all other themes, remove inline gradient so CSS definition applies with new colors
+                            document.documentElement.style.removeProperty('--gradient');
+                        }
+                    };
+
+                    const saved = localStorage.getItem('colorTheme');
+                    const initial = saved && data[saved] ? saved : Object.keys(data)[0];
+                    if(initial) {
+                        select.value = initial;
+                        applyTheme(initial);
+                    }
+
+                    select.addEventListener('change', e=>{
+                        applyTheme(e.target.value);
+                    });
+                })
+                .catch(err=>{ console.warn('Could not load palette.json', err); });
+        })();
+        </script>
 
     <footer class="nav-footer">
         © Valia Liu 2025

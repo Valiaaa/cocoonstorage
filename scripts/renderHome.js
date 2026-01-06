@@ -46,12 +46,12 @@ document.addEventListener('DOMContentLoaded', function(){
         }                     
 
         if (project.cover) {
-          const coverHTML = '<img class="media-item" src="archive/' + folderName + '/' + project.cover + '" alt="' + project.title + ' - cover">';
+          const coverHTML = '<img class="media-item hoverZoomRight" src="archive/' + folderName + '/' + project.cover + '" alt="' + project.title + ' - cover">';
           mediaItems.push((project.video || project.cover2) ? '<div class="media-box">' + coverHTML + '</div>' : coverHTML);
         }
 
         if (project.cover2) {
-          const cover2HTML = '<img class="media-item" src="archive/' + folderName + '/' + project.cover2 + '" alt="' + project.title + ' - cover2">';
+          const cover2HTML = '<img class="media-item hoverZoomRight" src="archive/' + folderName + '/' + project.cover2 + '" alt="' + project.title + ' - cover2">';
           mediaItems.push('<div class="media-box">' + cover2HTML + '</div>');
         }
 
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function(){
           '<a href="' + projectLink + '" class="featured-project-link">' +
             '<div class="featured-project ' + isLast + '">' +
               '<div class="media-container" style="width: 100%;">' + mediaContent + '</div>' +
-              '<div class="project-info">' +
+              '<div class="project-info hoverZoom">' +
                 '<h1>' + project.title + '</h1>' +
                 '<h2 class="' + isTwoLine + '">' + (project.medium || '') + '</h2>' +
               '</div>' +

@@ -15,7 +15,7 @@ function renderProjects() {
 
             // 默认添加 hidden 类
             const projectBlock = `
-                <div class="work ${projectClasses} hidden">
+                <div class="hoverZoomRight work ${projectClasses} hidden">
                     <a href="${projectLink}">
                         <img src="${projectCover}" alt="${project.title}">
                     </a>
