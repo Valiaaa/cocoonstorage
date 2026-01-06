@@ -73,8 +73,22 @@
                     };
 
                     const saved = localStorage.getItem('colorTheme');
-                    const initial = saved && data[saved] ? saved : Object.keys(data)[0];
-                    if(initial) {
+                    let initial = null;
+                    if (saved && data[saved]) {
+                        initial = saved;
+                    } else {
+                        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        if (!saved) {
+                            if (prefersDark && data['retro 2077']) {
+                                initial = 'retro 2077';
+                            } else if (!prefersDark && data['sealed 7am']) {
+                                initial = 'sealed 7am';
+                            }
+                        }
+                        if (!initial) initial = Object.keys(data)[0];
+                    }
+
+                    if (initial) {
                         select.value = initial;
                         applyTheme(initial);
                     }
