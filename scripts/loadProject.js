@@ -8,8 +8,6 @@ function loadProjectData(filename) {
           return;
         }
   
-        console.log("✅ Loaded project:", project.title);
-  
         document.getElementById('project-title').textContent = project.title;
         document.getElementById('project-medium').textContent = project.medium || "N/A";
         document.getElementById('project-dimension').textContent = project.dimension || "N/A";
