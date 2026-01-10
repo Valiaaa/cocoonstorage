@@ -1,5 +1,8 @@
 // Reorder items so CSS columns render them row-first (horizontal priority)
+// Mobile: 1 column (no reorder), Tablet: 2 columns, Desktop: 3 columns
 (function(){
+  let lastWidth = window.innerWidth;
+  
   function getColumnCount(container) {
     if (!container) return 1;
     const cs = getComputedStyle(container);
@@ -19,7 +22,7 @@
     if (items.length === 0) return;
 
     const cols = getColumnCount(container);
-    if (cols <= 1) return;
+    if (cols <= 1) return; // No reordering needed for single column (mobile)
 
     // distribute items into columns in row-major order: item i goes to column (i % cols)
     const columns = Array.from({length: cols}, () => []);
@@ -37,12 +40,25 @@
   }
 
   let resizeTimer = null;
+  function handleResize() {
+    clearTimeout(resizeTimer);
+    // Only reorder when actual breakpoint width changes (not on Safari scroll)
+    resizeTimer = setTimeout(() => {
+      const currentWidth = window.innerWidth;
+      // Check if width change is significant (crossed breakpoint)
+      const oldBreakpoint = lastWidth <= 480 ? 1 : (lastWidth <= 768 ? 2 : 3);
+      const newBreakpoint = currentWidth <= 480 ? 1 : (currentWidth <= 768 ? 2 : 3);
+      
+      if (oldBreakpoint !== newBreakpoint) {
+        lastWidth = currentWidth;
+        reorderHorizontalPriority();
+      }
+    }, 150);
+  }
+
   function init() {
     reorderHorizontalPriority();
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(reorderHorizontalPriority, 150);
-    });
+    window.addEventListener('resize', handleResize);
   }
 
   if (document.readyState === 'loading') {
