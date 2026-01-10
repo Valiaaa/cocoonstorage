@@ -100,9 +100,13 @@
 
 
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--gap);
+    columns: 3;
+    column-gap: var(--gap);
+}
+
+.projects-grid > * {
+    margin-bottom: var(--gap);
+    break-inside: avoid;
 }
 
 
@@ -182,7 +186,8 @@
     }
 
     .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
+        columns: 2;
+        column-gap: var(--gap);
     }
 
     .nav-label-mobile {

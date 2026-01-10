@@ -49,6 +49,17 @@
         </main>
     </div>
 
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-overlay"></div>
+        <div class="lightbox-container">
+            <button class="lightbox-close" id="lightboxClose">✕</button>
+            <img class="lightbox-image" id="lightboxImage">
+            <button class="lightbox-prev" id="lightboxPrev"><</button>
+            <button class="lightbox-next" id="lightboxNext">></button>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       $(document).ready(function(){
@@ -59,5 +70,6 @@
     </script>
   
     <script src="scripts/navigation.js"></script>
+    <script src="scripts/archiveLightbox.js"></script>
 </body>
 </html>
