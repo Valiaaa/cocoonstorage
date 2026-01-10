@@ -77,7 +77,7 @@
     right: 4%;
     background: transparent;
     border: none;
-    color: var(--txt-color);
+    color: whitesmoke;
     font-family: var(--font-family-secondary);
     font-size: 28px;
     font-weight: lighter;
@@ -97,7 +97,7 @@
     transform: translateY(-50%);
     background: transparent;
     border: none;
-    color: var(--txt-color);
+    color: whitesmoke;
     font-size: 48px;
     padding: 12px 16px;
     cursor: var(--pointer-cursor);
