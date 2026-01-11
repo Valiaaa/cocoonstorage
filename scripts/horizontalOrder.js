@@ -15,28 +15,31 @@
   }
 
   function reorderHorizontalPriority() {
-    const container = document.querySelector('.content');
-    if (!container) return;
+    // Process both contentpc and contentphone containers
+    ['.contentpc', '.contentphone'].forEach(selector => {
+      const container = document.querySelector(selector);
+      if (!container) return;
 
-    const items = Array.from(container.children);
-    if (items.length === 0) return;
+      const items = Array.from(container.children);
+      if (items.length === 0) return;
 
-    const cols = getColumnCount(container);
-    if (cols <= 1) return; // No reordering needed for single column (mobile)
+      const cols = getColumnCount(container);
+      if (cols <= 1) return; // No reordering needed for single column (mobile)
 
-    // distribute items into columns in row-major order: item i goes to column (i % cols)
-    const columns = Array.from({length: cols}, () => []);
-    items.forEach((it, i) => {
-      const c = i % cols;
-      columns[c].push(it);
+      // distribute items into columns in row-major order: item i goes to column (i % cols)
+      const columns = Array.from({length: cols}, () => []);
+      items.forEach((it, i) => {
+        const c = i % cols;
+        columns[c].push(it);
+      });
+
+      // re-append column by column so the DOM order is column-major (what CSS columns expect)
+      const frag = document.createDocumentFragment();
+      columns.forEach(colItems => colItems.forEach(it => frag.appendChild(it)));
+
+      // append frag (moves nodes)
+      container.appendChild(frag);
     });
-
-    // re-append column by column so the DOM order is column-major (what CSS columns expect)
-    const frag = document.createDocumentFragment();
-    columns.forEach(colItems => colItems.forEach(it => frag.appendChild(it)));
-
-    // append frag (moves nodes)
-    container.appendChild(frag);
   }
 
   let resizeTimer = null;
