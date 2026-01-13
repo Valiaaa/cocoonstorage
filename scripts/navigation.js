@@ -17,6 +17,21 @@ function getScriptBasePath() {
     const goHome = document.getElementById("go-home");
     const about = document.getElementById("about");
     const archive = document.getElementById("archive");
+    const workCategories = document.querySelector(".work-categories");
+    
+    // Collapse work-categories on archive page after page load
+    if (workCategories) {
+      if (currentPage === 'archive.html') {
+        window.addEventListener('load', () => {
+          // Add small delay to ensure transition works
+          setTimeout(() => {
+            workCategories.classList.add('collapsed');
+          }, 100);
+        });
+      } else {
+        workCategories.classList.remove('collapsed');
+      }
+    }
   
     checkboxes.forEach(cb => {
       cb.addEventListener("change", () => {
