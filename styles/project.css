@@ -86,15 +86,17 @@
   /* ==== individual 页面结构 ==== */
   .individual-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     gap: var(--gap);
-    margin-top: 16px;
+    margin-top: 18px;
   }
 
   .top-row {
     display: flex;
     gap: var(--gap);
     align-items: flex-start;
+    width: 36%;
   }
 
   .title-col, .info-col, .description-col {
@@ -111,8 +113,7 @@
   }
 
   .description-col {
-    /* description sits below the top-row and spans full width */
-    width: 100%;
+    width: 60%;
   }
   
   /* ==== video wrapper ==== */
@@ -175,4 +176,13 @@
       flex-direction: column;
       gap: var(--gap);
     }
+
+    .description-col {
+        width: 100%;
+    }
+
+    .top-row {
+      width: 100%;
+    }
+
   }  
