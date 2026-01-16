@@ -142,6 +142,9 @@ p {
 .no-emoji-arrow {
     font-family: "inter", "Georgia", "Times New Roman", serif;
     font-weight: lighter;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 hr {
