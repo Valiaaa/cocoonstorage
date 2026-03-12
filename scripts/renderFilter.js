@@ -17,7 +17,7 @@ function renderProjects() {
             const projectBlock = `
                 <div class="hoverZoomRight work ${projectClasses} hidden">
                     <a href="${projectLink}">
-                        <img src="${projectCover}" alt="${project.title}">
+                        <img class="lazy-fade" loading="lazy" src="${projectCover}" alt="${project.title}" onload="this.classList.add('loaded')">
                     </a>
                 </div>
             `;

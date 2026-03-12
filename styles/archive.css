@@ -17,10 +17,13 @@
     width: 100%;
     display: block;
     cursor: var(--pointer-cursor);
+}
+
+.masonry-col img.loaded {
     transition: opacity 0.2s ease;
 }
 
-.masonry-col img:hover {
+.masonry-col img.loaded:hover {
     opacity: 0.8;
 }
 

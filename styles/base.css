@@ -77,6 +77,16 @@ img {
     width: 100%;
 }
 
+/* Global image fade-in on load */
+img.lazy-fade {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+img.lazy-fade.loaded {
+    opacity: 1;
+}
+
 .hoverZoom:hover {
     transform: scale(1.05);
     transform-origin: left;
