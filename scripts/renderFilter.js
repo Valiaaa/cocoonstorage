@@ -65,8 +65,8 @@ function applyFiltersFromURL() {
     }
 }
 
-// 🚀 监听 URL 变化，实时更新内容
+// 监听 URL 变化，实时更新内容
 window.addEventListener('popstate', applyFiltersFromURL);
 
-// 🚀 初始加载
+// 初始加载
 document.addEventListener('DOMContentLoaded', renderProjects);

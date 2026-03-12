@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   jqueryScript.src = "https://code.jquery.com/jquery-3.6.0.min.js";
   jqueryScript.onload = () => {
 
-    // ✅ 加载导航栏
+    // 加载导航栏
     $("#navigation").load(`${basePath}components/navigation.html`, function () {
       $.getScript(`${basePath}scripts/navigation.js`, function () {
         if (typeof bindNavigationEvents === "function") {
@@ -55,20 +55,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
-    // ✅ 加载媒体内容
+    // 加载媒体内容
     $("#project-media").load(`${projectPath}media.html`, function () {
-      console.log("✅ project-media content loaded");
-    
       const mediaLayoutScript = document.createElement("script");
       mediaLayoutScript.src = `${basePath}scripts/mediaLayout.js`;
       mediaLayoutScript.onload = () => {
-        console.log("✅ mediaLayout.js successfully loaded and executed");
         layoutMediaPairsByHeight();
       };
       document.body.appendChild(mediaLayoutScript);
     });    
 
-    // ✅ 加载其他项目信息
+    // 加载其他项目信息
     const gsapScript = document.createElement("script");
     gsapScript.src = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
     document.body.appendChild(gsapScript);

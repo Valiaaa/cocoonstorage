@@ -43,7 +43,9 @@
         (function(){
             const select = document.getElementById('colortheme');
             if(!select) return;
-            fetch('/archive/palette.json')
+            // Use relative path based on page depth
+            const palettePrefix = window.location.pathname.includes('/archive/') ? '../../' : './';
+            fetch(palettePrefix + 'archive/palette.json')
                 .then(r=>r.json())
                 .then(data=>{
                     // capture original gradient before applying any theme

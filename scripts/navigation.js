@@ -4,9 +4,8 @@ function getScriptBasePath() {
   }
   
   const basePath = getScriptBasePath();
-  console.log("📂 Detected JS Base Path:", basePath);
-  
-  // ✅ 自动识别路径深度（兼容首页与子页面）
+
+  // 自动识别路径深度（兼容首页与子页面）
   const depthPrefix = window.location.pathname.includes("/archive/") ? "../../" : "./";
   
   function bindNavigationEvents() {

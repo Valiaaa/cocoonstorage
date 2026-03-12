@@ -129,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function(){
           });
 
           Promise.all(promises).then(() => {
-            console.log("📦 All media loaded, triggering layout");
             layoutMediaPairsByHeight();
           });
         }, 100);
