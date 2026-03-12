@@ -67,7 +67,7 @@ function applyFiltersFromURL() {
     if (visibleProjects.length === 0) {
         const msg = document.createElement('div');
         msg.className = 'no-results';
-        msg.innerHTML = '<h3>No projects match this filter. <a href="index.html" class="hoverZoom" style="display:inline; text-decoration:underline;">View all works</a></h3>';
+        msg.innerHTML = '<h3>No projects match this filter. <a href="index.html" class="hoverZoom" style="display:inline; text-decoration:underline;">Back to Home</a></h3>';
         projectContainer.appendChild(msg);
     }
 }
