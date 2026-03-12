@@ -1,5 +1,5 @@
 function renderProjects() {
-    fetch(basePath + "../archive/data.json")
+    fetch("archive/data.json")
     .then(response => response.json())
     .then(data => {
         const projectContainer = document.getElementById('filtered-projects');
@@ -58,10 +58,17 @@ function applyFiltersFromURL() {
         input.checked = selectedFilters.includes(category);
     });
 
-    // 如果没有匹配的作品显示，也返回首页
+    // 如果没有匹配的作品显示，显示提示信息
     const visibleProjects = document.querySelectorAll('.work:not(.hidden)');
+    const projectContainer = document.getElementById('filtered-projects');
+    const existingMsg = projectContainer.querySelector('.no-results');
+    if (existingMsg) existingMsg.remove();
+
     if (visibleProjects.length === 0) {
-        window.location.href = "index.html";
+        const msg = document.createElement('div');
+        msg.className = 'no-results';
+        msg.innerHTML = '<h3>No projects match this filter. <a href="index.html" class="hoverZoom" style="display:inline; text-decoration:underline;">View all works</a></h3>';
+        projectContainer.appendChild(msg);
     }
 }
 

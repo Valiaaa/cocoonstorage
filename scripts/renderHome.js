@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-  fetch(basePath + "../archive/data.json")
+  fetch("archive/data.json")
     .then(response => response.json())
     .then(data => {
       const featuredContainer = document.querySelector('.featured-projects');
@@ -55,11 +55,6 @@ document.addEventListener('DOMContentLoaded', function(){
           mediaItems.push('<div class="media-box">' + cover2HTML + '</div>');
         }
 
-        // 只显示一个 media item on mobile
-        if (window.innerWidth <= 768 && mediaItems.length > 1) {
-          mediaItems.splice(1);
-        }
-
         const boxCount = mediaItems.filter(item => item.includes("media-box")).length;
         if (boxCount >= 2) {
           mediaContent = '<div class="media-pair">' + mediaItems.join("") + '</div>';
@@ -110,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function(){
       });
 
       const mediaLayoutScript = document.createElement("script");
-      mediaLayoutScript.src = basePath + "mediaLayout.js";
+      mediaLayoutScript.src = "scripts/mediaLayout.js";
       document.body.appendChild(mediaLayoutScript);
       
       mediaLayoutScript.onload = () => {

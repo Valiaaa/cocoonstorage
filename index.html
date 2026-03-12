@@ -54,10 +54,12 @@
     </div>
 
     <script>
-      $("#navigation").load("components/navigation.html", function () {
-        if (typeof bindNavigationEvents === "function") {
-          bindNavigationEvents();
-        }
+      $(document).ready(function(){
+        $("#navigation").load("components/navigation.html", function () {
+          if (typeof bindNavigationEvents === "function") {
+            bindNavigationEvents();
+          }
+        });
       });
     </script>
     

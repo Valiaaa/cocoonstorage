@@ -121,7 +121,12 @@
 
 
 
-@media screen and (max-width: 768px) { 
+@media screen and (max-width: 768px) {
+    /* On mobile, only show the first media item in a pair */
+    .media-pair > .media-box:not(:first-child) {
+        display: none;
+    }
+
     .media-grid > div:first-child {
         width: 100%;
     }

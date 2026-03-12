@@ -109,6 +109,11 @@
     break-inside: avoid;
 }
 
+.no-results {
+    column-span: all;
+    padding: calc(var(--body-padding) * 2) 0;
+}
+
 .work-categories {
     overflow: hidden;
     max-height: 1000px;
