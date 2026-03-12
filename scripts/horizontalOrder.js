@@ -1,66 +1,127 @@
-// Reorder items so CSS columns render them row-first (horizontal priority)
-// Mobile: 1 column (no reorder), Tablet: 2 columns, Desktop: 3 columns
-(function(){
-  let lastWidth = window.innerWidth;
-  
-  function getColumnCount(container) {
-    if (!container) return 1;
-    const cs = getComputedStyle(container);
-    const colCount = parseInt(cs.columnCount, 10);
-    if (colCount && colCount > 0 && !Number.isNaN(colCount)) return colCount;
-    // fallback to breakpoints similar to CSS
-    if (window.innerWidth <= 480) return 1;
-    if (window.innerWidth <= 768) return 2;
-    return 3;
+// Masonry layout: place images into the shortest column, left-to-right on ties.
+// Desktop (>768px): 3 columns, Mobile (<=768px): 2 columns
+(function () {
+  let lastBreakpoint = 0;
+
+  function getColumnCount() {
+    return window.innerWidth <= 768 ? 2 : 3;
   }
 
-  function reorderHorizontalPriority() {
-    // Process both contentpc and contentphone containers
-    ['.contentpc', '.contentphone'].forEach(selector => {
-      const container = document.querySelector(selector);
-      if (!container) return;
+  function buildMasonry() {
+    var containers = document.querySelectorAll('.content');
+    containers.forEach(function (container) {
+      var cols = getColumnCount();
 
-      const items = Array.from(container.children);
-      if (items.length === 0) return;
+      // Collect original image sources from existing structure
+      var sources = [];
+      // If already built masonry columns, read from them
+      var existingCols = container.querySelectorAll('.masonry-col');
+      if (existingCols.length > 0) {
+        existingCols.forEach(function (col) {
+          var imgs = col.querySelectorAll('img');
+          imgs.forEach(function (img) {
+            sources.push(img.getAttribute('src'));
+          });
+        });
+      } else {
+        // First run: read directly from container's img children
+        var imgs = container.querySelectorAll(':scope > img');
+        imgs.forEach(function (img) {
+          sources.push(img.getAttribute('src'));
+        });
+      }
 
-      const cols = getColumnCount(container);
-      if (cols <= 1) return; // No reordering needed for single column (mobile)
+      if (sources.length === 0) return;
 
-      // distribute items into columns in row-major order: item i goes to column (i % cols)
-      const columns = Array.from({length: cols}, () => []);
-      items.forEach((it, i) => {
-        const c = i % cols;
-        columns[c].push(it);
-      });
+      // Clear the container
+      container.innerHTML = '';
 
-      // re-append column by column so the DOM order is column-major (what CSS columns expect)
-      const frag = document.createDocumentFragment();
-      columns.forEach(colItems => colItems.forEach(it => frag.appendChild(it)));
+      // Create column divs
+      var columnDivs = [];
+      var columnHeights = [];
+      for (var i = 0; i < cols; i++) {
+        var colDiv = document.createElement('div');
+        colDiv.className = 'masonry-col';
+        container.appendChild(colDiv);
+        columnDivs.push(colDiv);
+        columnHeights.push(0);
+      }
 
-      // append frag (moves nodes)
-      container.appendChild(frag);
+      // We need to load images to get their natural dimensions, then place them.
+      // To keep the original order, we process sequentially: place image i
+      // into the shortest column once its dimensions are known.
+      var placed = 0;
+
+      function placeNext() {
+        if (placed >= sources.length) return;
+
+        var idx = placed;
+        var img = document.createElement('img');
+        img.setAttribute('src', sources[idx]);
+        img.setAttribute('data-index', idx);
+
+        img.onload = function () {
+          // Compute the rendered height: images are 100% width of column,
+          // so rendered height = (naturalHeight / naturalWidth) * columnWidth.
+          // All columns have the same width, so we just use the aspect ratio
+          // to compare relative heights.
+          var ratio = img.naturalHeight / img.naturalWidth;
+
+          // Find the shortest column (left-to-right on ties)
+          var minHeight = columnHeights[0];
+          var targetCol = 0;
+          for (var c = 1; c < cols; c++) {
+            if (columnHeights[c] < minHeight) {
+              minHeight = columnHeights[c];
+              targetCol = c;
+            }
+          }
+
+          columnDivs[targetCol].appendChild(img);
+          columnHeights[targetCol] += ratio;
+
+          placed++;
+          placeNext();
+        };
+
+        img.onerror = function () {
+          // Even on error, move to the shortest column so layout continues
+          var minHeight = columnHeights[0];
+          var targetCol = 0;
+          for (var c = 1; c < cols; c++) {
+            if (columnHeights[c] < minHeight) {
+              minHeight = columnHeights[c];
+              targetCol = c;
+            }
+          }
+          columnDivs[targetCol].appendChild(img);
+          columnHeights[targetCol] += 1; // assume square on error
+
+          placed++;
+          placeNext();
+        };
+      }
+
+      placeNext();
     });
   }
 
-  let resizeTimer = null;
+  // Debounced resize: only rebuild on breakpoint change
+  var resizeTimer = null;
   function handleResize() {
     clearTimeout(resizeTimer);
-    // Only reorder when actual breakpoint width changes (not on Safari scroll)
-    resizeTimer = setTimeout(() => {
-      const currentWidth = window.innerWidth;
-      // Check if width change is significant (crossed breakpoint)
-      const oldBreakpoint = lastWidth <= 480 ? 1 : (lastWidth <= 768 ? 2 : 3);
-      const newBreakpoint = currentWidth <= 480 ? 1 : (currentWidth <= 768 ? 2 : 3);
-      
-      if (oldBreakpoint !== newBreakpoint) {
-        lastWidth = currentWidth;
-        reorderHorizontalPriority();
+    resizeTimer = setTimeout(function () {
+      var newBp = getColumnCount();
+      if (newBp !== lastBreakpoint) {
+        lastBreakpoint = newBp;
+        buildMasonry();
       }
     }, 150);
   }
 
   function init() {
-    reorderHorizontalPriority();
+    lastBreakpoint = getColumnCount();
+    buildMasonry();
     window.addEventListener('resize', handleResize);
   }
 

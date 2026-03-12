@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const lightboxClose = document.getElementById("lightboxClose");
   const lightboxPrev = document.getElementById("lightboxPrev");
   const lightboxNext = document.getElementById("lightboxNext");
-  const contentImages = document.querySelectorAll(".content > img");
 
   let currentIndex = 0;
   let currentScale = 1;
@@ -12,18 +11,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const maxScale = 3;
   const scaleStep = 0.1;
 
-  // Open lightbox
-  contentImages.forEach((img, index) => {
-    img.addEventListener("click", () => {
-      currentIndex = index;
-      currentScale = 1;
-      openLightbox();
-    });
+  // Get all masonry images in their current DOM order
+  function getAllImages() {
+    return Array.from(document.querySelectorAll(".masonry-col img"));
+  }
+
+  // Use event delegation on .content so dynamically added images are handled
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest(".masonry-col img");
+    if (!img) return;
+
+    var allImages = getAllImages();
+    currentIndex = allImages.indexOf(img);
+    if (currentIndex === -1) currentIndex = 0;
+    currentScale = 1;
+    openLightbox();
   });
 
   function openLightbox() {
-    lightboxImage.src = contentImages[currentIndex].src;
-    lightboxImage.style.transform = `scale(${currentScale})`;
+    var allImages = getAllImages();
+    if (allImages.length === 0) return;
+    lightboxImage.src = allImages[currentIndex].src;
+    lightboxImage.style.transform = "scale(" + currentScale + ")";
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
   }
@@ -35,22 +44,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showPrevious() {
-    currentIndex = (currentIndex - 1 + contentImages.length) % contentImages.length;
+    var allImages = getAllImages();
+    if (allImages.length === 0) return;
+    currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
     currentScale = 1;
-    lightboxImage.src = contentImages[currentIndex].src;
-    lightboxImage.style.transform = `scale(${currentScale})`;
+    lightboxImage.src = allImages[currentIndex].src;
+    lightboxImage.style.transform = "scale(" + currentScale + ")";
   }
 
   function showNext() {
-    currentIndex = (currentIndex + 1) % contentImages.length;
+    var allImages = getAllImages();
+    if (allImages.length === 0) return;
+    currentIndex = (currentIndex + 1) % allImages.length;
     currentScale = 1;
-    lightboxImage.src = contentImages[currentIndex].src;
-    lightboxImage.style.transform = `scale(${currentScale})`;
+    lightboxImage.src = allImages[currentIndex].src;
+    lightboxImage.style.transform = "scale(" + currentScale + ")";
   }
 
   function updateImageScale(newScale) {
     currentScale = Math.max(minScale, Math.min(maxScale, newScale));
-    lightboxImage.style.transform = `scale(${currentScale})`;
+    lightboxImage.style.transform = "scale(" + currentScale + ")";
   }
 
   // Event listeners
@@ -94,4 +107,3 @@ document.addEventListener("DOMContentLoaded", () => {
     updateImageScale(newScale);
   }, { passive: false });
 });
-
