@@ -51,7 +51,7 @@
 
 
 
-.featured-project .project-info {
+.project-info {
     width: 32%;
 }
 
@@ -122,26 +122,43 @@
 
 
 @media screen and (max-width: 768px) {
-    /* On mobile, only show the first media item in a pair (home page specific) */
-    .featured-project .media-pair > .media-box:not(:first-child) {
+    /* On mobile, only show the first media item in a pair */
+    .media-pair > .media-box:not(:first-child) {
         display: none;
     }
 
     .media-grid > div:first-child {
         width: 100%;
     }
-
+    
     /* 隐藏右边的内容 */
-    .media-grid > div:last-child {
+      .media-grid > div:last-child {
         display: none;
     }
-
+    
     /* 让 media-grid 本身表现为单列 */
-    .media-grid {
+      .media-grid {
+        display: block;
+    }
+  
+    .media-box {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        background-color: #000;
+    }
+    
+    .media-box img, .media-box iframe {
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         display: block;
     }
 
-    .featured-project .project-info {
+    .project-info {
         width: 64%;
     }
 }
