@@ -38,7 +38,11 @@ function applyFiltersFromURL() {
 
     // 如果filter参数为空字符串 ""，也视为无效情况直接返回首页
     if (selectedFilters.length === 0 || (selectedFilters.length === 1 && selectedFilters[0].trim() === '')) {
-        window.location.href = "index.html";
+        if (typeof navigateWithTransition === "function") {
+            navigateWithTransition("index.html");
+        } else {
+            window.location.href = "index.html";
+        }
         return;
     }
 

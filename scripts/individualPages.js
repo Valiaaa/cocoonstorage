@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const templateHtml = await templateRes.text();
   document.body.innerHTML = templateHtml;
 
+  // Keep body hidden until CSS loads and fade-in animation takes over
+  document.body.style.opacity = "0";
+
   document.title = "Valia Liu";
   const headMeta = document.createElement("meta");
   headMeta.name = "viewport";
@@ -19,6 +22,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = `${basePath}styles/${file}`;
+    // Once base.css loads, clear inline opacity and re-trigger fade-in animation
+    if (file === "base.css") {
+      link.onload = () => {
+        document.body.style.opacity = "";
+        document.body.style.animation = "none";
+        void document.body.offsetHeight;
+        document.body.style.animation = "";
+      };
+    }
     document.head.appendChild(link);
   });
 
@@ -48,10 +60,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 加载导航栏
     $("#navigation").load(`${basePath}components/navigation.html`, function () {
-      $.getScript(`${basePath}scripts/navigation.js`, function () {
-        if (typeof bindNavigationEvents === "function") {
-          bindNavigationEvents();
-        }
+      $.getScript(`${basePath}scripts/pageTransition.js`, function () {
+        $.getScript(`${basePath}scripts/navigation.js`, function () {
+          if (typeof bindNavigationEvents === "function") {
+            bindNavigationEvents();
+          }
+        });
       });
     });
 

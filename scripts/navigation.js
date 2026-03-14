@@ -2,12 +2,21 @@ function getScriptBasePath() {
     let scriptSrc = document.currentScript ? document.currentScript.src : "";
     return scriptSrc.substring(0, scriptSrc.lastIndexOf("/") + 1);
   }
-  
+
   const basePath = getScriptBasePath();
 
   // 自动识别路径深度（兼容首页与子页面）
   const depthPrefix = window.location.pathname.includes("/archive/") ? "../../" : "./";
-  
+
+  // Helper: navigate with page transition if available
+  function goTo(url) {
+    if (typeof navigateWithTransition === "function") {
+      navigateWithTransition(url);
+    } else {
+      window.location.href = url;
+    }
+  }
+
   function bindNavigationEvents() {
     const currentPage = window.location.pathname.split('/').pop();
     const checkboxes = document.querySelectorAll(".category input[type='checkbox']");
@@ -17,7 +26,7 @@ function getScriptBasePath() {
     const about = document.getElementById("about");
     const archive = document.getElementById("archive");
     const workCategories = document.querySelector(".work-categories");
-    
+
     // Collapse work-categories on archive page after page load
     if (workCategories) {
       if (currentPage === 'archive.html') {
@@ -31,62 +40,62 @@ function getScriptBasePath() {
         workCategories.classList.remove('collapsed');
       }
     }
-  
+
     checkboxes.forEach(cb => {
       cb.addEventListener("change", () => {
         const selectedCategories = Array.from(checkboxes)
           .filter(c => c.checked)
           .map(c => c.id.replace('c', '').trim());
-  
+
         if (currentPage === 'filter.html') {
           applyFilter();
         } else {
           const targetPage = selectedCategories.length
             ? depthPrefix + "filter.html?filter=" + selectedCategories.join(",")
             : depthPrefix + "index.html";
-          window.location.href = targetPage;
+          goTo(targetPage);
         }
       });
     });
-  
+
     if (goHome) {
       goHome.addEventListener("click", e => {
         e.preventDefault();
-    
+
         if (window.innerWidth <= 768) {
           checkboxes.forEach(cb => cb.checked = true);
           const allCategories = Array.from(checkboxes).map(cb => cb.id.replace('c', '').trim());
-    
+
           if (currentPage === 'filter.html') {
             applyFilter();
           } else {
             setTimeout(() => {
-              window.location.href = depthPrefix + "filter.html?filter=" + allCategories.join(",");
+              goTo(depthPrefix + "filter.html?filter=" + allCategories.join(","));
             }, 50);
           }
         } else {
-          window.location.href = depthPrefix + "index.html";
+          goTo(depthPrefix + "index.html");
         }
       });
-    }    
-  
+    }
+
     if (clearButton) {
       clearButton.addEventListener("click", () => {
-        window.location.href = depthPrefix + "index.html";
+        goTo(depthPrefix + "index.html");
       });
     }
-    
+
     if (allButton) {
       allButton.addEventListener("click", e => {
         e.preventDefault();
         checkboxes.forEach(cb => cb.checked = true);
         const allCategories = Array.from(checkboxes).map(cb => cb.id.replace('c', '').trim());
-  
+
         if (currentPage === 'filter.html') {
           applyFilter();
         } else {
           setTimeout(() => {
-            window.location.href = depthPrefix + "filter.html?filter=" + allCategories.join(",");
+            goTo(depthPrefix + "filter.html?filter=" + allCategories.join(","));
           }, 50);
         }
       });
@@ -94,25 +103,25 @@ function getScriptBasePath() {
 
     if (archive) {
       archive.addEventListener("click", () => {
-        window.location.href = depthPrefix + "archive.html";
+        goTo(depthPrefix + "archive.html");
       });
     }
-  
+
     if (about) {
       about.addEventListener("click", () => {
-        window.location.href = depthPrefix + "about.html";
+        goTo(depthPrefix + "about.html");
       });
     }
-  
+
     const urlParams = new URLSearchParams(window.location.search);
     const selectedFilters = urlParams.get("filter") ? urlParams.get("filter").split(",") : [];
     checkboxes.forEach(cb => {
       const category = cb.id.replace('c', '').trim();
       cb.checked = selectedFilters.includes(category);
     });
-  
+
     if (currentPage === 'filter.html') applyFilter();
-  
+
     const hamburgerMenu = document.querySelector(".hamburger-menu");
     if (hamburgerMenu) {
       hamburgerMenu.addEventListener("click", function () {
@@ -120,7 +129,7 @@ function getScriptBasePath() {
         document.getElementById("navigation").classList.toggle("expanded");
       });
     }
-  
+
     document.addEventListener("touchstart", function (e) {
       const nav = document.getElementById("navigation");
       if (nav?.classList.contains("expanded")) {
@@ -133,22 +142,22 @@ function getScriptBasePath() {
       }
     }, { passive: true });
   }
-  
+
   function applyFilter() {
     const checkboxes = document.querySelectorAll(".category input[type='checkbox']");
     const selectedCategories = Array.from(checkboxes)
       .filter(cb => cb.checked)
       .map(cb => cb.id.replace('c', '').trim());
-  
+
     const allWorks = document.querySelectorAll('.work');
-  
+
     if (selectedCategories.length === 0) {
       allWorks.forEach(work => work.classList.add('hidden'));
       updateURL([]);
-      window.location.href = depthPrefix + "index.html";
+      goTo(depthPrefix + "index.html");
       return;
     }
-  
+
     if (selectedCategories.includes('all')) {
       allWorks.forEach(work => work.classList.remove('hidden'));
       updateURL([]);
@@ -160,11 +169,11 @@ function getScriptBasePath() {
       updateURL(selectedCategories);
     }
   }
-  
+
   function updateURL(categories) {
     const newURL = categories.length
       ? `${window.location.pathname}?filter=${categories.join(",")}`
       : window.location.pathname;
-  
+
     history.replaceState({}, "", newURL);
-  }  
+  }
