@@ -37,7 +37,7 @@
 
 .category {
     font-family: var(--font-family-secondary);
-    font-size: 16px;
+    font-size: var(--checkbox-font);
     color: var(--txt-color);
     margin-left: 16%;
     -webkit-text-stroke: 0.5px;
@@ -54,11 +54,13 @@
       cursor: auto;
       vertical-align: middle;
       position: relative;
+      margin-right: 6px;
 }  
   
 .category label {
       cursor: auto;
       display: block;
+      line-height: 1.3;
 }
   
 .category input[type="checkbox"]::before {

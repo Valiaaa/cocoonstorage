@@ -18,6 +18,7 @@
     --pointer-cursor: url('../assets/icons/pointer.png') 15 0, auto;
     --border-width: 2.5px;
     --big-font: 2.2vw;
+    --checkbox-font: calc(1vw + 6px);
 }
 
 
@@ -184,13 +185,13 @@ a {
 
 .project-info h2, .tag {
     font-family: var(--font-family-secondary);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
-    padding: 0px 10px;
+    padding: 1px 12px;
     border-radius: 20px;
     border: var(--txt-color) 1.5px solid;
     background: var(--deco-color);
-    margin-top: 16px;
+    margin-top: 18px;
     margin-bottom: calc(var(--body-padding) * 3);
     width: fit-content;
     text-transform: capitalize;
@@ -336,7 +337,6 @@ hr {
     }
 
     .project-info h2, .tag {
-        margin-top: 16px;
     }
 
     .nopc {
