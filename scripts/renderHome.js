@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', function(){
         }                     
 
         if (project.cover) {
-          const coverHTML = '<img class="media-item hoverZoomRight lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover + '" alt="' + project.title + ' - cover" onload="this.classList.add(\'loaded\')">';
-          mediaItems.push((project.video || project.cover2) ? '<div class="media-box">' + coverHTML + '</div>' : coverHTML);
+          const coverHTML = '<img class="media-item hoverZoom lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover + '" alt="' + project.title + ' - cover" onload="this.classList.add(\'loaded\')">'
+          mediaItems.push('<div class="media-box hoverZoom">' + coverHTML + '</div>');
         }
 
         if (project.cover2) {
-          const cover2HTML = '<img class="media-item hoverZoomRight lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover2 + '" alt="' + project.title + ' - cover2" onload="this.classList.add(\'loaded\')">';
-          mediaItems.push('<div class="media-box">' + cover2HTML + '</div>');
+          const cover2HTML = '<img class="media-item hoverZoom lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover2 + '" alt="' + project.title + ' - cover2" onload="this.classList.add(\'loaded\')">'
+          mediaItems.push('<div class="media-box hoverZoom">' + cover2HTML + '</div>');
         }
 
         const boxCount = mediaItems.filter(item => item.includes("media-box")).length;
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function(){
           '<a href="' + projectLink + '" class="featured-project-link">' +
             '<div class="featured-project ' + isLast + '">' +
               '<div class="media-container" style="width: 100%;">' + mediaContent + '</div>' +
-              '<div class="project-info hoverZoom">' +
+              '<div class="project-info">' +
                 '<h1>' + project.title + '</h1>' +
                 '<div class="tags-wrapper">' +
                   '<h2>' + (project.medium || '') + '</h2>' +

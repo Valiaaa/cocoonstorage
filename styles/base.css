@@ -87,6 +87,7 @@ img.lazy-fade.loaded {
 .media-box {
     flex: 0 0 auto;
     height: auto;
+    width: 100%;
 }
 
 .media-box img,
@@ -149,16 +150,16 @@ img.lazy-fade.loaded {
     padding-top: 75%;
 }
 
-.hoverZoom:hover {
-    transform: scale(1.05);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+.hoverZoom:hover,
+.hoverZoomRight:hover {
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
 }
 
-.hoverZoomRight:hover {
-    transform: scale(1.01);
-    transform-origin: right;
-    transition: transform 0.3s ease;
+.hoverZoom:hover img,
+.hoverZoomRight:hover img {
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
 }
 
 

@@ -22,6 +22,7 @@ class CustomCursor {
         this.isPointerMode = false;
         this.scale = window.devicePixelRatio || 1;
         this.isVisible = false;
+        this.isHiddenByElement = false;
         this.imagesLoaded = 0;
         this.totalImagesNeeded = 2;
         this.animationFrameId = null;
@@ -121,8 +122,8 @@ class CustomCursor {
         this.mouseX = e.clientX;
         this.mouseY = e.clientY;
         
-        // 确保光标可见
-        if (!this.isVisible && this.imagesLoaded === this.totalImagesNeeded) {
+        // 只在没有被元素隐藏时才确保光标可见
+        if (!this.isVisible && !this.isHiddenByElement && this.imagesLoaded === this.totalImagesNeeded) {
             this.isVisible = true;
             this.canvas.style.opacity = '1';
         }
@@ -192,6 +193,24 @@ class CustomCursor {
         document.body.style.cursor = 'auto';
     }
 
+    hideByElement() {
+        this.isHiddenByElement = true;
+        this.isVisible = false;
+        if (this.canvas) {
+            this.canvas.style.opacity = '0';
+        }
+        document.body.style.cursor = 'auto';
+    }
+
+    showByElement() {
+        this.isHiddenByElement = false;
+        this.isVisible = true;
+        if (this.canvas) {
+            this.canvas.style.opacity = '1';
+        }
+        document.body.style.cursor = 'none';
+    }
+
     hide() {
         if (this.animationFrameId) {
             cancelAnimationFrame(this.animationFrameId);
@@ -256,13 +275,13 @@ function initCustomCursor() {
         // 监听需要使用默认光标的元素
         document.addEventListener('mouseenter', (e) => {
             if (needsDefaultCursor(e.target)) {
-                customCursor.hide();
+                customCursor.hideByElement();
             }
         }, true);
 
         document.addEventListener('mouseleave', (e) => {
             if (needsDefaultCursor(e.target)) {
-                customCursor.show();
+                customCursor.showByElement();
             }
         }, true);
     }
