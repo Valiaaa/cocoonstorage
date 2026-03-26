@@ -98,6 +98,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (typeof bindNavigationEvents === "function") {
         bindNavigationEvents();
       }
+      // Load color theme script after navigation is loaded
+      return loadScript(`${basePath}scripts/colorTheme.js`);
     });
 
   // Load media content
