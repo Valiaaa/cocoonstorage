@@ -187,15 +187,26 @@ a {
     font-family: var(--font-family-secondary);
     font-size: 14px;
     font-weight: 400;
-    padding: 1px 12px;
+    padding: 0px 12px;
     border-radius: 20px;
     border: var(--txt-color) 1.5px solid;
     background: var(--deco-color);
-    margin-top: 18px;
-    margin-bottom: calc(var(--body-padding) * 3);
     width: fit-content;
-    text-transform: capitalize;
     -webkit-text-stroke: 0.4px;
+    margin: 0;
+}
+
+.tag-secondary {
+    font-family: var(--font-family-secondary);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0px 12px;
+    border-radius: 20px;
+    border: var(--txt-color) 1.5px solid;
+    background: var(--bg-color);
+    width: fit-content;
+    -webkit-text-stroke: 0.4px;
+    display: inline-block;
 }
 
 h3 {
@@ -256,10 +267,6 @@ hr {
 .expanded{
     left: 0 !important;
     transition: 0.4s;
-}
-
-.two-line {
-    margin-top: 20px !important;
 }
 
 .data-block {

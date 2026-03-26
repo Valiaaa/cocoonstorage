@@ -142,6 +142,23 @@ document.addEventListener("DOMContentLoaded", async () => {
           if (block) block.style.display = "none";
         }
       });
+
+      // Handle tags separately
+      const tagsBlock = document.querySelector(`.data-block[data-field="tags"]`);
+      const tagsContainer = document.getElementById("tags");
+      const tagsLabel = document.getElementById("title-tags");
+      const tags = project.tags;
+
+      if (tags && Array.isArray(tags) && tags.length > 0) {
+        tagsContainer.innerHTML = tags.join(", ");
+        if (tagsLabel) tagsLabel.style.display = "block";
+        if (tagsContainer) tagsContainer.style.display = "block";
+        if (tagsBlock) tagsBlock.style.display = "block";
+      } else {
+        if (tagsLabel) tagsLabel.style.display = "none";
+        if (tagsContainer) tagsContainer.style.display = "none";
+        if (tagsBlock) tagsBlock.style.display = "none";
+      }
     });
 
   // Load custom cursor

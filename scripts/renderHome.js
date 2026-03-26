@@ -62,8 +62,12 @@ document.addEventListener('DOMContentLoaded', function(){
           mediaContent = mediaItems.join("");
         }
 
-        const TWO_LINE_CHAR_COUNT = 14;
-        const isTwoLine = project.title.length > TWO_LINE_CHAR_COUNT ? 'two-line' : '';
+        let tagsHTML = '';
+        if (project.tags && Array.isArray(project.tags) && project.tags.length > 0) {
+          tagsHTML = project.tags.map(tag => 
+            '<span class="tag-secondary">' + tag + '</span>'
+          ).join('');
+        }
 
         const html =
           '<a href="' + projectLink + '" class="featured-project-link">' +
@@ -71,7 +75,10 @@ document.addEventListener('DOMContentLoaded', function(){
               '<div class="media-container" style="width: 100%;">' + mediaContent + '</div>' +
               '<div class="project-info hoverZoom">' +
                 '<h1>' + project.title + '</h1>' +
-                '<h2 class="' + isTwoLine + '">' + (project.medium || '') + '</h2>' +
+                '<div class="tags-wrapper">' +
+                  '<h2>' + (project.medium || '') + '</h2>' +
+                  tagsHTML +
+                '</div>' +
               '</div>' +
             '</div>' +
           '</a>';
@@ -81,25 +88,25 @@ document.addEventListener('DOMContentLoaded', function(){
 
       document.querySelectorAll(".project-info").forEach(info => {
         const h1 = info.querySelector("h1");
-        const h2 = info.querySelector("h2");
+        const tagsWrapper = info.querySelector(".tags-wrapper");
 
-        if (h1 && h2) {
+        if (h1 && tagsWrapper) {
           h1.addEventListener("mouseenter", () => {
-            h2.classList.add("hover-effect");
+            tagsWrapper.classList.add("hover-effect");
             h1.classList.add("hover-effect");
           });
           h1.addEventListener("mouseleave", () => {
-            h2.classList.remove("hover-effect");
+            tagsWrapper.classList.remove("hover-effect");
             h1.classList.remove("hover-effect");
           });
 
-          h2.addEventListener("mouseenter", () => {
+          tagsWrapper.addEventListener("mouseenter", () => {
             h1.classList.add("hover-effect");
-            h2.classList.add("hover-effect");
+            tagsWrapper.classList.add("hover-effect");
           });
-          h2.addEventListener("mouseleave", () => {
+          tagsWrapper.addEventListener("mouseleave", () => {
             h1.classList.remove("hover-effect");
-            h2.classList.remove("hover-effect");
+            tagsWrapper.classList.remove("hover-effect");
           });
         }
       });
