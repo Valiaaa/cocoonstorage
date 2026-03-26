@@ -5,8 +5,8 @@
 
 class CustomCursor {
     constructor(options = {}) {
-        this.pointerImageUrl = options.pointerImageUrl || '../assets/icons/pointer.png';
-        this.defaultImageUrl = options.defaultImageUrl || '../assets/icons/default.png';
+        this.pointerImageUrl = options.pointerImageUrl || '../assets/icons/pointer.svg';
+        this.defaultImageUrl = options.defaultImageUrl || '../assets/icons/default.svg';
         this.pointerHotspotX = options.pointerHotspotX || 15;
         this.pointerHotspotY = options.pointerHotspotY || 0;
         this.defaultHotspotX = options.defaultHotspotX || 0;
@@ -86,8 +86,8 @@ class CustomCursor {
         };
         
         // 使用 basePath + 相对URL
-        pointerImg.src = this.basePath + 'assets/icons/pointer.png';
-        defaultImg.src = this.basePath + 'assets/icons/default.png';
+        pointerImg.src = this.basePath + 'assets/icons/pointer.svg';
+        defaultImg.src = this.basePath + 'assets/icons/default.svg';
     }
 
     getBasePath() {
@@ -150,17 +150,43 @@ class CustomCursor {
         }
         document.body.style.cursor = 'auto';
     }
+
+    hide() {
+        if (this.canvas) {
+            this.canvas.style.display = 'none';
+        }
+        document.body.style.cursor = 'auto';
+    }
+
+    show() {
+        if (this.canvas) {
+            this.canvas.style.display = 'block';
+        }
+        document.body.style.cursor = 'none';
+    }
 }
 
 // 初始化自定义光标
 let customCursor = null;
 
+// 需要使用默认光标的元素选择器
+const defaultCursorSelectors = [
+    'video',
+    'iframe',
+    '[role="combobox"]',
+    '[role="listbox"]',
+    'input[type="range"]',
+    '.dropdown-menu',
+    '.modal',
+    '.dialog'
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     // 只在桌面设备上启用自定义光标
     if (!isTouchDevice()) {
         customCursor = new CustomCursor({
-            pointerImageUrl: 'assets/icons/pointer.png',
-            defaultImageUrl: 'assets/icons/default.png',
+            pointerImageUrl: 'assets/icons/pointer.svg',
+            defaultImageUrl: 'assets/icons/default.svg',
             pointerHotspotX: 15,
             pointerHotspotY: 0,
             defaultHotspotX: 0,
@@ -179,8 +205,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 customCursor.setPointerMode(false);
             }
         }, true);
+
+        // 监听需要使用默认光标的元素
+        document.addEventListener('mouseenter', (e) => {
+            if (needsDefaultCursor(e.target)) {
+                customCursor.hide();
+            }
+        }, true);
+
+        document.addEventListener('mouseleave', (e) => {
+            if (needsDefaultCursor(e.target)) {
+                customCursor.show();
+            }
+        }, true);
     }
 });
+
+// 检测元素是否需要使用默认光标
+function needsDefaultCursor(element) {
+    return defaultCursorSelectors.some(selector => {
+        return element.matches(selector) || element.closest(selector);
+    });
+}
 
 // 检测是否是触摸设备
 function isTouchDevice() {
