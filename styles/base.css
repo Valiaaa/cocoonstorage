@@ -173,7 +173,7 @@ a {
 .title, h1 {
     font-size: var(--big-font);
     line-height: 110%;
-    -webkit-text-stroke: 1.2px;
+    -webkit-text-stroke: 0.11vw;
     transform: scaleY(1.4);
     font-weight: 300;
     color: var(--txt-color);
