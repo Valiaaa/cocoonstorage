@@ -46,11 +46,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   preconnect2.crossOrigin = "anonymous";
   document.head.appendChild(preconnect2);
 
-  const latoFont = document.createElement("link");
-  latoFont.rel = "stylesheet";
-  latoFont.href = "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap";
-  document.head.appendChild(latoFont);
-
   const interFont = document.createElement("link");
   interFont.rel = "stylesheet";
   interFont.href = "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap";

@@ -14,7 +14,7 @@
     --gap: 24px;
     --body-padding: 16px;
     --font-family-main: "times new", serif;
-    --font-family-secondary: 'lato', sans-serif;
+    --font-family-secondary: 'Arial Narrow', sans-serif;
     --pointer-cursor: url('../assets/icons/pointer.png') 15 0, auto;
     --border-width: 2.5px;
     --big-font: 2.2vw;
@@ -232,7 +232,7 @@ hr {
 .container {
     display: grid;
     grid-template-columns: 19% minmax(0, 1fr);;
-    gap: var(--gap);
+    gap: 32px;
     padding: var(--body-padding);
 }
   
