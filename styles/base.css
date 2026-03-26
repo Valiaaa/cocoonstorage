@@ -168,7 +168,7 @@ a {
 
 .title, h1 {
     font-size: var(--big-font);
-    line-height: 110%;
+    line-height: 1;
     -webkit-text-stroke: 0.11vw;
     transform: scaleY(1.4);
     font-weight: 300;
@@ -299,7 +299,12 @@ hr {
         -webkit-text-stroke: 0.28vw;
     }
 
-    .project-info h2, .tag {
+    .project-info h2, .tag, .tag-secondary {
+        font-size: 12px;
+    }
+
+    #about {
+        margin-bottom: 4px;
     }
 
     .container, .about-container { 

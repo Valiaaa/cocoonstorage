@@ -169,6 +169,10 @@
         padding-top: calc(var(--body-padding) - 3px);
     }
 
+    .category {
+    font-size: calc(3vw + 6px);
+}
+
     .mobile-nav {
         position: fixed;
         top: 0;

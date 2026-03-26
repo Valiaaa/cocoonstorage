@@ -60,7 +60,7 @@
     flex-wrap: wrap;
     gap: 8px;
     align-items: flex-start;
-    margin-top: 18px;
+    margin-top: 10px;
 }
 
 
@@ -151,5 +151,13 @@
 
     .featured-project .project-info {
         width: 64%;
+    }
+
+    .tags-wrapper .tag-secondary {
+        display: none;
+    }
+
+    .tags-wrapper.two-line {
+        margin-top: 20px;
     }
 }

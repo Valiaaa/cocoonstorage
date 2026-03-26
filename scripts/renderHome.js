@@ -69,13 +69,15 @@ document.addEventListener('DOMContentLoaded', function(){
           ).join('');
         }
 
+        const tagsWrapperClass = project.tagsLayout === 'two-line' ? 'tags-wrapper two-line' : 'tags-wrapper';
+
         const html =
           '<a href="' + projectLink + '" class="featured-project-link">' +
             '<div class="featured-project ' + isLast + '">' +
               '<div class="media-container" style="width: 100%;">' + mediaContent + '</div>' +
               '<div class="project-info hoverZoom">' +
                 '<h1>' + project.title + '</h1>' +
-                '<div class="tags-wrapper">' +
+                '<div class="' + tagsWrapperClass + '">' +
                   '<h2>' + (project.medium || '') + '</h2>' +
                   tagsHTML +
                 '</div>' +
