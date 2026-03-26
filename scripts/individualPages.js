@@ -146,3 +146,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Load custom cursor
   loadScript(`${basePath}scripts/customCursor.js`);
+});

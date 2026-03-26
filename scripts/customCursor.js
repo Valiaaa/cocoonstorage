@@ -110,8 +110,8 @@ class CustomCursor {
         const pathname = window.location.pathname;
         // 判断当前页面是否在 archive 子目录（两级深）
         if (pathname.match(/\/archive\/[^\/]+\/[^\/]+\.html$/)) {
-            // 例如 /archive/altoona/altoona.html，需要上升三级
-            return '../../../';
+            // 例如 /archive/altoona/altoona.html，需要上升两级到根目录
+            return '../../';
         }
         // 根目录下的页面
         return './';
@@ -227,7 +227,8 @@ const defaultCursorSelectors = [
     '.dialog'
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
+// 初始化自定义光标（即时执行，不依赖 DOMContentLoaded）
+function initCustomCursor() {
     // 只在桌面设备上启用自定义光标
     if (!isTouchDevice()) {
         customCursor = new CustomCursor({
@@ -265,7 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, true);
     }
-});
+}
+
+// 如果 DOM 已准备好，立即初始化；否则等待 DOMContentLoaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCustomCursor);
+} else {
+    initCustomCursor();
+}
 
 // 检测元素是否需要使用默认光标
 function needsDefaultCursor(element) {
