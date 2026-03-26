@@ -82,6 +82,10 @@
           if (typeof bindNavigationEvents === "function") {
             bindNavigationEvents();
           }
+          // Load color theme script after navigation is injected
+          const script = document.createElement('script');
+          script.src = 'scripts/colorTheme.js';
+          document.head.appendChild(script);
         });
     </script>
   
