@@ -152,13 +152,7 @@ img.lazy-fade.loaded {
 
 .hoverZoom:hover,
 .hoverZoomRight:hover {
-    opacity: 0.75;
-    transition: opacity 0.3s ease;
-}
-
-.hoverZoom:hover img,
-.hoverZoomRight:hover img {
-    opacity: 0.75;
+    opacity: 0.6;
     transition: opacity 0.3s ease;
 }
 
