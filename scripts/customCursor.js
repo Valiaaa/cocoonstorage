@@ -17,10 +17,14 @@ class CustomCursor {
         this.ctx = null;
         this.pointerImage = null;
         this.defaultImage = null;
-        this.mouseX = 0;
-        this.mouseY = 0;
+        this.mouseX = -999;
+        this.mouseY = -999;
         this.isPointerMode = false;
         this.scale = window.devicePixelRatio || 1;
+        this.isVisible = false;
+        this.imagesLoaded = 0;
+        this.totalImagesNeeded = 2;
+        this.animationFrameId = null;
         
         this.init();
     }
@@ -37,6 +41,8 @@ class CustomCursor {
             height: 100%;
             pointer-events: none;
             z-index: 999999;
+            opacity: 0;
+            transition: opacity 0.15s ease-out;
         `;
         document.body.appendChild(this.canvas);
         
@@ -57,7 +63,7 @@ class CustomCursor {
         document.addEventListener('mouseleave', () => this.onMouseLeave());
         
         // 监听文档焦点变化
-        document.addEventListener('focus', () => this.draw(), true);
+        document.addEventListener('focus', () => this.scheduleRender(), true);
         document.addEventListener('blur', () => this.clear(), true);
         
         // 监听窗口大小变化
@@ -77,17 +83,27 @@ class CustomCursor {
         
         pointerImg.onload = () => {
             this.pointerImage = pointerImg;
-            this.draw();
+            this.imagesLoaded++;
+            this.checkImagesReady();
         };
         
         defaultImg.onload = () => {
             this.defaultImage = defaultImg;
-            this.draw();
+            this.imagesLoaded++;
+            this.checkImagesReady();
         };
         
         // 使用 basePath + 相对URL
         pointerImg.src = this.basePath + 'assets/icons/pointer.svg';
         defaultImg.src = this.basePath + 'assets/icons/default.svg';
+    }
+
+    checkImagesReady() {
+        if (this.imagesLoaded === this.totalImagesNeeded) {
+            this.isVisible = true;
+            this.canvas.style.opacity = '1';
+            this.scheduleRender();
+        }
     }
 
     getBasePath() {
@@ -104,12 +120,19 @@ class CustomCursor {
     onMouseMove(e) {
         this.mouseX = e.clientX;
         this.mouseY = e.clientY;
-        this.draw();
+        
+        // 确保光标可见
+        if (!this.isVisible && this.imagesLoaded === this.totalImagesNeeded) {
+            this.isVisible = true;
+            this.canvas.style.opacity = '1';
+        }
+        
+        this.scheduleRender();
     }
 
     onMouseEnter() {
         document.body.style.cursor = 'none';
-        this.draw();
+        this.scheduleRender();
     }
 
     onMouseLeave() {
@@ -117,12 +140,27 @@ class CustomCursor {
         document.body.style.cursor = 'none';
     }
 
+    scheduleRender() {
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+        }
+        this.animationFrameId = requestAnimationFrame(() => {
+            this.draw();
+        });
+    }
+
     setPointerMode(isPointer) {
         this.isPointerMode = isPointer;
-        this.draw();
+        this.scheduleRender();
     }
 
     draw() {
+        // 如果光标在屏幕外，不绘制
+        if (this.mouseX < -100 || this.mouseY < -100) {
+            this.ctx.clearRect(0, 0, this.canvas.width / this.scale, this.canvas.height / this.scale);
+            return;
+        }
+        
         // 清空 Canvas
         this.ctx.clearRect(0, 0, this.canvas.width / this.scale, this.canvas.height / this.scale);
         
@@ -130,7 +168,7 @@ class CustomCursor {
         const hotspotX = this.isPointerMode ? this.pointerHotspotX : this.defaultHotspotX;
         const hotspotY = this.isPointerMode ? this.pointerHotspotY : this.defaultHotspotY;
         
-        if (image) {
+        if (image && this.isVisible) {
             // 根据热点位置绘制
             this.ctx.drawImage(
                 image,
@@ -145,6 +183,9 @@ class CustomCursor {
     }
 
     destroy() {
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+        }
         if (this.canvas) {
             this.canvas.remove();
         }
@@ -152,15 +193,20 @@ class CustomCursor {
     }
 
     hide() {
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+        }
+        this.isVisible = false;
         if (this.canvas) {
-            this.canvas.style.display = 'none';
+            this.canvas.style.opacity = '0';
         }
         document.body.style.cursor = 'auto';
     }
 
     show() {
+        this.isVisible = true;
         if (this.canvas) {
-            this.canvas.style.display = 'block';
+            this.canvas.style.opacity = '1';
         }
         document.body.style.cursor = 'none';
     }
