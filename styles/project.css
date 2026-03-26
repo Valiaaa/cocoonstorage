@@ -7,7 +7,7 @@
 }
 
 .back {
-    cursor: var(--pointer-cursor);
+    cursor: auto;
 }
 
 .media-item iframe {

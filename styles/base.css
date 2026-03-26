@@ -28,6 +28,7 @@
     box-sizing: inherit;
     -webkit-tap-highlight-color: transparent;
     outline: none;
+    cursor: none !important;
 }
 
 body {
@@ -35,7 +36,6 @@ body {
     padding: 0;
     background-color: var(--default-bg-color);
     font-family: var(--font-family-main), times, serif;
-    cursor: url('../assets/icons/default.png'), auto;
     box-sizing: border-box;
     color: var(--txt-color);
     padding-bottom: env(safe-area-inset-bottom);
@@ -165,7 +165,7 @@ img.lazy-fade.loaded {
 a {
     text-decoration: none;
     color: var(--txt-color);
-    cursor: var(--pointer-cursor);
+    cursor: auto;
     width: fit-content;
     display: block;
 }

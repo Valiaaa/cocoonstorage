@@ -51,13 +51,13 @@
       width: 16px;
       height: 16px;
       border: 2px solid var(--txt-color);
-      cursor: var(--pointer-cursor);
+      cursor: auto;
       vertical-align: middle;
       position: relative;
 }  
   
 .category label {
-      cursor: var(--pointer-cursor);
+      cursor: auto;
       display: block;
 }
   
@@ -91,7 +91,7 @@
     border: 2px solid var(--txt-color);
     background: transparent;
     color: var(--txt-color);
-    cursor: var(--pointer-cursor);
+    cursor: auto;
     transition: 0.3s;
 }
 

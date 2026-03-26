@@ -85,7 +85,7 @@
     height: auto;
     max-height: 80vh; /* 控制最大高度，避免图片过长 */
     object-fit: cover; /* 保持比例填充 */
-    cursor: var(--pointer-cursor);
+    cursor: auto;
 } 
 
 .media-grid {
