@@ -4,11 +4,6 @@
     font-weight: 200;
 }
   
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-
 
 :root {
     --txt-color: #2F2516;
@@ -85,6 +80,72 @@ img.lazy-fade {
 
 img.lazy-fade.loaded {
     opacity: 1;
+}
+
+/* ==== Shared media classes (used by home + project pages) ==== */
+.media-box {
+    flex: 0 0 auto;
+    height: auto;
+}
+
+.media-box img,
+.media-box iframe {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.media-box iframe.ratio-1-1 {
+    aspect-ratio: 1 / 1;
+}
+.media-box iframe.ratio-4-3 {
+    aspect-ratio: 4 / 3;
+}
+.media-box iframe.ratio-16-9 {
+    aspect-ratio: 16 / 9;
+}
+
+.media-pair {
+    display: flex;
+    gap: var(--gap);
+}
+
+.media-pair .media-item {
+    max-width: 100%;
+    flex: 1 1 auto;
+}
+
+.media-pair .media-box {
+    flex: 0 0 auto !important;
+    width: auto !important;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}
+
+.video-wrapper.square {
+    padding-top: 100%;
+}
+
+.video-wrapper.fourthree {
+    padding-top: 75%;
 }
 
 .hoverZoom:hover {
@@ -247,6 +308,25 @@ hr {
         grid-column: 1 / -1; /* 让右侧内容填满整个屏幕 */
         width: 100%;
         padding-top: 34px;
+    }
+
+    /* Shared media mobile rules */
+    .media-pair {
+        flex-direction: column;
+    }
+
+    .media-pair .media-box,
+    .media-box {
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    .media-box iframe,
+    .media-box img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        display: block !important;
     }
 }
 

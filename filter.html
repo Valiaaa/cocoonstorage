@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Valia Liu</title>
     <link rel="icon" href="assets/icons/icon.png">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/navigation.css">
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YB3PB2KE3B"></script>
@@ -42,11 +46,14 @@
     </div>
 
     <script>
-        $(document).ready(function(){
-            $("#navigation").load("components/navigation.html", function(){
-                bindNavigationEvents();
-            });
-        });
+        fetch("components/navigation.html")
+          .then(function(r){ return r.text(); })
+          .then(function(html){
+            document.getElementById("navigation").innerHTML = html;
+            if (typeof bindNavigationEvents === "function") {
+              bindNavigationEvents();
+            }
+          });
     </script>
 
     <script src="scripts/renderFilter.js"></script>
