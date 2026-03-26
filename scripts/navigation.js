@@ -45,7 +45,7 @@ function getScriptBasePath() {
       cb.addEventListener("change", () => {
         const selectedCategories = Array.from(checkboxes)
           .filter(c => c.checked)
-          .map(c => c.id.replace('c', '').trim());
+          .map(c => c.id.trim());
 
         if (currentPage === 'filter.html') {
           applyFilter();
@@ -64,7 +64,7 @@ function getScriptBasePath() {
 
         if (window.innerWidth <= 768) {
           checkboxes.forEach(cb => cb.checked = true);
-          const allCategories = Array.from(checkboxes).map(cb => cb.id.replace('c', '').trim());
+          const allCategories = Array.from(checkboxes).map(cb => cb.id.trim());
 
           if (currentPage === 'filter.html') {
             applyFilter();
@@ -89,7 +89,7 @@ function getScriptBasePath() {
       allButton.addEventListener("click", e => {
         e.preventDefault();
         checkboxes.forEach(cb => cb.checked = true);
-        const allCategories = Array.from(checkboxes).map(cb => cb.id.replace('c', '').trim());
+        const allCategories = Array.from(checkboxes).map(cb => cb.id.trim());
 
         if (currentPage === 'filter.html') {
           applyFilter();
@@ -116,7 +116,7 @@ function getScriptBasePath() {
     const urlParams = new URLSearchParams(window.location.search);
     const selectedFilters = urlParams.get("filter") ? urlParams.get("filter").split(",") : [];
     checkboxes.forEach(cb => {
-      const category = cb.id.replace('c', '').trim();
+      const category = cb.id.trim();
       cb.checked = selectedFilters.includes(category);
     });
 
@@ -147,7 +147,7 @@ function getScriptBasePath() {
     const checkboxes = document.querySelectorAll(".category input[type='checkbox']");
     const selectedCategories = Array.from(checkboxes)
       .filter(cb => cb.checked)
-      .map(cb => cb.id.replace('c', '').trim());
+      .map(cb => cb.id.trim());
 
     const allWorks = document.querySelectorAll('.work');
 

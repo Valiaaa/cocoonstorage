@@ -58,7 +58,7 @@ function applyFiltersFromURL() {
 
     // 更新 Checkbox 选中状态
     document.querySelectorAll('.category input[type="checkbox"]').forEach(input => {
-        const category = input.id.replace('c', '').trim();
+        const category = input.id.trim();
         input.checked = selectedFilters.includes(category);
     });
 

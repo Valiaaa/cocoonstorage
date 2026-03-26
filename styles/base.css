@@ -296,11 +296,10 @@ hr {
 
     .title, h1 {
         font-size: 5.4vw;
+        -webkit-text-stroke: 0.28vw;
     }
 
     .project-info h2, .tag {
-        margin-bottom: calc(var(--body-padding)* 2);
-        margin-top: 10px;
     }
 
     .container, .about-container { 
