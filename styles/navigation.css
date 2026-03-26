@@ -158,8 +158,8 @@
         width: 76%;
         height: 100vh;
         background: var(--gradient);
-        border-right: var(--border-width) solid var(--txt-color);
-        left: -80%;
+        border-left: var(--border-width) solid var(--txt-color);
+        right: -80%;
         transition: 0.4s;
     }
 

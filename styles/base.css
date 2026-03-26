@@ -260,7 +260,7 @@ hr {
 }
 
 .expanded{
-    left: 0 !important;
+    right: 0 !important;
     transition: 0.4s;
 }
 
