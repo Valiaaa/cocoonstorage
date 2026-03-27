@@ -155,7 +155,7 @@
     #navigation {
         position: fixed;
         z-index: 1000;
-        width: 76%;
+        width: 72%;
         height: 100vh;
         background: var(--gradient);
         border-left: var(--border-width) solid var(--txt-color);
@@ -164,7 +164,7 @@
     }
 
     .navigation {
-        width: calc(76% - var(--body-padding));
+        width: calc(72% - var(--body-padding));
         padding-left: var(--body-padding);
         padding-top: calc(var(--body-padding) - 3px);
     }
@@ -189,17 +189,24 @@
     }
 
     .hamburger-menu {
+        position: fixed;
+        top: 2px;
+        right: var(--body-padding);
         font-size: 8.8vw;
         background: transparent;
         border: none;
         color: var(--txt-color);
-        margin-top: -8px;
         padding: 0;
         transition: transform 0.3s ease;
+        z-index: 9999;
+        width: auto;
+        height: auto;
     }
     
     .hamburger-menu.expanded {
         transform: rotate(-90deg); /* 逆时针旋转 90° */
+        margin-top: 4px;
+        margin-right: 20px;
     }
     
     .hamburger-menu:not(.expanded) {
