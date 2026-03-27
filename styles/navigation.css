@@ -232,4 +232,8 @@
       padding-left: var(--body-padding);
       padding-top: var(--body-padding);
     }
+
+    .hamburger-menu {
+        display: none;
+    }
 }
