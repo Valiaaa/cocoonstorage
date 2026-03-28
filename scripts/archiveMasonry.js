@@ -17,24 +17,32 @@
 
       var cols = getColumnCount();
 
-      // Collect original image sources from existing structure
-      var sources = [];
+      // Collect original image sources and video elements from existing structure
+      var items = []; // Each item: { type: 'img', src: '...' } or { type: 'video', element: ... }
       var existingCols = container.querySelectorAll('.masonry-col');
       if (existingCols.length > 0) {
         existingCols.forEach(function (col) {
           var imgs = col.querySelectorAll('img');
           imgs.forEach(function (img) {
-            sources.push(img.getAttribute('src'));
+            items.push({ type: 'img', src: img.getAttribute('src') });
+          });
+          var videos = col.querySelectorAll('.video-container');
+          videos.forEach(function (video) {
+            items.push({ type: 'video', element: video.cloneNode(true) });
           });
         });
       } else {
         var imgs = container.querySelectorAll(':scope > img');
         imgs.forEach(function (img) {
-          sources.push(img.getAttribute('src'));
+          items.push({ type: 'img', src: img.getAttribute('src') });
+        });
+        var videos = container.querySelectorAll(':scope > .video-container');
+        videos.forEach(function (video) {
+          items.push({ type: 'video', element: video.cloneNode(true) });
         });
       }
 
-      if (sources.length === 0) return;
+      if (items.length === 0) return;
 
       // Clear the container
       container.innerHTML = '';
@@ -50,27 +58,17 @@
         columnHeights.push(0);
       }
 
-      // Process images sequentially: place each into the shortest column
+      // Process items sequentially: place each into the shortest column
       var placed = 0;
 
       function placeNext() {
-        if (placed >= sources.length) return;
+        if (placed >= items.length) return;
 
         var idx = placed;
-        var img = document.createElement('img');
-        img.setAttribute('src', sources[idx]);
-        img.setAttribute('data-index', idx);
-        img.classList.add('lazy-fade');
+        var item = items[idx];
 
-        // Lazy load images beyond the first row
-        if (idx >= cols) {
-          img.setAttribute('loading', 'lazy');
-        }
-
-        img.onload = function () {
-          var ratio = img.naturalHeight / img.naturalWidth;
-
-          // Find the shortest column (left-to-right on ties)
+        if (item.type === 'video') {
+          // For video container, directly place with fixed aspect ratio
           var minHeight = columnHeights[0];
           var targetCol = 0;
           for (var c = 1; c < cols; c++) {
@@ -80,34 +78,66 @@
             }
           }
 
-          columnDivs[targetCol].appendChild(img);
-          columnHeights[targetCol] += ratio;
+          var videoEl = item.element;
+          columnDivs[targetCol].appendChild(videoEl);
+          columnHeights[targetCol] += 9/16; // 16:9 aspect ratio
 
-          // Trigger fade-in after paint
-          requestAnimationFrame(function () {
+          placed++;
+          placeNext();
+        } else {
+          // For images, wait for load and calculate natural ratio
+          var img = document.createElement('img');
+          img.setAttribute('src', item.src);
+          img.setAttribute('data-index', idx);
+          img.classList.add('lazy-fade');
+
+          // Lazy load images beyond the first row
+          if (idx >= cols) {
+            img.setAttribute('loading', 'lazy');
+          }
+
+          img.onload = function () {
+            var ratio = img.naturalHeight / img.naturalWidth;
+
+            // Find the shortest column (left-to-right on ties)
+            var minHeight = columnHeights[0];
+            var targetCol = 0;
+            for (var c = 1; c < cols; c++) {
+              if (columnHeights[c] < minHeight) {
+                minHeight = columnHeights[c];
+                targetCol = c;
+              }
+            }
+
+            columnDivs[targetCol].appendChild(img);
+            columnHeights[targetCol] += ratio;
+
+            // Trigger fade-in after paint
+            requestAnimationFrame(function () {
+              img.classList.add('loaded');
+            });
+
+            placed++;
+            placeNext();
+          };
+
+          img.onerror = function () {
+            var minHeight = columnHeights[0];
+            var targetCol = 0;
+            for (var c = 1; c < cols; c++) {
+              if (columnHeights[c] < minHeight) {
+                minHeight = columnHeights[c];
+                targetCol = c;
+              }
+            }
+            columnDivs[targetCol].appendChild(img);
+            columnHeights[targetCol] += 1;
             img.classList.add('loaded');
-          });
 
-          placed++;
-          placeNext();
-        };
-
-        img.onerror = function () {
-          var minHeight = columnHeights[0];
-          var targetCol = 0;
-          for (var c = 1; c < cols; c++) {
-            if (columnHeights[c] < minHeight) {
-              minHeight = columnHeights[c];
-              targetCol = c;
-            }
-          }
-          columnDivs[targetCol].appendChild(img);
-          columnHeights[targetCol] += 1;
-          img.classList.add('loaded');
-
-          placed++;
-          placeNext();
-        };
+            placed++;
+            placeNext();
+          };
+        }
       }
 
       placeNext();

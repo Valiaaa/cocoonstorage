@@ -201,6 +201,7 @@
         z-index: 9999;
         width: auto;
         height: auto;
+        line-height: 1;
     }
     
     .hamburger-menu.expanded {
