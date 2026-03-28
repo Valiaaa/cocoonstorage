@@ -20,6 +20,7 @@
         "categories": ["identity","campaign","print"],
         "medium": "campaign",
         "tags": ["identity", "event"],
+        "tagsLayout": "two-line",
         "dimension": "",
         "date": "Apr 2026",
         "credit": ["Design Intern: Olivia Qiu, Sreenidhi Senthil Kumar", "Illustration: Sirius Zhao"],

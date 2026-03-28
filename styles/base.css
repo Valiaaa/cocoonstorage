@@ -45,6 +45,11 @@ body {
     overflow-x: hidden;
 }
 
+body.nav-open {
+    overflow: hidden;
+    height: 100vh;
+}
+
 #bg {
     position: fixed;
     background-attachment: fixed;

@@ -126,7 +126,9 @@ function getScriptBasePath() {
     if (hamburgerMenu) {
       hamburgerMenu.addEventListener("click", function () {
         this.classList.toggle("expanded");
-        document.getElementById("navigation").classList.toggle("expanded");
+        const nav = document.getElementById("navigation");
+        nav.classList.toggle("expanded");
+        document.body.classList.toggle("nav-open");
       });
     }
 
@@ -138,6 +140,7 @@ function getScriptBasePath() {
         if (!clickInsideNav && !clickHamburger) {
           nav.classList.remove("expanded");
           hamburgerMenu?.classList.remove("expanded");
+          document.body.classList.remove("nav-open");
         }
       }
     }, { passive: true });
