@@ -50,7 +50,8 @@ document.addEventListener('DOMContentLoaded', function(){
           mediaItems.push('<div class="media-box hoverZoom">' + coverHTML + '</div>');
         }
 
-        if (project.cover2) {
+        // Only load cover2 on desktop/tablet (> 768px width)
+        if (project.cover2 && window.innerWidth > 768) {
           const cover2HTML = '<img class="media-item hoverZoom lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover2 + '" alt="' + project.title + ' - cover2" onload="this.classList.add(\'loaded\')">'
           mediaItems.push('<div class="media-box hoverZoom">' + cover2HTML + '</div>');
         }
@@ -137,5 +138,36 @@ document.addEventListener('DOMContentLoaded', function(){
           });
         }, 100);
       };
+
+      // Handle window resize/orientation change for mobile responsiveness
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          const mediaContainers = document.querySelectorAll('.media-pair');
+          mediaContainers.forEach(container => {
+            const mediaBoxes = container.querySelectorAll('.media-box');
+            if (window.innerWidth <= 768) {
+              // Mobile: hide all but first
+              mediaBoxes.forEach((box, i) => {
+                if (i > 0) {
+                  box.style.display = 'none !important';
+                  box.style.visibility = 'hidden !important';
+                }
+              });
+            } else {
+              // Desktop: show all
+              mediaBoxes.forEach((box) => {
+                box.style.display = '';
+                box.style.visibility = '';
+              });
+            }
+          });
+          
+          if (window.innerWidth > 768) {
+            layoutMediaPairsByHeight();
+          }
+        }, 100);
+      });
     });
 });

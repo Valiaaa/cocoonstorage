@@ -132,7 +132,13 @@
 @media screen and (max-width: 768px) {
     /* On mobile, only show the first media item in a pair (home page) */
     .featured-project .media-pair > .media-box:not(:first-child) {
-        display: none;
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        opacity: 0 !important;
     }
 
     .media-grid > div:first-child {
