@@ -3,13 +3,13 @@
       {
         "title": "My Monthly",
         "filename": "my_monthly",
-        "cover": "cover.jpg",
+        "video": "https://player.vimeo.com/video/1177908148?autoplay=1&loop=1&autopause=0&muted=1",
         "categories": ["identity","web","print","video"],
         "medium": "identity",
         "tags": ["motion", "merch"],
         "dimension": "",
         "date": "Mar 2025",
-        "collaborator": ["My Monthly Team"],
+        "collaborator": ["Illustration: Vivian Xu", "Trailor: Shanshan Wang"],
         "feature": true,
         "description": "<a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a> is a cycle-tracking app designed to deepen communication in romantic relationships by reframing cycle care as a shared emotional space. The Branding team focused on expressing the core mission through a balance of soft and structured visuals by utilizing calm color palette that softens the communication and mood-based characters that make emotion feel tangible. These elements compose a system that is recognizably 'My Monthly.'<br><br>As the Branding Lead, I am responsible for the clarity and cohesion of the brand’s visual identity across all digital and physical platforms. My role centers on developing fresh visual directions—ranging from event-driven campaigns and animated brand stories to modular systems for social content—that create expressive moments to surprise and engage, while staying grounded in the brand’s core identity."
       },
