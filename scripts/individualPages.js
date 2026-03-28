@@ -126,13 +126,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         let displayContent = "";
         if (Array.isArray(content)) {
-          displayContent = content.join(", ");
+          if (field === "credit") {
+            // 对credit进行特殊处理：用<br>分割，括号内容italicize
+            displayContent = content.map(item => {
+              // 把 (xxx) 替换成 <i>(xxx)</i>
+              return item.replace(/\(([^)]*)\)/g, '<i>($1)</i>');
+            }).join("<br>");
+          } else {
+            displayContent = content.join(", ");
+          }
         } else if (typeof content === "string") {
           displayContent = content.trim();
         }
 
         if (displayContent) {
-          if (valueEl) valueEl.textContent = displayContent;
+          if (valueEl) {
+            if (field === "credit") {
+              valueEl.innerHTML = displayContent; // credit使用innerHTML以支持<br>和<i>标签
+            } else {
+              valueEl.textContent = displayContent;
+            }
+          }
           if (labelEl) labelEl.style.display = "block";
           if (valueEl) valueEl.style.display = "block";
           if (block) block.style.display = "block";
