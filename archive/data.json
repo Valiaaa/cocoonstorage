@@ -98,19 +98,6 @@
         "collaborator": "",
         "feature": false,
         "description": "A short-form digital collage exploring dreamcore aesthetics through spatial tension and temporal compression. The piece blurs the boundary between real and rendered, evoking an eerie familiarity that lingers without resolution, like a place once visited but never fully seen."
-      },
-      {
-        "title": "Chatbot Showcase",
-        "filename": "chatbot_showcase",
-        "cover": "cover.jpg",
-        "categories": ["video"],
-        "medium": "Motion Graphics",
-        "tags": ["UI", "product"],
-        "dimension": "3728px × 1480px",
-        "date": "Nov 2023",
-        "collaborator": "",
-        "feature": false,
-        "description": "This motion graphic showcases Instalily’s AI-powered chatbot, using a wireframe aesthetic to communicate product functionality with clarity and restraint."
       }
     ]
   }

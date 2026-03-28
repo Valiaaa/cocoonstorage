@@ -206,7 +206,6 @@
     
     .hamburger-menu.expanded {
         transform: rotate(-90deg); /* 逆时针旋转 90° */
-        margin-top: 4px;
         margin-right: 20px;
     }
     
