@@ -18,7 +18,7 @@
     --pointer-cursor: url('../assets/icons/pointer.png') 15 0, auto;
     --border-width: 2.5px;
     --big-font: 2.2vw;
-    --checkbox-font: calc(1vw + 6px);
+    --checkbox-font: calc(1vw + 4px);
 }
 
 
@@ -216,6 +216,7 @@ h3 {
     margin: 0;
     -webkit-text-stroke: 0.5px;
     line-height: 130%;
+    letter-spacing: 0.5px;
 }
 
 p {
