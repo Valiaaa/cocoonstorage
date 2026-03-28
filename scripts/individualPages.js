@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("project-title").textContent = project.title;
       document.getElementById("project-description").innerHTML = project.description || "";
 
-      ["medium", "dimension", "date", "collaborator"].forEach(field => {
+      ["medium", "dimension", "date", "credit"].forEach(field => {
         const block = document.querySelector(`.data-block[data-field="${field}"]`);
         const valueEl = document.getElementById(field);
         const labelEl = document.getElementById("title-" + field);

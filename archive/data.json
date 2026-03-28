@@ -9,9 +9,22 @@
         "tags": ["motion", "merch"],
         "dimension": "",
         "date": "Mar 2025",
-        "collaborator": ["Illustration: Vivian Xu", "Trailor: Shanshan Wang"],
+        "credit": ["Illustration: Vivian Xu", "Trailor: Shanshan Wang"],
         "feature": true,
-        "description": "<a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a> is a cycle-tracking app designed to deepen communication in romantic relationships by reframing cycle care as a shared emotional space. The Branding team focused on expressing the core mission through a balance of soft and structured visuals by utilizing calm color palette that softens the communication and mood-based characters that make emotion feel tangible. These elements compose a system that is recognizably 'My Monthly.'<br><br>As the Branding Lead, I am responsible for the clarity and cohesion of the brand’s visual identity across all digital and physical platforms. My role centers on developing fresh visual directions—ranging from event-driven campaigns and animated brand stories to modular systems for social content—that create expressive moments to surprise and engage, while staying grounded in the brand’s core identity."
+        "description": "<a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a> is a cycle-tracking app designed to deepen communication in romantic relationships by reframing cycle care as a shared emotional space. The Branding team focused on expressing the core mission through a balance of soft and structured visuals by utilizing calm color palette that softens the communication and mood-based characters that make emotion feel tangible. These elements compose a system that is recognizably 'My Monthly.'<br><br>As the Brand Lead, I am responsible for the clarity and cohesion of the brand’s visual identity across all digital and physical platforms. My role centers on developing fresh visual directions—ranging from event-driven campaigns and animated brand stories to modular systems for social content—that create expressive moments to surprise and engage, while staying grounded in the brand’s core identity."
+      },
+      {
+        "title": "Spring Swing (WIP)",
+        "filename": "spring_swing",
+        "cover": "cover.jpg",
+        "categories": ["identity","campaign","print"],
+        "medium": "campaign",
+        "tags": ["identity", "event"],
+        "dimension": "",
+        "date": "Apr 2026",
+        "credit": ["Design Intern: Olivia Qiu, Sreenidhi Senthil Kumar", "Illustration: Sirius Zhao"],
+        "feature": true,
+        "description": "“Spring Swing” is a social golf event co-hosted by <a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a> and <a href='https://www.instagram.com/droopysand/' target='_blank' style='text-decoration:underline;display:inline;'>Droopy Sand</a>.<br><br>We are currently developing the visual identity of the campaign, and working on decks, merches, event materials, webpage, etc. The design direction is centered around “stickers” and “nostalgic”."
       },
       {
         "title": "Altoona",
@@ -24,24 +37,9 @@
         "tags": ["identity", "3d"],
         "dimension": "",
         "date": "Jun 2024",
-        "collaborator": "",
+        "credit": "",
         "feature": true,
         "description": "Visual direction for Harry’s album Altoona, centered on a 3D visualization of his lived space, reframed as a preserved memory. The contrast between precise modeling and a graphic and bold palette establishes a tone that is part archive, part dream. The project treats environment as narrative, with variations created for remix and reinterpretation."
-      },
-      {
-        "title": "it's cuffing season",
-        "filename": "its_cuffing_season",
-        "cover": "cover.jpg",
-        "cover2": "main.jpg",
-        "categories": ["identity","campaign","print"],
-        "medium": "campaign",
-        "tags": ["identity", "event"],
-        "tagsLayout": "two-line",
-        "dimension": "",
-        "date": "Oct 2024",
-        "collaborator": ["My Monthly Team"],
-        "feature": true,
-        "description": "“it's cuffing season” is a speed dating event hosted by <a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a>, designed to foster genuine connection through lighthearted, guided interactions. As Branding Lead, I developed and executed the visual direction for the event across digital and physical touchpoints. The design builds on My Monthly’s core visual language, introducing playful seasonal elements while staying grounded in the brand’s tone and structure."
       },
       {
         "title": "Second Best",
@@ -53,7 +51,7 @@
         "tags": ["frame-to-frame", "conceptual"],
         "dimension": "1440px × 1080px",
         "date": "May 2020",
-        "collaborator": "",
+        "credit": "",
         "feature": true,
         "description": "This stop-motion animation explores themes of originality and self-worth through symbolic imagery and a restrained visual language. Grayscale visuals set a black-humor tone, while recurring motifs like pearls and eyes express the internal tension between self-perception and outside expectations. The piece reflects on the process of self-definition and the quiet strength of embracing one’s own voice."
       },
@@ -68,7 +66,7 @@
         "cover": "cover.jpg",
         "dimension": "",
         "date": "Jan 2023",
-        "collaborator": "",
+        "credit": "",
         "feature": true,
         "description": "This project is a visual remake of the album cover for Kenny Beats’ “Last Words.” Inspired by the texture of aged, dusted photographs, the design adopts a faded and abstract aesthetic that echoes the haziness of memory. The composition evokes a sense of nostalgia and quiet introspection, aligning with the emotional tone of the track."
       },
@@ -82,7 +80,7 @@
         "cover": "cover.jpg",
         "dimension": "8.5\" × 11\"",
         "date": "Apr 2022",
-        "collaborator": "",
+        "credit": "",
         "feature": true,
         "description": "A curated magazine archiving a collection of essays on East Asian contemporary art. The design follows a systematic approach—guided by an underlying grid system and precise margins, which lend a contemporary structure while subtly diverging from classical typographic conventions. Within this structure, each spread is designed to offer moments of visual tension and quiet surprise. The cover introduces a linear motif that echoes the internal grid, extending the system outward while alluding to the passage of time."
       },
@@ -95,7 +93,7 @@
         "tags": ["dreamcore", "surreal"],
         "dimension": "1920px × 1080px",
         "date": "Apr 2023",
-        "collaborator": "",
+        "credit": "",
         "feature": false,
         "description": "A short-form digital collage exploring dreamcore aesthetics through spatial tension and temporal compression. The piece blurs the boundary between real and rendered, evoking an eerie familiarity that lingers without resolution, like a place once visited but never fully seen."
       }
