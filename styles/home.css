@@ -171,3 +171,79 @@
     margin-top: 10px;
 }
 }
+
+/* ===== Filter Page Specific Styles ===== */
+.filter-header {
+    margin-bottom: calc(var(--body-padding) * 2);
+}
+
+.filter-stats-number {
+    font-weight: normal;
+}
+
+#filter-stats {
+    font-weight: bold;
+    -webkit-text-stroke: 0;
+}
+
+.filter-media-container {
+    width: 56% !important;
+}
+
+.filter-project-info {
+    width: 36% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 14px;
+}
+
+.filter-tags.two-line {
+    margin-top: 32px;
+}
+
+.filter-tags.three-line {
+    margin-top: 32px;
+}
+
+.filter-description {
+    margin-top: 28px;
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 768px) {
+    .filter-media-container {
+        width: 100% !important;
+    }
+
+    .filter-project-info {
+        width: 64% !important;
+    }
+
+    .filter-tags .tag-secondary {
+        display: none;
+    }
+
+    .filter-tags.two-line {
+        margin-top: 20px;
+    }
+
+    .filter-tags.three-line {
+        margin-top: 28px;
+    }
+
+    .filter-description {
+        display: none;
+    }
+
+    .filter-header {
+        margin-bottom: calc(var(--body-padding) * 1);
+    }
+}

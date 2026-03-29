@@ -152,6 +152,28 @@ function getScriptBasePath() {
       .filter(cb => cb.checked)
       .map(cb => cb.id.trim());
 
+    // 检查是否在 filter.html 页面
+    const currentPage = window.location.pathname.split('/').pop();
+    if (currentPage === 'filter.html') {
+      // 在 filter page 上，直接更新 URL 并重新渲染
+      if (selectedCategories.length === 0) {
+        goTo(depthPrefix + "index.html");
+        return;
+      }
+
+      const newURL = selectedCategories.length
+        ? `${window.location.pathname}?filter=${selectedCategories.join(",")}`
+        : window.location.pathname;
+      window.history.replaceState({}, '', newURL);
+      
+      // 调用 renderProjects 重新渲染
+      if (typeof renderProjects === "function") {
+        renderProjects();
+      }
+      return;
+    }
+
+    // 在其他页面（如首页）上的旧逻辑
     const allWorks = document.querySelectorAll('.work');
 
     if (selectedCategories.length === 0) {
