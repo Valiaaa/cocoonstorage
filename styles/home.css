@@ -63,6 +63,14 @@
     margin-top: 14px;
 }
 
+.tags-wrapper.two-line {
+    margin-top: 20px;
+}
+
+.tags-wrapper.three-line {
+    margin-top: 32px;
+}
+
 
 
 
@@ -164,12 +172,16 @@
     }
 
     .tags-wrapper.two-line {
-        margin-top: 20px;
+        margin-top: 16px;
+    }
+
+    .tags-wrapper.three-line {
+        margin-top: 24px;
     }
 
     .tags-wrapper {
-    margin-top: 10px;
-}
+        margin-top: 10px;
+    }
 }
 
 /* ===== Filter Page Specific Styles ===== */

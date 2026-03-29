@@ -116,25 +116,20 @@ function renderProjects() {
               ).join('');
             }
 
-            // 根据标题长度和设备类型自动设置tags的margin-top
+            // 根据标题长度和设备类型自动设置tags的margin-top（初始值）
             let tagsWrapperClass = 'tags-wrapper filter-tags';
-            if (project.tagsLayout === 'two-line') {
-              tagsWrapperClass += ' two-line';
+            const titleLength = project.title.length;
+            
+            // 根据窗口宽度判断设备类型 - 这里只作为初始估算，会在渲染后动态调整
+            if (window.innerWidth <= 768) {
+              if (titleLength > 20) {
+                tagsWrapperClass += ' three-line';
+              } else if (titleLength > 15) {
+                tagsWrapperClass += ' two-line';
+              }
             } else {
-              // 根据标题长度自动判断是否需要 two-line 或 three-line
-              const titleLength = project.title.length;
-              if (window.innerWidth <= 768) {
-                // 手机版：标题较长时使用 three-line
-                if (titleLength > 20) {
-                  tagsWrapperClass += ' three-line';
-                } else if (titleLength > 15) {
-                  tagsWrapperClass += ' two-line';
-                }
-              } else {
-                // 电脑版：标题较长时使用 two-line
-                if (titleLength > 30) {
-                  tagsWrapperClass += ' two-line';
-                }
+              if (titleLength > 30) {
+                tagsWrapperClass += ' two-line';
               }
             }
 
@@ -161,6 +156,36 @@ function renderProjects() {
             const category = input.id.trim();
             input.checked = selectedFilters.includes(category);
         });
+
+        // 根据实际渲染的h1高度来动态调整tags的margin-top
+        setTimeout(() => {
+            document.querySelectorAll('.featured-project').forEach(project => {
+                const h1 = project.querySelector('h1');
+                const tagsWrapper = project.querySelector('.tags-wrapper');
+                
+                if (h1 && tagsWrapper) {
+                    const h1Height = h1.offsetHeight;
+                    
+                    // 移除之前的 line classes
+                    tagsWrapper.classList.remove('two-line', 'three-line');
+                    
+                    // 根据 h1 的实际高度判断需要的 margin-top
+                    if (window.innerWidth <= 768) {
+                        // 手机版：每行约 24px 左右
+                        if (h1Height > 50) {
+                            tagsWrapper.classList.add('three-line');
+                        } else if (h1Height > 30) {
+                            tagsWrapper.classList.add('two-line');
+                        }
+                    } else {
+                        // 电脑版：每行约 26px 左右
+                        if (h1Height > 40) {
+                            tagsWrapper.classList.add('two-line');
+                        }
+                    }
+                }
+            });
+        }, 100);
 
         // 加载 mediaLayout.js
         const mediaLayoutScript = document.createElement("script");
@@ -214,6 +239,34 @@ function renderProjects() {
                 if (window.innerWidth > 768) {
                     layoutMediaPairsByHeight();
                 }
+
+                // 重新调整 tags 的 margin-top
+                document.querySelectorAll('.featured-project').forEach(project => {
+                    const h1 = project.querySelector('h1');
+                    const tagsWrapper = project.querySelector('.tags-wrapper');
+                    
+                    if (h1 && tagsWrapper) {
+                        const h1Height = h1.offsetHeight;
+                        
+                        // 移除之前的 line classes
+                        tagsWrapper.classList.remove('two-line', 'three-line');
+                        
+                        // 根据 h1 的实际高度判断需要的 margin-top
+                        if (window.innerWidth <= 768) {
+                            // 手机版：每行约 24px 左右
+                            if (h1Height > 50) {
+                                tagsWrapper.classList.add('three-line');
+                            } else if (h1Height > 30) {
+                                tagsWrapper.classList.add('two-line');
+                            }
+                        } else {
+                            // 电脑版：每行约 26px 左右
+                            if (h1Height > 40) {
+                                tagsWrapper.classList.add('two-line');
+                            }
+                        }
+                    }
+                });
             }, 100);
         });
     })
