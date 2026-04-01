@@ -68,7 +68,14 @@ body.nav-open {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(https://grainy-gradients.vercel.app/noise.svg);
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.03) 2px,
+            rgba(0, 0, 0, 0.03) 4px
+        );
     mix-blend-mode: multiply;
     opacity: 0.6;
     pointer-events: none;

@@ -9,7 +9,7 @@ function updateNYCTime() {
     
     const timeEl = document.getElementById('nyc-time');
     if (timeEl) {
-        timeEl.textContent = `nyc:${nycTime}`;
+        timeEl.textContent = `${nycTime}`;
     }
 }
 

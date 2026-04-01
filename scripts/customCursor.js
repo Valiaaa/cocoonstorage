@@ -296,6 +296,7 @@ if (document.readyState === 'loading') {
 
 // 检测元素是否需要使用默认光标
 function needsDefaultCursor(element) {
+    if (!(element instanceof Element)) return false;
     return defaultCursorSelectors.some(selector => {
         return element.matches(selector) || element.closest(selector);
     });
@@ -310,6 +311,7 @@ function isTouchDevice() {
 
 // 检测元素是否可点击
 function isClickable(element) {
+    if (!(element instanceof Element)) return false;
     const clickableSelectors = [
         'a', 'button', '[role="button"]',
         'input[type="button"]',
