@@ -92,6 +92,8 @@ body {
     transition: transform 0.15s ease;
     text-decoration: none;
     color: inherit;
+    position: relative;
+    margin-bottom: 24px;
 }
 
 .app-icon:active {
@@ -119,15 +121,12 @@ body {
     color: var(--txt-color);
     line-height: 1.2;
     padding: 0 2px;
-    width: fit-content;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .device-container {
-        max-width: 90vw;
-        aspect-ratio: 9 / 16;
-    }
+    width: auto;
+    white-space: nowrap;
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 @media (max-width: 768px) {
