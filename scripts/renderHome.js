@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (isMP4) {
               mediaItems.push(
                 '<div class="' + wrapperClass + '">' +
-                '<video class="media-item" autoplay muted loop><source src="' + project.video + '" type="video/mp4"></video>' +
+                '<video class="media-item hoverZoom" autoplay muted loop><source src="' + project.video + '" type="video/mp4"></video>' +
                 '</div>'
               );
             } else {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (isMP4) {
               mediaItems.push(
                 '<div class="media-box">' +
-                '<video class="' + ratioClass + '" autoplay muted loop><source src="' + project.video + '" type="video/mp4"></video>' +
+                '<video class="' + ratioClass + ' hoverZoom" autoplay muted loop><source src="' + project.video + '" type="video/mp4"></video>' +
                 '</div>'
               );
             } else {

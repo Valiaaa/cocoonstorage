@@ -158,7 +158,8 @@ img.lazy-fade.loaded {
 }
 
 .hoverZoom:hover,
-.hoverZoomRight:hover {
+.hoverZoomRight:hover,
+video.hoverZoom:hover {
     opacity: 0.6;
     transition: opacity 0.3s ease;
 }

@@ -297,6 +297,12 @@ if (document.readyState === 'loading') {
 // 检测元素是否需要使用默认光标
 function needsDefaultCursor(element) {
     if (!(element instanceof Element)) return false;
+    
+    // 如果是video且有hoverZoom class，则不隐藏custom cursor
+    if (element.matches('video.hoverZoom') || element.closest('video.hoverZoom')) {
+        return false;
+    }
+    
     return defaultCursorSelectors.some(selector => {
         return element.matches(selector) || element.closest(selector);
     });
