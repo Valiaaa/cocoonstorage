@@ -133,7 +133,7 @@ body {
     
     .phone-screen {
         position: absolute;
-        top: 18px;
+        top: 16px;
         left: calc(6% + 36px);
         bottom: 60px;
         width: calc(88% - 72px);
@@ -144,13 +144,13 @@ body {
     }
 
     .nyc-time {
-        font-size: 15px;
+        font-size: 14px;
     }
     
     .app-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 26px;
-        padding: 4px 0;
+        gap: 20px;
+        padding: 4px 8px;
     }
     
     .app-icon-label {
@@ -162,10 +162,19 @@ body {
     .status-bar {
         padding: 12px 0;
         margin-bottom: 30px;
+        width: 39%;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
+
+    .phone-screen {
+        top: 16px;
+        left: 46px;
+        bottom: 60px;
+        width: calc(100% - 92px);
+        overflow: visible;
+    }
 
 }
 
