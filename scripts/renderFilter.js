@@ -58,12 +58,8 @@ function renderProjects() {
             const folderName = project.filename;
             const projectLink = "archive/" + folderName + "/" + folderName + ".html";
             
-            // 使用 icon 字段作为 app icon
-            let iconImage = null;
-            
-            if (project.icon) {
-                iconImage = "archive/" + folderName + "/" + project.icon;
-            }
+            // 自动使用 icon.png 作为 app icon
+            const iconImage = "archive/" + folderName + "/icon.png";
 
             // 获取icon标题，如果没有则使用项目标题
             const displayTitle = project.iconTitle || project.title;
@@ -71,7 +67,7 @@ function renderProjects() {
             // 创建 app icon HTML
             const appIconHTML = `
                 <a href="${projectLink}" class="app-icon">
-                    ${iconImage ? `<img src="${iconImage}" alt="${displayTitle}" class="app-icon-image" loading="lazy">` : `<div class="app-icon-image" style="background: linear-gradient(135deg, var(--deco-color), var(--txt-color)); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">${displayTitle.charAt(0)}</div>`}
+                    <img src="${iconImage}" alt="${displayTitle}" class="app-icon-image" loading="lazy">
                     <span class="app-icon-label">${displayTitle}</span>
                 </a>
             `;

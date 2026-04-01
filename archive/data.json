@@ -3,7 +3,6 @@
       {
         "title": "My Monthly",
         "filename": "my_monthly",
-        "icon": "icon.png",
         "iconTitle": "My Monthly",
         "video": "https://player.vimeo.com/video/1177908148?autoplay=1&loop=1&autopause=0&muted=1",
         "categories": ["identity","web","print","video"],
@@ -18,7 +17,6 @@
       {
         "title": "Spring Swing (WIP)",
         "filename": "spring_swing",
-        "icon": "icon.png",
         "iconTitle": "Spring Swing",
         "cover": "cover.jpg",
         "categories": ["identity","campaign","print"],
@@ -33,7 +31,6 @@
       {
         "title": "Altoona",
         "filename": "altoona",
-        "icon": "icon.png",
         "iconTitle": "Altoona",
         "video": "https://player.vimeo.com/video/962361008?autoplay=1&loop=1&autopause=0&muted=1",
         "videoRatio": "1-1",
@@ -50,7 +47,6 @@
       {
         "title": "Second Best",
         "filename": "second_best",
-        "icon": "icon.png",
         "iconTitle": "Second Best",
         "video": "https://player.vimeo.com/video/789396762?autoplay=1&loop=1&autopause=0&muted=1",
         "videoRatio": "4-3",
@@ -66,7 +62,6 @@
       {
         "title": "Last Words",
         "filename": "last_words",
-        "icon": "icon.png",
         "iconTitle": "Last Words",
         "video": "https://player.vimeo.com/video/844393756?autoplay=1&loop=1&autopause=0&muted=1",
         "videoRatio": "1-1",
@@ -83,8 +78,7 @@
       {
         "title": "Charting the Present",
         "filename": "charting_the_present",
-        "icon": "icon.png",
-        "iconTitle": "Charting the Present",
+        "iconTitle": "Charting Present",
         "categories": ["print"],
         "medium": "print",
         "tags": ["editorial"],
@@ -98,7 +92,6 @@
       {
         "title": "Where have all the lost memories gone?",
         "filename": "lost_memories",
-        "icon": "icon.png",
         "iconTitle": "Lost Memories",
         "cover": "cover.jpg",
         "categories": ["video"],
