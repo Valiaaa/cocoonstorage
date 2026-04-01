@@ -71,7 +71,7 @@ body {
 .app-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    gap: 32px;
     flex: 1;
     align-content: start;
     padding: 4px 0;
@@ -105,7 +105,6 @@ body {
     object-fit: cover;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: box-shadow 0.2s ease;
-    background: var(--deco-color, #ccc);
 }
 
 .app-icon:active .app-icon-image {
@@ -113,19 +112,14 @@ body {
 }
 
 .app-icon-label {
-    font-size: 10px;
+    font-family: "arial narrow", "Arial Narrow", Arial, sans-serif;
+    font-size: 16px;
     text-align: center;
     font-weight: 500;
     color: var(--txt-color);
     line-height: 1.2;
-    word-break: break-word;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
     padding: 0 2px;
+    width: fit-content;
 }
 
 /* Responsive adjustments */
