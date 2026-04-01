@@ -161,14 +161,19 @@ body {
     }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 390px) {
+    .device-container {
+        position: relative;
+        height: 100vh;
+        min-height: unset;
+    }
 
     .phone-screen {
-        top: 16px;
-        left: 46px;
-        bottom: 60px;
-        width: calc(100% - 92px);
-        overflow: visible;
+        position: absolute;
+        top: 11px;
+        height: fit-content;
+        left: calc(12% + 8px);
+        width: calc(78% - 16px);
     }
 
 }
