@@ -97,20 +97,24 @@ img.lazy-fade.loaded {
 }
 
 .media-box img,
-.media-box iframe {
+.media-box iframe,
+.media-box video {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
 }
 
-.media-box iframe.ratio-1-1 {
+.media-box iframe.ratio-1-1,
+.media-box video.ratio-1-1 {
     aspect-ratio: 1 / 1;
 }
-.media-box iframe.ratio-4-3 {
+.media-box iframe.ratio-4-3,
+.media-box video.ratio-4-3 {
     aspect-ratio: 4 / 3;
 }
-.media-box iframe.ratio-16-9 {
+.media-box iframe.ratio-16-9,
+.media-box video.ratio-16-9 {
     aspect-ratio: 16 / 9;
 }
 
