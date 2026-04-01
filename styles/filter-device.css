@@ -134,10 +134,9 @@ body {
     .phone-screen {
         position: absolute;
         top: 18px;
-        left: calc(4% + 36px);
-        right: calc(4% + 36px);
+        left: calc(6% + 36px);
         bottom: 60px;
-        width: calc(92% - 72px);
+        width: calc(88% - 72px);
         display: flex;
         flex-direction: column;
         z-index: 2;
