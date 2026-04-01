@@ -1,3 +1,18 @@
+function updateNYCTime() {
+    // Get current time in NYC timezone
+    const nycTime = new Date().toLocaleString('en-US', { 
+        timeZone: 'America/New_York',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+    
+    const timeEl = document.getElementById('nyc-time');
+    if (timeEl) {
+        timeEl.textContent = `nyc:${nycTime}`;
+    }
+}
+
 function renderProjects() {
     fetch("archive/data.json")
     .then(response => response.json())
@@ -30,244 +45,44 @@ function renderProjects() {
         const statsEl = document.getElementById('filter-stats');
         const statsText = `<span class="filter-stats-number">(${filteredProjects.length})</span> matching results for <span class="filter-stats-number">(${selectedFilters.length})</span> tags selected`;
         statsEl.innerHTML = statsText;
+        
+        // 更新 NYC 时间
+        updateNYCTime();
+        setInterval(updateNYCTime, 1000);
 
-        // 渲染项目列表
-        const projectsList = document.getElementById('filtered-projects-list');
-        projectsList.innerHTML = '';
+        // 渲染 APP ICONS
+        const appGrid = document.getElementById('app-icons-grid');
+        appGrid.innerHTML = '';
 
-        filteredProjects.forEach((project, index) => {
-            const isLast = index === filteredProjects.length - 1 ? 'is-last' : '';      
+        filteredProjects.forEach(project => {
             const folderName = project.filename;
             const projectLink = "archive/" + folderName + "/" + folderName + ".html";
-
-            let mediaContent = '';
-            const mediaItems = [];
-
-            let ratioClass = "ratio-16-9";
-            if (project.videoRatio === "1-1") ratioClass = "ratio-1-1";
-            else if (project.videoRatio === "4-3") ratioClass = "ratio-4-3";
-
-            const hasCover = !!project.cover || !!project.cover2;
-            const isPureVideo = project.video && !hasCover;
-
-            if (project.video) {
-              if (isPureVideo) {
-                let wrapperClass = "video-wrapper";
-                if (project.videoRatio === "1-1") wrapperClass += " square";
-                else if (project.videoRatio === "4-3") wrapperClass += " fourthree";
-                else if (project.videoRatio === "16-9") wrapperClass += " ratio-16-9";
             
-                mediaItems.push(
-                  '<div class="' + wrapperClass + '">' +
-                  '<iframe src="' + project.video + '" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="' + project.title + '"></iframe>' +
-                  '</div>'
-                );
-              } else {
-                mediaItems.push(
-                  '<div class="media-box">' +
-                  '<iframe class="' + ratioClass + '" src="' + project.video + '" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="' + project.title + '"></iframe>' +
-                  '</div>'
-                );
-              }
-            }                     
-
-            if (project.cover) {
-              const coverHTML = '<img class="media-item hoverZoom lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover + '" alt="' + project.title + ' - cover" onload="this.classList.add(\'loaded\')">'
-              mediaItems.push('<div class="media-box hoverZoom">' + coverHTML + '</div>');
-            }
-
-            if (project.cover2 && window.innerWidth > 768) {
-              const cover2HTML = '<img class="media-item hoverZoom lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover2 + '" alt="' + project.title + ' - cover2" onload="this.classList.add(\'loaded\')">'
-              mediaItems.push('<div class="media-box hoverZoom">' + cover2HTML + '</div>');
-            }
-
-            const boxCount = mediaItems.filter(item => item.includes("media-box")).length;
-            if (boxCount >= 2) {
-              mediaContent = '<div class="media-pair">' + mediaItems.join("") + '</div>';
-            } else {
-              mediaContent = mediaItems.join("");
-            }
-
-            // 提取前两句话作为简洁介绍
-            let shortDescription = '';
-            if (project.description) {
-                // 移除 HTML 标签
-                const plainText = project.description.replace(/<[^>]*>/g, '');
-                // 根据句号分割
-                const sentences = plainText.split(/[。.]/);
-                // 取前两句，去除空字符
-                shortDescription = sentences.slice(0, 2)
-                    .map(s => s.trim())
-                    .filter(s => s.length > 0)
-                    .join('. ');
-                if (shortDescription) {
-                    if (!shortDescription.endsWith('.')) {
-                        shortDescription += '.';
-                    }
-                    shortDescription += '..';
-                }
-            }
-
-            // 生成 tags HTML
-            let tagsHTML = '';
-            if (project.tags && Array.isArray(project.tags) && project.tags.length > 0) {
-              tagsHTML = project.tags.map(tag => 
-                '<span class="tag-secondary">' + tag + '</span>'
-              ).join('');
-            }
-
-            // 根据标题长度和设备类型自动设置tags的margin-top（初始值）
-            let tagsWrapperClass = 'tags-wrapper filter-tags';
-            const titleLength = project.title.length;
+            // 使用 icon 字段作为 app icon
+            let iconImage = null;
             
-            // 根据窗口宽度判断设备类型 - 这里只作为初始估算，会在渲染后动态调整
-            if (window.innerWidth <= 768) {
-              if (titleLength > 20) {
-                tagsWrapperClass += ' three-line';
-              } else if (titleLength > 15) {
-                tagsWrapperClass += ' two-line';
-              }
-            } else {
-              if (titleLength > 30) {
-                tagsWrapperClass += ' two-line';
-              }
+            if (project.icon) {
+                iconImage = "archive/" + folderName + "/" + project.icon;
             }
 
-            const html =
-              '<a href="' + projectLink + '" class="featured-project-link">' +
-                '<div class="featured-project ' + isLast + '">' +
-                  '<div class="media-container filter-media-container">' + mediaContent + '</div>' +
-                  '<div class="project-info filter-project-info hoverZoom">' +
-                    '<h1>' + project.title + '</h1>' +
-                    '<div class="' + tagsWrapperClass + '">' +
-                      '<h2>' + (project.medium || '') + '</h2>' +
-                      tagsHTML +
-                    '</div>' +
-                    '<h3 class="filter-description">' + shortDescription + '</h3>' +
-                  '</div>' +
-                '</div>' +
-              '</a>';
+            // 获取icon标题，如果没有则使用项目标题
+            const displayTitle = project.iconTitle || project.title;
 
-            projectsList.insertAdjacentHTML('beforeend', html);
+            // 创建 app icon HTML
+            const appIconHTML = `
+                <a href="${projectLink}" class="app-icon">
+                    ${iconImage ? `<img src="${iconImage}" alt="${displayTitle}" class="app-icon-image" loading="lazy">` : `<div class="app-icon-image" style="background: linear-gradient(135deg, var(--deco-color), var(--txt-color)); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">${displayTitle.charAt(0)}</div>`}
+                    <span class="app-icon-label">${displayTitle}</span>
+                </a>
+            `;
+            
+            appGrid.insertAdjacentHTML('beforeend', appIconHTML);
         });
 
-        // 更新 Checkbox 选中状态
+        // 更新 Checkbox 选中状态（如果有的话）
         document.querySelectorAll('.category input[type="checkbox"]').forEach(input => {
             const category = input.id.trim();
             input.checked = selectedFilters.includes(category);
-        });
-
-        // 根据实际渲染的h1高度来动态调整tags的margin-top
-        setTimeout(() => {
-            document.querySelectorAll('.featured-project').forEach(project => {
-                const h1 = project.querySelector('h1');
-                const tagsWrapper = project.querySelector('.tags-wrapper');
-                
-                if (h1 && tagsWrapper) {
-                    const h1Height = h1.offsetHeight;
-                    
-                    // 移除之前的 line classes
-                    tagsWrapper.classList.remove('two-line', 'three-line');
-                    
-                    // 根据 h1 的实际高度判断需要的 margin-top
-                    if (window.innerWidth <= 768) {
-                        // 手机版：每行约 24px 左右
-                        if (h1Height > 50) {
-                            tagsWrapper.classList.add('three-line');
-                        } else if (h1Height > 30) {
-                            tagsWrapper.classList.add('two-line');
-                        }
-                    } else {
-                        // 电脑版：每行约 26px 左右
-                        if (h1Height > 40) {
-                            tagsWrapper.classList.add('two-line');
-                        }
-                    }
-                }
-            });
-        }, 100);
-
-        // 加载 mediaLayout.js
-        const mediaLayoutScript = document.createElement("script");
-        mediaLayoutScript.src = "scripts/mediaLayout.js";
-        document.body.appendChild(mediaLayoutScript);
-        
-        mediaLayoutScript.onload = () => {
-            setTimeout(() => {
-                const mediaElements = document.querySelectorAll(".media-pair img, .media-pair iframe");
-                const promises = Array.from(mediaElements).map(media => {
-                    return new Promise(resolve => {
-                        if (media.tagName === "IMG") {
-                            if (media.complete) return resolve();
-                            media.onload = () => resolve();
-                            media.onerror = () => resolve();
-                        } else {
-                            resolve();
-                        }
-                    });
-                });
-
-                Promise.all(promises).then(() => {
-                    layoutMediaPairsByHeight();
-                });
-            }, 100);
-        };
-
-        // Handle window resize for mobile responsiveness
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                const mediaContainers = document.querySelectorAll('.media-pair');
-                mediaContainers.forEach(container => {
-                    const mediaBoxes = container.querySelectorAll('.media-box');
-                    if (window.innerWidth <= 768) {
-                        mediaBoxes.forEach((box, i) => {
-                            if (i > 0) {
-                                box.style.display = 'none !important';
-                                box.style.visibility = 'hidden !important';
-                            }
-                        });
-                    } else {
-                        mediaBoxes.forEach((box) => {
-                            box.style.display = '';
-                            box.style.visibility = '';
-                        });
-                    }
-                });
-                
-                if (window.innerWidth > 768) {
-                    layoutMediaPairsByHeight();
-                }
-
-                // 重新调整 tags 的 margin-top
-                document.querySelectorAll('.featured-project').forEach(project => {
-                    const h1 = project.querySelector('h1');
-                    const tagsWrapper = project.querySelector('.tags-wrapper');
-                    
-                    if (h1 && tagsWrapper) {
-                        const h1Height = h1.offsetHeight;
-                        
-                        // 移除之前的 line classes
-                        tagsWrapper.classList.remove('two-line', 'three-line');
-                        
-                        // 根据 h1 的实际高度判断需要的 margin-top
-                        if (window.innerWidth <= 768) {
-                            // 手机版：每行约 24px 左右
-                            if (h1Height > 50) {
-                                tagsWrapper.classList.add('three-line');
-                            } else if (h1Height > 30) {
-                                tagsWrapper.classList.add('two-line');
-                            }
-                        } else {
-                            // 电脑版：每行约 26px 左右
-                            if (h1Height > 40) {
-                                tagsWrapper.classList.add('two-line');
-                            }
-                        }
-                    }
-                });
-            }, 100);
         });
     })
     .catch(err => console.error("Error loading projects:", err));
