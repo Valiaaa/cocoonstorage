@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function(){
         const isPureVideo = project.video && !hasCover;
 
         if (project.video) {
+          // Check if video is MP4 or iframe-based
+          const isMP4 = project.video.toLowerCase().endsWith('.mp4');
+          
           if (isPureVideo) {
             // 单独视频结构，iframe 不带比例类（绝对不要加比例类）
             let wrapperClass = "video-wrapper";
@@ -30,18 +33,34 @@ document.addEventListener('DOMContentLoaded', function(){
             else if (project.videoRatio === "4-3") wrapperClass += " fourthree";
             else if (project.videoRatio === "16-9") wrapperClass += " ratio-16-9";
         
-            mediaItems.push(
-              '<div class="' + wrapperClass + '">' +
-              '<iframe src="' + project.video + '" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="' + project.title + '"></iframe>' +
-              '</div>'
-            );
+            if (isMP4) {
+              mediaItems.push(
+                '<div class="' + wrapperClass + '">' +
+                '<video class="media-item" autoplay muted loop><source src="' + project.video + '" type="video/mp4"></video>' +
+                '</div>'
+              );
+            } else {
+              mediaItems.push(
+                '<div class="' + wrapperClass + '">' +
+                '<iframe src="' + project.video + '" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="' + project.title + '"></iframe>' +
+                '</div>'
+              );
+            }
           } else {
-            // 两个媒体项目或有cover时iframe需要比例类（只在这里加比例类）
-            mediaItems.push(
-              '<div class="media-box">' +
-              '<iframe class="' + ratioClass + '" src="' + project.video + '" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="' + project.title + '"></iframe>' +
-              '</div>'
-            );
+            // 两个媒体项目或有cover时需要比例类
+            if (isMP4) {
+              mediaItems.push(
+                '<div class="media-box">' +
+                '<video class="' + ratioClass + '" autoplay muted loop><source src="' + project.video + '" type="video/mp4"></video>' +
+                '</div>'
+              );
+            } else {
+              mediaItems.push(
+                '<div class="media-box">' +
+                '<iframe class="' + ratioClass + '" src="' + project.video + '" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="' + project.title + '"></iframe>' +
+                '</div>'
+              );
+            }
           }
         }                     
 
