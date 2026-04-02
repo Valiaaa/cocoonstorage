@@ -71,7 +71,7 @@ body.nav-open {
     background-image: url(../assets/images/noise.jpg);
     background-size: auto;
     mix-blend-mode: multiply;
-    opacity: 0.6;
+    opacity: 1;
     pointer-events: none;
 }
 
