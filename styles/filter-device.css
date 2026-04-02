@@ -118,6 +118,14 @@ body {
     transform: translateX(-50%);
 }
 
+/* Desktop hover effect */
+@media (min-width: 769px) {
+    .app-icon:hover {
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+    }
+}
+
 @media (max-width: 768px) {
     .device-container {
         max-width: 400px;
