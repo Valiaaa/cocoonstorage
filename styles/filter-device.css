@@ -172,8 +172,8 @@ body {
         position: absolute;
         top: 11px;
         height: fit-content;
-        left: calc(12% + 8px);
-        width: calc(78% - 16px);
+        left: calc(8% + 8px);
+        width: calc(84% - 16px);
     }
 
 }
