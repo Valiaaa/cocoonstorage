@@ -3,6 +3,32 @@
     src: url(../assets/fonts/times-now-extra-light.woff);
     font-weight: 200;
 }
+
+@font-face {
+    font-family: "Arial Narrow";
+    src: url(../assets/fonts/arial-narrow/arialnarrow.woff2);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Arial Narrow";
+    src: url(../assets/fonts/arial-narrow/arialnarrow_bold.woff2);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Arial Narrow";
+    src: url(../assets/fonts/arial-narrow/arialnarrow_italic.woff2);
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Arial Narrow";
+    src: url(../assets/fonts/arial-narrow/arialnarrow_bolditalic.woff2);
+    font-weight: 700;
+    font-style: italic;
+}
   
 
 :root {
