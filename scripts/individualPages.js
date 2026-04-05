@@ -56,6 +56,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   favicon.href = `${basePath}assets/icons/icon.png`;
   document.head.appendChild(favicon);
 
+  const appleTouchIcon = document.createElement("link");
+  appleTouchIcon.rel = "apple-touch-icon";
+  appleTouchIcon.sizes = "180x180";
+  appleTouchIcon.href = "/icon-180.png";
+  document.head.appendChild(appleTouchIcon);
+
   const gtagScript = document.createElement("script");
   gtagScript.async = true;
   gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-YB3PB2KE3B";
