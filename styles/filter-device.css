@@ -176,13 +176,7 @@ body {
         min-height: unset;
     }
 
-    .phone-screen {
-        position: absolute;
-        top: 11px;
-        height: fit-content;
-        left: calc(8% + 8px);
-        width: calc(84% - 16px);
-    }
+
 
 }
 
