@@ -176,7 +176,11 @@ body {
         min-height: unset;
     }
 
-
+    .phone-screen {
+        left: calc(2% + 36px);
+        width: calc(96% - 72px);
+        top: 27px
+    }
 
 }
 

@@ -1,26 +1,26 @@
 {
     "sealed 7am": {
       "--txt-color": "#2F2516",
-      "--bg-color": "#e7e6e4",
+      "--bg-color": "#DFDEDD",
       "--default-bg-color": "#F0EFEC",
       "--deco-color": "#96B7F8"
     },  
     "sky in Ukiyo-e": {
       "--txt-color": "#2F2516",
-      "--bg-color": "#5474b0",
+      "--bg-color": "#4871AD",
       "--default-bg-color": "#5777B5",
       "--deco-color": "#cccccc"
     },
     "retro 2077": {
       "--txt-color": "#C4D7F9",
-      "--bg-color": "#2e2415",
+      "--bg-color": "#2F2314",
       "--default-bg-color": "#2F2516",
       "--deco-color": "#5E8DE8"
     },
     "white cube": {
       "--txt-color": "black",
-      "--bg-color": "#f7f7f7",
+      "--bg-color": "#ECEEEE",
       "--default-bg-color": "white",
-      "--deco-color": "#E7E7E7"
+      "--deco-color": "#D2D2D2"
     }
 }
