@@ -137,9 +137,9 @@ body {
     .phone-screen {
         position: absolute;
         top: 16px;
-        left: calc(6% + 36px);
+        left: 48px;
         bottom: 60px;
-        width: calc(88% - 72px);
+        width: calc(100% - 96px);
         display: flex;
         flex-direction: column;
         z-index: 2;
@@ -154,6 +154,8 @@ body {
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
         padding: 4px 8px;
+        height: fit-content;
+        flex: initial;
     }
     
     .app-icon-label {
@@ -169,7 +171,7 @@ body {
     }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 393px) {
     .device-container {
         position: relative;
         height: 100vh;
@@ -179,7 +181,8 @@ body {
     .phone-screen {
         left: calc(2% + 36px);
         width: calc(96% - 72px);
-        top: 27px
+        top: 22px;
+        margin-top: calc(240px - 61vw);
     }
 
 }
