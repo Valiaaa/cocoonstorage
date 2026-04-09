@@ -13,7 +13,7 @@
 2. If yes, 它的封面是一个视频吗？ (if no, skip to q4)
 
 - SOP -
-1. archive/data.json里，找到作品的位置，复制上一个作品的信息，填写。
+1. assets/json/data.json里，找到作品的位置，复制上一个作品的信息，填写。
     - 需要注意封面是video还是1-2张的封面图
 2. 在archive里建立：对应名字的文件夹。
 3. 在文件夹里建立：对应名字的html文件 & media.html。
