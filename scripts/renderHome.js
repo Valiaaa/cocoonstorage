@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
-  fetch("archive/data.json")
+  fetch("assets/json/data.json")
     .then(response => response.json())
     .then(data => {
       const featuredContainer = document.querySelector('.featured-projects');

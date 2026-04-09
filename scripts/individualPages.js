@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
   // Load project data
-  fetch(`${basePath}archive/data.json`)
+  fetch(`${basePath}assets/json/data.json`)
     .then(res => res.json())
     .then(data => {
       const project = data.projects.find(p => p.filename === projectName);

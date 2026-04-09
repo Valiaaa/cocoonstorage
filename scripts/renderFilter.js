@@ -14,7 +14,7 @@ function updateNYCTime() {
 }
 
 function renderProjects() {
-    fetch("archive/data.json")
+    fetch("assets/json/data.json")
     .then(response => response.json())
     .then(data => {
         // 根据 URL 获取选中的过滤条件

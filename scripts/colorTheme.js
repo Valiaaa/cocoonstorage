@@ -3,7 +3,7 @@
     if(!select) return;
     
     // Use absolute path from domain root to ensure it works in production
-    fetch('/archive/palette.json')
+    fetch('/assets/json/palette.json')
         .then(r=>r.json())
         .then(data=>{
             // capture original gradient before applying any theme
