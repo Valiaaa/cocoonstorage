@@ -191,7 +191,7 @@
 
     .hamburger-menu {
         position: fixed;
-        top: 2px;
+        top: 6px;
         right: var(--body-padding);
         font-size: 8.8vw;
         background: transparent;
@@ -206,12 +206,13 @@
     }
     
     .hamburger-menu.expanded {
-        transform: rotate(-90deg); /* 逆时针旋转 90° */
+        transform: rotate(-90deg); 
         margin-right: 20px;
+        margin-top: 2px;
     }
     
     .hamburger-menu:not(.expanded) {
-        transform: rotate(0deg); /* 回到初始位置 */
+        transform: rotate(0deg);
     }
 
     .projects-grid {

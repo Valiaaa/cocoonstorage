@@ -136,7 +136,7 @@ body {
     
     .phone-screen {
         position: absolute;
-        top: 16px;
+        top: 26px;
         left: 48px;
         bottom: 60px;
         width: calc(100% - 96px);
