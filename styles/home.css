@@ -256,6 +256,6 @@
     }
 
     .filter-header {
-        margin-bottom: calc(var(--body-padding) * 3);
+        margin-bottom: 20vw;
     }
 }
