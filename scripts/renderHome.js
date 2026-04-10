@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (isMP4) {
               mediaItems.push(
                 '<div class="' + wrapperClass + '">' +
-                '<video class="media-item hoverZoom" autoplay muted loop playsinline webkit-playsinline><source src="' + project.video + '" type="video/mp4"></video>' +
+                '<video class="media-item hoverZoom" autoplay muted loop playsinline webkit-playsinline disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"><source src="' + project.video + '" type="video/mp4"></video>' +
                 '</div>'
               );
             } else {
@@ -51,13 +51,13 @@ document.addEventListener('DOMContentLoaded', function(){
             if (isMP4) {
               mediaItems.push(
                 '<div class="media-box">' +
-                '<video class="' + ratioClass + ' hoverZoom" autoplay muted loop playsinline webkit-playsinline><source src="' + project.video + '" type="video/mp4"></video>' +
+                '<video class="' + ratioClass + ' hoverZoom" autoplay muted loop playsinline webkit-playsinline disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"><source src="' + project.video + '" type="video/mp4"></video>' +
                 '</div>'
               );
             } else {
               mediaItems.push(
                 '<div class="media-box">' +
-                '<iframe class="' + ratioClass + '" src="' + project.video + '" frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="' + project.title + '"></iframe>' +
+                '<iframe class="' + ratioClass + '" src="' + project.video + '" frameborder="0" allow="autoplay" title="' + project.title + '"></iframe>' +
                 '</div>'
               );
             }

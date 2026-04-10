@@ -382,6 +382,20 @@ hr {
     pointer-events: none;
 }
 
+/* Hide native browser video controls on homepage */
+.featured-project video::-webkit-media-controls {
+    display: none !important;
+}
+.featured-project video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+.featured-project video::-webkit-media-controls-panel {
+    display: none !important;
+}
+.featured-project video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
+
 @media screen and (min-width: 768px) {   
     .noise {
       position: fixed;
