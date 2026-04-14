@@ -8,7 +8,10 @@
       "entries": [
         "design_engineering",
         "project_documentation",
-        "motion_in_dev"
+        "motion_in_dev",
+        "site_update_log",
+        "note_how_build_lennyrpg",
+        "app_annual_report_analysis"
       ]
     },
     {
@@ -16,7 +19,9 @@
       "name": "sketchbook",
       "type": "double",
       "color": "#7A3535",
-      "entries": ["main"]
+      "entries": [
+        "main"
+      ]
     }
   ]
 }

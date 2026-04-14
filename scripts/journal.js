@@ -221,4 +221,21 @@ function renderDoubleViewer(content) {
 }
 
 // ── Kick off ──────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+
+  // Intercept internal entry links
+  notebookPage.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link) {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#entry:')) {
+        e.preventDefault();
+        const entryId = href.split(':')[1];
+        if (activeJournal) {
+          onTocEntryClick(activeJournal, entryId);
+        }
+      }
+    }
+  });
+});

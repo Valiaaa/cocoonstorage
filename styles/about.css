@@ -6,9 +6,7 @@
 
 .about-text a {
     text-decoration: underline;
-    display: inline;
-    overflow-wrap: break-word;
-    word-break: break-word;
+    display: inline-block;
 }
 
 .about-image {
