@@ -238,6 +238,10 @@ let customCursor = null;
 const defaultCursorSelectors = [
     'video',
     'iframe',
+    'input',
+    'textarea',
+    'select',
+    'option',
     '[role="combobox"]',
     '[role="listbox"]',
     'input[type="range"]',
@@ -334,7 +338,11 @@ function isClickable(element) {
         '.hamburger-menu',
         '.featured-project-link',
         '.hoverZoom',
-        '.hoverZoomRight'
+        '.hoverZoomRight',
+        '.notebook-item',
+        '.journal-toc-entry',
+        '.toc-entry-title',
+        '.toc-entry-arrow'
     ];
 
     return clickableSelectors.some(selector => {

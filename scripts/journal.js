@@ -39,7 +39,7 @@ function renderSidebar() {
   notebookList.innerHTML = '';
   JOURNALS.forEach(journal => {
     const item = document.createElement('div');
-    item.className = 'notebook-item';
+    item.className = 'notebook-item hoverZoom';
     item.dataset.id = journal.id;
     item.innerHTML = `
       <div class="notebook-thumb">
@@ -96,10 +96,13 @@ function renderToc(journal, entries) {
 
   entries.forEach((entry, i) => {
     const el = document.createElement('div');
-    el.className = 'journal-toc-entry' + (i === 0 ? ' active' : '');
+    el.className = 'journal-toc-entry hoverZoom' + (i === 0 ? ' active' : '');
     el.dataset.entryId = entry.id;
     el.innerHTML = `
-      <span class="toc-entry-title">${entry.title}<span class="toc-entry-arrow">&#8599;</span></span>
+      <span class="toc-entry-title">
+        <span class="toc-entry-title-text">${entry.title}</span>
+        <span class="toc-entry-arrow" aria-hidden="true">&#8599;</span>
+      </span>
       <span class="toc-entry-date">${entry.date}</span>
     `;
     el.addEventListener('click', () => onTocEntryClick(journal, entry.id));
@@ -144,7 +147,9 @@ async function onTocEntryClick(journal, entryId) {
 function renderSingleEntry(entry) {
   notebookPage.innerHTML = `
     <div class="notebook-entry" id="entry-${entry.id}">
-      <div class="notebook-entry-title">${entry.title}</div>
+      <div class="notebook-entry-title">
+        <span class="notebook-entry-title-text">${entry.title}</span>
+      </div>
       <div class="notebook-entry-date">${entry.date}</div>
       <div class="notebook-entry-body">${entry.content}</div>
     </div>

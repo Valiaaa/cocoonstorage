@@ -3,7 +3,7 @@
       "--txt-color": "#2F2516",
       "--bg-color": "#F0EFEC",
       "--default-bg-color": "#E7E6E4",
-      "--deco-color": "#96B7F8"
+      "--deco-color": "#719bed"
     },  
     "sky in Ukiyo-e": {
       "--txt-color": "#2F2516",
@@ -21,6 +21,6 @@
       "--txt-color": "black",
       "--bg-color": "white",
       "--default-bg-color": "#F7F8F8",
-      "--deco-color": "#c2c2c2"
+      "--deco-color": "#b3b3b3"
     }
 }
