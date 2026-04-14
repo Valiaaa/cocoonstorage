@@ -1,0 +1,177 @@
+/* ============================================================
+   shelf.css — Shelf page (row-based books, single main column)
+   ============================================================ */
+
+:root {
+    --shelf-gap-pct: 2.5%;
+    --shelf-book-to-deco: 20px;
+    --shelf-deco-h: 48px;
+}
+
+/* Content flows with the document; scrollbar is on the viewport (see base.css), nav stays fixed */
+
+.shelf-layout {
+    position: relative;
+    width: 100%;
+}
+
+.shelf-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px 24px;
+    padding-bottom: 28px;
+    flex-shrink: 0;
+}
+
+.shelf-header-title {
+    font-family: var(--font-family-main);
+    font-size: var(--big-font);
+    font-weight: 300;
+    -webkit-text-stroke: 0.11vw;
+    transform: scaleY(1.4);
+    transform-origin: top left;
+    color: var(--txt-color);
+    margin: 0;
+    line-height: 1;
+}
+
+.shelf-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-family: var(--font-family-secondary);
+    font-size: 12px;
+    letter-spacing: 0.4px;
+}
+
+.shelf-stat {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: var(--border-width) solid var(--txt-color);
+    line-height: 1;
+}
+
+.shelf-stat--reading {
+    background: var(--deco-color);
+    border-color: var(--txt-color);
+}
+
+.shelf-stat--read {
+    background: transparent;
+}
+
+.shelf-stat-label {
+    margin-right: 6px;
+    opacity: 0.85;
+}
+
+.shelf-stat-num {
+    font-weight: 700;
+}
+
+.shelf-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    padding-bottom: calc(var(--body-padding) * 3);
+}
+
+.shelf-row {
+    position: relative;
+    --shelf-cols: 6;
+    padding-bottom: calc(var(--shelf-book-to-deco) + var(--shelf-deco-h));
+}
+
+.shelf-row-books {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(var(--shelf-cols), minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    column-gap: var(--shelf-gap-pct);
+    row-gap: 10px;
+    align-items: start;
+}
+
+.shelf-row-books > .shelf-book-cover-wrap {
+    align-self: end;
+}
+
+.shelf-book-cover-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / var(--shelf-book-aspect, 1.45);
+    max-height: min(38vh, 220px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shelf-book-cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: var(--border-width) solid var(--txt-color);
+    background: rgba(47, 37, 22, 0.06);
+}
+
+.shelf-book-badge {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    font-family: var(--font-family-secondary);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: lowercase;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: var(--deco-color);
+    border: var(--border-width) solid var(--txt-color);
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.shelf-book-title {
+    font-family: var(--font-family-secondary);
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--txt-color);
+    -webkit-text-stroke: 0.25px;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+    align-self: start;
+}
+
+.shelf-row-deco {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--shelf-deco-h);
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.shelf-row-deco-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: var(--txt-color);
+}
+
+.shelf-error {
+    font-family: var(--font-family-secondary);
+    font-size: 13px;
+    opacity: 0.6;
+}

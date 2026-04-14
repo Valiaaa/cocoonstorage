@@ -25,11 +25,12 @@ function getScriptBasePath() {
     const goHome = document.getElementById("go-home");
     const about = document.getElementById("about");
     const archive = document.getElementById("archive");
+    const shelf = document.getElementById("shelf");
     const workCategories = document.querySelector(".work-categories");
 
-    // Collapse work-categories on archive page after page load
+    // Collapse work-categories on archive / journal / shelf after page load
     if (workCategories) {
-      if (currentPage === 'archive.html') {
+      if (currentPage === 'archive.html' || currentPage === 'journal.html' || currentPage === 'shelf.html') {
         window.addEventListener('load', () => {
           // Add small delay to ensure transition works
           setTimeout(() => {
@@ -104,6 +105,12 @@ function getScriptBasePath() {
     if (archive) {
       archive.addEventListener("click", () => {
         goTo(depthPrefix + "archive.html");
+      });
+    }
+
+    if (shelf) {
+      shelf.addEventListener("click", () => {
+        goTo(depthPrefix + "shelf.html");
       });
     }
 

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Shelf - Valia Liu</title>
+    <meta name="description" content="Valia Liu's reading shelf — books by row.">
+    <link rel="icon" href="assets/icons/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap">
+
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/shelf.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YB3PB2KE3B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-YB3PB2KE3B');
+    </script>
+</head>
+
+<body>
+    <div id="bg">
+        <div class="noise nopc"></div>
+    </div>
+    <div class="mobile-nav">
+        <div class="noise"></div>
+        <h1 class="mobile-title"><a href="index.html">Valia Liu</a></h1>
+    </div>
+    <button class="hamburger-menu">
+        ☰
+    </button>
+
+    <nav id="navigation"></nav>
+
+    <div class="container">
+
+        <main class="content">
+            <div class="shelf-layout">
+                <header class="shelf-header">
+                    <h1 class="shelf-header-title">Shelf</h1>
+                    <div class="shelf-stats">
+                        <span class="shelf-stat shelf-stat--reading">
+                            <span class="shelf-stat-label">reading</span>
+                            <span class="shelf-stat-num" id="shelfStatReading">—</span>
+                        </span>
+                        <span class="shelf-stat shelf-stat--read">
+                            <span class="shelf-stat-label">read</span>
+                            <span class="shelf-stat-num" id="shelfStatRead">—</span>
+                        </span>
+                    </div>
+                </header>
+                <div class="shelf-rows" id="shelfRows">
+                    <!-- Populated by shelf.js -->
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        fetch("components/navigation.html")
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
+                document.getElementById("navigation").innerHTML = html;
+                if (typeof bindNavigationEvents === "function") {
+                    bindNavigationEvents();
+                }
+                const script = document.createElement('script');
+                script.src = 'scripts/colorTheme.js';
+                document.head.appendChild(script);
+            });
+    </script>
+
+    <script src="scripts/pageTransition.js"></script>
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/customCursor.js"></script>
+    <script src="scripts/shelf.js"></script>
+</body>
+
+</html>
