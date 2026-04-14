@@ -33,6 +33,7 @@
 
 :root {
     --txt-color: #2F2516;
+    --text-color: var(--txt-color);
     --bg-color: #F0EFEC;
     --default-bg-color: #E4E4E1;
     --deco-color: #96B7F8;

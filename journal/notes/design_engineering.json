@@ -1,6 +1,0 @@
-{
-  "id": "design_engineering",
-  "title": "Design Engineering",
-  "date": "04/13/2026",
-  "content": "<p>Notes on the intersection of design systems and engineering workflows. How do you maintain visual consistency at scale while allowing teams to move fast?</p><p>Key themes: token-based design, component abstraction, design-code parity.</p>"
-}

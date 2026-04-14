@@ -27,11 +27,55 @@ async function init() {
   }
 }
 
-// ── Fetch a single entry JSON file ────────────────────────────
+// ── Fetch a single entry (JSON or Markdown) ───────────────────
 async function fetchEntry(notebookId, entryId) {
-  const res = await fetch(`journal/${notebookId}/${entryId}.json`);
-  if (!res.ok) throw new Error(`Entry not found: ${notebookId}/${entryId}.json`);
-  return res.json();
+  // 1. Try JSON first
+  try {
+    const res = await fetch(`journal/${notebookId}/${entryId}.json`);
+    if (res.ok) return await res.json();
+  } catch (e) {
+    // Ignore error, try MD next
+  }
+
+  // 2. Try Markdown
+  const res = await fetch(`journal/${notebookId}/${entryId}.md`);
+  if (res.ok) {
+    const text = await res.text();
+    return parseMarkdownEntry(text, entryId);
+  }
+
+  throw new Error(`Entry not found: journal/${notebookId}/${entryId}`);
+}
+
+/**
+ * Basic YAML Frontmatter + Markdown parser
+ */
+function parseMarkdownEntry(text, id) {
+  const frontmatterRegex = /^---\s*([\s\S]*?)\s*---\s*([\s\S]*)$/;
+  const match = text.match(frontmatterRegex);
+
+  let entry = { id, title: id, date: '', content: text };
+
+  if (match) {
+    const yaml = match[1];
+    const body = match[2];
+
+    // Simple line-by-line YAML parser (split by first colon)
+    yaml.split('\n').forEach(line => {
+      const colonIndex = line.indexOf(':');
+      if (colonIndex > -1) {
+        const key = line.slice(0, colonIndex).trim();
+        const val = line.slice(colonIndex + 1).trim();
+        if (key) entry[key] = val;
+      }
+    });
+
+    entry.content = marked.parse(body);
+  } else {
+    entry.content = marked.parse(text);
+  }
+
+  return entry;
 }
 
 // ── Sidebar rendering ─────────────────────────────────────────
@@ -69,6 +113,14 @@ async function selectJournal(journal) {
     const entryMetas = await Promise.all(
       journal.entries.map(id => fetchEntry(journal.id, id))
     );
+
+    // Sort entries by date (newest first)
+    entryMetas.sort((a, b) => {
+      const d1 = new Date(a.date);
+      const d2 = new Date(b.date);
+      return d2 - d1;
+    });
+
     renderToc(journal, entryMetas);
 
     // Show first entry by default
@@ -150,7 +202,7 @@ function renderSingleEntry(entry) {
       <div class="notebook-entry-title">
         <span class="notebook-entry-title-text">${entry.title}</span>
       </div>
-      <div class="notebook-entry-date">${entry.date}</div>
+      <div class="notebook-entry-date">Last updated on ${entry.date}</div>
       <div class="notebook-entry-body">${entry.content}</div>
     </div>
   `;
