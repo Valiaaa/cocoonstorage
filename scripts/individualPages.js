@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Keep body hidden until CSS loads and fade-in animation takes over
   document.body.style.opacity = "0";
 
-  document.title = "Valia Liu";
+  document.title = "Work - Valia Liu"; // fallback until data loads
   const headMeta = document.createElement("meta");
   headMeta.name = "viewport";
   headMeta.content = "width=device-width, initial-scale=1.0";
@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const project = data.projects.find(p => p.filename === projectName);
       if (!project) return;
 
+      document.title = `${project.title} - Valia Liu`;
       document.getElementById("project-title").textContent = project.title;
       document.getElementById("project-description").innerHTML = project.description || "";
 

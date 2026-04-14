@@ -1,0 +1,22 @@
+{
+  "notebooks": [
+    {
+      "id": "notes",
+      "name": "notes",
+      "type": "single",
+      "color": "#8A9FD8",
+      "entries": [
+        "design_engineering",
+        "links_feb_2026",
+        "on_typography"
+      ]
+    },
+    {
+      "id": "sketchbook",
+      "name": "sketchbook",
+      "type": "double",
+      "color": "#7A3535",
+      "entries": ["main"]
+    }
+  ]
+}
