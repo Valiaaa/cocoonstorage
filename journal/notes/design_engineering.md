@@ -4,7 +4,10 @@ date: 04/15/2026
 ---
 
 ## role & responsibility
-Design engineers are people who can bridge design decisions and technical implementation.
+Design engineers are people who can bridge <b>design decisions</b> and <b>technical implementation</b>, taking a project from idea to launch.
+<br><br>
+
+- aa
 <br><br>
 <div class="video-note">[ source, reference, & extended reading ]</div>
 
@@ -20,6 +23,7 @@ Design engineers are people who can bridge design decisions and technical implem
 ## common tool/platform
 
 - Database: <a href="https://supabase.com/" target="_blank">Supabase</a>
+- Game engine: <a href="https://phaser.io/tutorials/getting-started-phaser3" target="_blank">Phaser 3</a>
 
 ## icon used
 
