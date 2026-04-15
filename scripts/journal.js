@@ -21,10 +21,42 @@ async function init() {
     const data = await res.json();
     JOURNALS = data.notebooks;
     renderSidebar();
-    if (JOURNALS.length > 0) selectJournal(JOURNALS[0]);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const notebookParam = urlParams.get('notebook');
+    const entryParam = urlParams.get('entry');
+
+    let initialJournal = JOURNALS.length > 0 ? JOURNALS[0] : null;
+
+    if (notebookParam) {
+      const foundJournal = JOURNALS.find(j => j.id === notebookParam);
+      if (foundJournal) {
+        initialJournal = foundJournal;
+      }
+    }
+
+    if (initialJournal) {
+      await selectJournal(initialJournal, entryParam);
+    }
   } catch (e) {
     console.error('Failed to load journal/index.json:', e);
   }
+}
+
+// ── URL Sync Helper ───────────────────────────────────────────
+function updateJournalURL(notebookId, entryId) {
+  const url = new URL(window.location);
+  if (notebookId) {
+    url.searchParams.set('notebook', notebookId);
+  } else {
+    url.searchParams.delete('notebook');
+  }
+  if (entryId) {
+    url.searchParams.set('entry', entryId);
+  } else {
+    url.searchParams.delete('entry');
+  }
+  window.history.replaceState({}, '', url);
 }
 
 // ── Fetch a single entry (JSON or Markdown) ───────────────────
@@ -97,7 +129,7 @@ function renderSidebar() {
 }
 
 // ── Select a journal ──────────────────────────────────────────
-async function selectJournal(journal) {
+async function selectJournal(journal, initialEntryId = null) {
   activeJournal = journal;
   activeEntry = null;
 
@@ -123,15 +155,27 @@ async function selectJournal(journal) {
 
     renderToc(journal, entryMetas);
 
-    // Show first entry by default
-    if (entryMetas.length > 0) {
-      renderSingleEntry(entryMetas[0]);
-      activeEntry = entryMetas[0];
-      markTocActive(entryMetas[0].id);
+    let targetEntry = null;
+    if (initialEntryId) {
+      targetEntry = entryMetas.find(e => e.id === initialEntryId);
+    }
+    if (!targetEntry && entryMetas.length > 0) {
+      targetEntry = entryMetas[0];
+    }
+
+    // Show target entry
+    if (targetEntry) {
+      renderSingleEntry(targetEntry);
+      activeEntry = targetEntry;
+      markTocActive(targetEntry.id);
+      updateJournalURL(journal.id, targetEntry.id);
+    } else {
+      updateJournalURL(journal.id, null);
     }
   } else {
     journalViewer.classList.add('double-sided');
     hideToc();
+    updateJournalURL(journal.id, null);
     // Load double-sided content
     const content = await fetchEntry(journal.id, journal.entries[0]);
     renderDoubleViewer(content);
@@ -183,6 +227,7 @@ async function onTocEntryClick(journal, entryId) {
     const entry = await fetchEntry(journal.id, entryId);
     activeEntry = entry;
     markTocActive(entryId);
+    updateJournalURL(journal.id, entryId);
 
     // Fade out → swap content → fade in
     notebookPage.classList.add('fading');

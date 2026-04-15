@@ -414,7 +414,8 @@
     -webkit-text-stroke: 0px;
 }
 
-.notebook-entry-body ol, .notebook-entry-body ul {
+.notebook-entry-body ol,
+.notebook-entry-body ul {
     margin-top: 0;
     margin-bottom: 4px;
 }
@@ -426,6 +427,12 @@
     position: relative;
     top: -2px;
     fill-opacity: 0.5;
+}
+
+/* Utility class for adding spacing to list items in markdown */
+.list-item-spaced {
+    display: block;
+    margin-top: 12px;
 }
 
 .notebook-entry-body a {

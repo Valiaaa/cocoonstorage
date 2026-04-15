@@ -5,10 +5,27 @@ date: 04/15/2026
 
 ## role & responsibility
 Design engineers are people who can bridge <b>design decisions</b> and <b>technical implementation</b>, taking a project from idea to launch.
-<br><br>
 
-- aa
-<br><br>
+<br>
+
+The goal is to bring:
+
+- <b>Faster Iteration:</b> less back-and-forth.
+- <b>Higher quality output:</b> without losing details of the design.
+- <b>Better communication:</b> between designers and engineers.
+- <b>Design system for use:</b> build libraries that actually get used.
+
+Even though the title could varie. Eg. UI Engineer, Design Technologist, Creative Developer, etc.
+
+<br>
+
+Responsibility includes:
+- <span class="list-item-spaced"><b>System design:</b> building and maintaining <b>component libraries</b> for both designer spec and engineer implementation.</span>
+- <span class="list-item-spaced"><b>Prototyping:</b> create high-fidelity, interactive prototypes for testing before full implementation on engineer's side.</span>
+- <span class="list-item-spaced"><b>Tooling:</b> build internal tools based on teams needs. Eg. documentation, plugins, etc.</span>
+
+<br>
+
 <div class="video-note">[ source, reference, & extended reading ]</div>
 
 1. <a href="https://www.designengineer.xyz/design-engineering" target="_blank">What is Design Engineering?</a>
