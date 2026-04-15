@@ -614,3 +614,9 @@
 #entry-site_update_log .notebook-entry-title {
     font-weight: 600;
 }
+
+#entry-note_how_build_lennyrpg .notebook-entry-date,
+#entry-app_annual_report_analysis .notebook-entry-date,
+#entry-openclaw_security_101 .notebook-entry-date {
+    margin-bottom: 0;
+}

@@ -1,6 +1,6 @@
 ---
-title: Design Engineering
-date: 04/14/2026
+title: Market Engineering
+date: 04/15/2026
 ---
 
 ## role & responsibility
