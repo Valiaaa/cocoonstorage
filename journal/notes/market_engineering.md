@@ -3,7 +3,7 @@ title: Market Engineering
 date: 2026-04-15
 ---
 
-## role & responsibility
+<!-- ## role & responsibility
 Design engineers are people who can bridge <b>design decisions</b> and <b>technical implementation</b>, taking a project from idea to launch.
 
 <br>
@@ -28,14 +28,22 @@ Responsibility includes:
 
 <div class="video-note">[ source, reference, & extended reading ]</div>
 
-1. <a href="https://www.designengineer.xyz/design-engineering" target="_blank">What is Design Engineering?</a>
+1. <a href="https://www.designengineer.xyz/design-engineering" target="_blank">What is Design Engineering?</a> -->
 
-## product building 0 to 1
+## target audience & meta ads
 
-1. <a href="https://www.lennyrpg.fun" target="_blank">LennyRPG</a>
-    - <a href="https://www.lennysnewsletter.com/p/how-i-built-lennyrpg" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--text-color)" viewBox="0 0 256 256"><path d="M184,112a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h64A8,8,0,0,1,184,112Zm-8,24H112a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm48-88V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM48,208H72V48H48Zm160,0V48H88V208H208Z"></path></svg>How I built LennyRPG</a> <span class="video-note"><a href="#entry:note_how_build_lennyrpg">[ article note ]</a></span>
 
-2. <a href="https://vibecodingfang.netlify.app/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--text-color)" viewBox="0 0 256 256"><path d="M184,112a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h64A8,8,0,0,1,184,112Zm-8,24H112a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm48-88V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM48,208H72V48H48Zm160,0V48H88V208H208Z"></path></svg>Vibe Coding Complete Workflow for Designers</a>
+## references
+
+<!-- 1. <a href="https://www.lennyrpg.fun" target="_blank">LennyRPG</a>
+    - <a href="https://www.lennysnewsletter.com/p/how-i-built-lennyrpg" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--text-color)" viewBox="0 0 256 256"><path d="M184,112a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h64A8,8,0,0,1,184,112Zm-8,24H112a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm48-88V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM48,208H72V48H48Zm160,0V48H88V208H208Z"></path></svg>How I built LennyRPG</a> <span class="video-note"><a href="#entry:note_how_build_lennyrpg">[ article note ]</a></span> -->
+
+1. <a href="https://mediaengineered.com/case-study/500k-to-1m" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--text-color)" viewBox="0 0 256 256"><path d="M232,168h-8V72a24,24,0,0,0-24-24H56A24,24,0,0,0,32,72v96H24a8,8,0,0,0-8,8v16a24,24,0,0,0,24,24H216a24,24,0,0,0,24-24V176A8,8,0,0,0,232,168ZM48,72a8,8,0,0,1,8-8H200a8,8,0,0,1,8,8v96H48ZM224,192a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8v-8H224ZM152,88a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h32A8,8,0,0,1,152,88Z"></path></svg>From $500k/m to $1m/m Meta Ad Spend in 60 Days</a>: their website is highly promotional and the cace studies are nicely wrote.
+
+2. <a href="https://university.tryprofound.com/courses/marketing-engineering-concepts/modules/manifesto/lessons/the-rise-of-the-marketing-engineer?utm_source=X_dylan&utm_medium=organic&utm_campaign=marketing_engineer" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--text-color)" viewBox="0 0 256 256"><path d="M232,168h-8V72a24,24,0,0,0-24-24H56A24,24,0,0,0,32,72v96H24a8,8,0,0,0-8,8v16a24,24,0,0,0,24,24H216a24,24,0,0,0,24-24V176A8,8,0,0,0,232,168ZM48,72a8,8,0,0,1,8-8H200a8,8,0,0,1,8,8v96H48ZM224,192a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8v-8H224ZM152,88a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h32A8,8,0,0,1,152,88Z"></path></svg>Marketing Engineering</a>: a free course on the topic.
+
+3. I downloaded 3 marketing skills.md, trying to see the structure, how they put the prompt, can I combine and upgrade some? And eventually have my own version.
+    - <a href="https://docs.google.com/document/d/1XWssuZ5BsMq-PtJcfXZdUCpKEigUtErvTQhaxnTYYsQ/edit?tab=t.0#heading=h.a8q4ngfbali0" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--text-color)" viewBox="0 0 256 256"><path d="M184,112a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h64A8,8,0,0,1,184,112Zm-8,24H112a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm48-88V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM48,208H72V48H48Zm160,0V48H88V208H208Z"></path></svg>The Meta Ads Audit Playbook</a>: reading material for one of the skills zip.
 
 ## icon used
 

@@ -10,10 +10,10 @@ Design engineers are people who can bridge <b>design decisions</b> and <b>techni
 
 The goal is to bring:
 
-- <b>Faster Iteration:</b> less back-and-forth.
-- <b>Higher quality output:</b> without losing details of the design.
-- <b>Better communication:</b> between designers and engineers.
-- <b>Design system for use:</b> build libraries that actually get used.
+- <b>Faster Iteration:</b> less back-and-forth
+- <b>Higher quality output:</b> without losing details of the design
+- <b>Better communication:</b> between designers and engineers
+- <b>Design system for use:</b> build libraries that actually get used
 
 Even though the title could varie. Eg. UI Engineer, Design Technologist, Creative Developer, etc.
 
