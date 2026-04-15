@@ -7,24 +7,38 @@ class CustomCursor {
     constructor(options = {}) {
         this.pointerImageUrl = options.pointerImageUrl || '../assets/icons/pointer.svg';
         this.defaultImageUrl = options.defaultImageUrl || '../assets/icons/default.svg';
+        this.rockImageUrl = options.rockImageUrl || '../assets/icons/rock.svg';
         this.pointerHotspotX = options.pointerHotspotX || 15;
         this.pointerHotspotY = options.pointerHotspotY || 0;
         this.defaultHotspotX = options.defaultHotspotX || 0;
         this.defaultHotspotY = options.defaultHotspotY || 0;
+        this.rockHotspotX = options.rockHotspotX || 15;
+        this.rockHotspotY = options.rockHotspotY || 15;
+        
+        // 尺寸设置
+        this.defaultWidth = options.defaultWidth || 48;
+        this.defaultHeight = options.defaultHeight || 75;
+        this.pointerWidth = options.pointerWidth || 59;
+        this.pointerHeight = options.pointerHeight || 75;
+        this.rockWidth = options.rockWidth || 55;
+        this.rockHeight = options.rockHeight || 75;
+        
         this.basePath = options.basePath || this.getBasePath();
         
         this.canvas = null;
         this.ctx = null;
         this.pointerImage = null;
         this.defaultImage = null;
+        this.rockImage = null;
         this.mouseX = -999;
         this.mouseY = -999;
         this.isPointerMode = false;
+        this.isRockMode = false;
         this.scale = window.devicePixelRatio || 1;
         this.isVisible = false;
         this.isHiddenByElement = false;
         this.imagesLoaded = 0;
-        this.totalImagesNeeded = 2;
+        this.totalImagesNeeded = 3;
         this.animationFrameId = null;
         
         this.init();
@@ -81,6 +95,7 @@ class CustomCursor {
     loadImages() {
         const pointerImg = new Image();
         const defaultImg = new Image();
+        const rockImg = new Image();
         
         pointerImg.onload = () => {
             this.pointerImage = pointerImg;
@@ -93,10 +108,17 @@ class CustomCursor {
             this.imagesLoaded++;
             this.checkImagesReady();
         };
+
+        rockImg.onload = () => {
+            this.rockImage = rockImg;
+            this.imagesLoaded++;
+            this.checkImagesReady();
+        };
         
         // 使用 basePath + 相对URL
         pointerImg.src = this.basePath + 'assets/icons/pointer.svg';
         defaultImg.src = this.basePath + 'assets/icons/default.svg';
+        rockImg.src = this.basePath + 'assets/icons/rock.svg';
     }
 
     checkImagesReady() {
@@ -155,6 +177,11 @@ class CustomCursor {
         this.scheduleRender();
     }
 
+    setRockMode(isRock) {
+        this.isRockMode = isRock;
+        this.scheduleRender();
+    }
+
     draw() {
         // 如果光标在屏幕外，不绘制
         if (this.mouseX < -100 || this.mouseY < -100) {
@@ -165,16 +192,34 @@ class CustomCursor {
         // 清空 Canvas
         this.ctx.clearRect(0, 0, this.canvas.width / this.scale, this.canvas.height / this.scale);
         
-        const image = this.isPointerMode ? this.pointerImage : this.defaultImage;
-        const hotspotX = this.isPointerMode ? this.pointerHotspotX : this.defaultHotspotX;
-        const hotspotY = this.isPointerMode ? this.pointerHotspotY : this.defaultHotspotY;
+        let image = this.defaultImage;
+        let hotspotX = this.defaultHotspotX;
+        let hotspotY = this.defaultHotspotY;
+        let width = this.defaultWidth;
+        let height = this.defaultHeight;
+
+        if (this.isRockMode) {
+            image = this.rockImage;
+            hotspotX = this.rockHotspotX;
+            hotspotY = this.rockHotspotY;
+            width = this.rockWidth;
+            height = this.rockHeight;
+        } else if (this.isPointerMode) {
+            image = this.pointerImage;
+            hotspotX = this.pointerHotspotX;
+            hotspotY = this.pointerHotspotY;
+            width = this.pointerWidth;
+            height = this.pointerHeight;
+        }
         
         if (image && this.isVisible) {
             // 根据热点位置绘制
             this.ctx.drawImage(
                 image,
                 this.mouseX - hotspotX,
-                this.mouseY - hotspotY
+                this.mouseY - hotspotY,
+                width,
+                height
             );
         }
     }
@@ -257,21 +302,34 @@ function initCustomCursor() {
         customCursor = new CustomCursor({
             pointerImageUrl: 'assets/icons/pointer.svg',
             defaultImageUrl: 'assets/icons/default.svg',
+            rockImageUrl: 'assets/icons/rock.svg',
             pointerHotspotX: 15,
             pointerHotspotY: 0,
             defaultHotspotX: 0,
-            defaultHotspotY: 0
+            defaultHotspotY: 0,
+            rockHotspotX: 27,
+            rockHotspotY: 37,
+            defaultWidth: 48,
+            defaultHeight: 75,
+            pointerWidth: 59,
+            pointerHeight: 75,
+            rockWidth: 55,
+            rockHeight: 75
         });
 
         // 监听所有可点击元素
         document.addEventListener('mouseenter', (e) => {
-            if (isClickable(e.target)) {
+            if (e.target instanceof Element && e.target.closest('.rock-cursor-target')) {
+                customCursor.setRockMode(true);
+            } else if (isClickable(e.target)) {
                 customCursor.setPointerMode(true);
             }
         }, true);
 
         document.addEventListener('mouseleave', (e) => {
-            if (isClickable(e.target)) {
+            if (e.target instanceof Element && e.target.closest('.rock-cursor-target')) {
+                customCursor.setRockMode(false);
+            } else if (isClickable(e.target)) {
                 customCursor.setPointerMode(false);
             }
         }, true);

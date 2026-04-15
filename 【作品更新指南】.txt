@@ -7,24 +7,37 @@
 
 
 [ Project ]
-
-- 预先问题 -
-1. 你想要这个作品显示在首页吗？ (if no, skip to q4)
-2. If yes, 它的封面是一个视频吗？ (if no, skip to q4)
-
-- SOP -
-1. assets/json/data.json里，找到作品的位置，复制上一个作品的信息，填写。
-    - 需要注意封面是video还是1-2张的封面图
+1. assets/json/data.json里，找到作品的位置，复制类似作品的信息，填写。
+    - “类似”指的是封面类型：video还是1-2张图片
 2. 在archive里建立：对应名字的文件夹。
-3. 在文件夹里建立：对应名字的html文件 & media.html。
+3. 在文件夹里建立：对应名字的html文件 & media.html，以及上传所有的图片assets。
 4. 对应名字的html文件格式复制黏贴其他作品即可。media.html里放所有图片assets的layout。
 
 
 
 [ Archive ] 
-1. archive/projects里，上传缩小过的图片
-2. archive.html里，置入图片/视频链接
+1. archive/projects里，上传图片
+2. archive.html里，置入图片/视频链接在你希望的位置
 
 
 
-[ Journal ] - to be updated
+[ Journal ]
+1. Notebook
+    a. journal/index.json里，复制上一个notebook的信息，填写。
+    b. journal文件夹里建一个notebook标题的文件夹
+    c. 在里面添加你想要上传的内容
+2. Notes
+    a. 复制一篇notes的md模板，重命名
+    b. journal/index.json里，在notes部分添加你文章的标题
+    c. 更新md文档内容
+3. Sketchbook - to be updated
+
+
+
+[ Shelf ] - to be updated
+
+
+
+[ About portrait hover ]
+1. assets/images里，按照顺序将图片上传、排列、整理好
+2. 在about.html的<script>部分更新图片列表数列

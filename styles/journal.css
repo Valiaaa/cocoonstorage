@@ -163,14 +163,20 @@
     flex-direction: column;
     gap: 3px;
     margin-bottom: calc(var(--body-padding) * 1.75);
-    transition: background 0.15s ease;
+    transition: background 0.15s ease, opacity 0.3s ease;
     flex-shrink: 0;
+}
+
+.notebook-entry-body a {
+    display: inline-block;
+    width: auto;
+    vertical-align: baseline;
+    transition: opacity 0.3s ease;
 }
 
 .journal-toc-entry:hover,
 .notebook-entry-body a:hover {
     opacity: 0.6;
-    transition: all 0.3s ease;
     cursor: pointer;
 }
 

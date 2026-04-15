@@ -21,6 +21,11 @@
     max-width: 100%;
     height: auto;
     object-fit: cover;
+    transition: transform 0.4s ease-out, opacity 0.3s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.03);
 }
 
 .social-links {
@@ -29,19 +34,30 @@
     margin-top: calc(var(--gap) * 3);
 }
 
-li .no-emoji-arrow {
+.social-links li {
+    display: flex;
+    align-items: center;
+}
+
+.social-links li .no-emoji-arrow {
     font-size: 25px;
     margin-right: 8px;
     font-weight: lighter;
     font-family: "Courier New", Courier, monospace !important;
     -webkit-text-stroke: 0;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.social-links li:hover .no-emoji-arrow {
+    transform: translate(2px, -2px);
 }
 
 
 
 
 
-@media screen and (max-width: 768px) { 
+@media screen and (max-width: 768px) {
     .about-container {
         grid-template-columns: 1fr;
     }

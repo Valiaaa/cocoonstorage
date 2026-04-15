@@ -188,11 +188,16 @@ img.lazy-fade.loaded {
     padding-top: 75%;
 }
 
+.hoverZoom,
+.hoverZoomRight,
+video.hoverZoom {
+    transition: opacity 0.3s ease;
+}
+
 .hoverZoom:hover,
 .hoverZoomRight:hover,
 video.hoverZoom:hover {
     opacity: 0.6;
-    transition: opacity 0.3s ease;
 }
 
 

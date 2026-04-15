@@ -106,11 +106,11 @@
     font-weight: lighter;
     cursor: auto;
     z-index: 2002;
+    transition: transform 0.3s ease-in-out;
 }
 
 .lightbox-close:hover {
     transform: scale(1.2);
-    transition: 0.3s ease-in-out;
 }
 
 .lightbox-prev,
