@@ -110,6 +110,23 @@ function parseMarkdownEntry(text, id) {
   return entry;
 }
 
+/**
+ * Formats a YYYY-MM-DD string into MM/DD/YYYY for display.
+ * If the input is already slash-separated or invalid, returns as-is.
+ */
+function formatDateForDisplay(dateStr) {
+  if (!dateStr || typeof dateStr !== 'string') return dateStr;
+  if (dateStr.includes('/')) return dateStr; // already formatted or old format
+
+  const parts = dateStr.split('-');
+  if (parts.length === 3) {
+    const [y, m, d] = parts;
+    return `${m}/${d}/${y}`;
+  }
+  return dateStr;
+}
+
+
 // ── Sidebar rendering ─────────────────────────────────────────
 function renderSidebar() {
   notebookList.innerHTML = '';
@@ -199,7 +216,7 @@ function renderToc(journal, entries) {
         <span class="toc-entry-title-text">${entry.title}</span>
         <span class="toc-entry-arrow" aria-hidden="true">&#8599;</span>
       </span>
-      <span class="toc-entry-date">${entry.date}</span>
+      <span class="toc-entry-date">${formatDateForDisplay(entry.date)}</span>
     `;
     el.addEventListener('click', () => onTocEntryClick(journal, entry.id));
     journalToc.appendChild(el);
@@ -247,7 +264,7 @@ function renderSingleEntry(entry) {
       <div class="notebook-entry-title">
         <span class="notebook-entry-title-text">${entry.title}</span>
       </div>
-      <div class="notebook-entry-date">Last updated on ${entry.date}</div>
+      <div class="notebook-entry-date">Last updated on ${formatDateForDisplay(entry.date)}</div>
       <div class="notebook-entry-body">${entry.content}</div>
     </div>
   `;

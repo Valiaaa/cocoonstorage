@@ -1,5 +1,5 @@
 ---
 title: Project Documentation
-date: 04/13/2026
+date: 2026-04-13
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Startup Sharing List (45)
-date: 04/15/2026
+date: 2026-04-15
 ---
 
 <ol>

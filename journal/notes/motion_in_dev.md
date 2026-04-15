@@ -1,5 +1,5 @@
 ---
 title: Motion in Dev
-date: 04/13/2026
+date: 2026-04-13
 ---
 

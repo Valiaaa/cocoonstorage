@@ -1,6 +1,6 @@
 ---
 title: Market Engineering
-date: 04/15/2026
+date: 2026-04-15
 ---
 
 ## role & responsibility

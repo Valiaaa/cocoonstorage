@@ -1,6 +1,6 @@
 ---
 title: Design Engineering
-date: 04/14/2026
+date: 2026-04-14
 ---
 
 ## role & responsibility

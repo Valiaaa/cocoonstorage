@@ -1,6 +1,6 @@
 ---
 title: Midjourney 101
-date: 04/13/2026
+date: 2026-04-13
 ---
 
 <div class="video-note">[ source, reference, & extended reading ]</div>
