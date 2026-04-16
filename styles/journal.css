@@ -77,37 +77,26 @@
 
 .notebook-thumb {
     width: 100%;
-    aspect-ratio: 3 / 4;
-    border: var(--border-width) solid var(--txt-color);
+    /* aspect-ratio removed to allow content-driven height */
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
 }
 
-/* Ring holes along the top — decorative coil hint */
-.notebook-thumb::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: repeating-linear-gradient(to right,
-            transparent 0px,
-            transparent 10px,
-            var(--txt-color) 10px,
-            var(--txt-color) 11px,
-            transparent 11px,
-            transparent 22px);
-    opacity: 0.3;
-    pointer-events: none;
+.notebook-thumb-inner {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 3 / 4;
+    /* Default fallback ratio for colored covers */
 }
 
-.notebook-thumb-inner {
-    position: absolute;
-    inset: 10px 0 0 0;
-    width: 100%;
-    height: calc(100% - 10px);
+/* Ensure images (SVGs) within the thumb take their intrinsic ratio */
+.notebook-thumb-inner img,
+img.notebook-thumb-inner {
+    aspect-ratio: auto;
+    object-fit: contain;
 }
 
 .notebook-label {

@@ -134,9 +134,15 @@ function renderSidebar() {
     const item = document.createElement('div');
     item.className = 'notebook-item hoverZoom';
     item.dataset.id = journal.id;
+
+    // Use the custom SVG for 'notes' notebook placeholder/thumb
+    const thumbHTML = journal.id === 'notes'
+      ? `<img src="journal/notes/notes.svg" class="notebook-thumb-inner">`
+      : `<div class="notebook-thumb-inner" style="background:${journal.color};"></div>`;
+
     item.innerHTML = `
       <div class="notebook-thumb">
-        <div class="notebook-thumb-inner" style="background:${journal.color};"></div>
+        ${thumbHTML}
       </div>
       <span class="notebook-label">${journal.name}</span>
     `;
@@ -176,17 +182,21 @@ async function selectJournal(journal, initialEntryId = null) {
     if (initialEntryId) {
       targetEntry = entryMetas.find(e => e.id === initialEntryId);
     }
+    
+    // Auto-select first entry if none specified (user preference)
     if (!targetEntry && entryMetas.length > 0) {
       targetEntry = entryMetas[0];
     }
 
-    // Show target entry
+    // Show target entry if found, otherwise show placeholder/cover
     if (targetEntry) {
       renderSingleEntry(targetEntry);
       activeEntry = targetEntry;
       markTocActive(targetEntry.id);
       updateJournalURL(journal.id, targetEntry.id);
     } else {
+      renderPlaceholder(journal);
+      markTocActive(null);
       updateJournalURL(journal.id, null);
     }
   } else {
@@ -280,6 +290,26 @@ function renderDoubleViewer(content) {
       <div class="notebook-spread-right">${content.rightContent}</div>
     </div>
   `;
+}
+
+// ── Viewer: placeholder / cover state ─────────────────────────
+function renderPlaceholder(journal) {
+  if (journal.id === 'notes') {
+    notebookPage.innerHTML = `
+      <div class="viewer-placeholder">
+        <img src="journal/notes/notes.svg" alt="Notebook Cover" style="width: 160px; height: auto; margin-bottom: 20px;">
+        <div class="viewer-placeholder-text">Select an entry from the list to start reading.</div>
+      </div>
+    `;
+  } else {
+    // Default fallback placeholder
+    notebookPage.innerHTML = `
+      <div class="viewer-placeholder">
+        <div class="viewer-placeholder-icon"></div>
+        <div class="viewer-placeholder-text">Choose an entry to view content</div>
+      </div>
+    `;
+  }
 }
 
 // ── Kick off ──────────────────────────────────────────────────
