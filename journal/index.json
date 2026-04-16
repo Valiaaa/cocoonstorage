@@ -6,16 +6,10 @@
       "type": "single",
       "color": "#8A9FD8",
       "entries": [
+        "site_update_log",        
         "design_engineering",
         "market_engineering",
-        "project_documentation",
-        "motion_in_dev",
-        "site_update_log",
         "note_how_build_lennyrpg",
-        "app_annual_report_analysis",
-        "game_poems_machine",
-        "openclaw_security_101",
-        "midjourney101",
         "startup_sharing_list"
       ]
     },

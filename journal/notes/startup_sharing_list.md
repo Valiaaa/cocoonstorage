@@ -55,5 +55,5 @@ date: 2026-04-15
 
 <div class="video-note">[ source, reference, & extended reading ]</div>
 
-1. <a href="https://x.com/Amank1412/status/2044022328875700236?s=20" target="_blank">Places to launch your startup - Aman</a>
-2. <a href="https://x.com/hridoyreh/status/2043955079682896180?s=20" target="_blank">Places to launch your startup - Hridoy Rehman</a>
+1. <a href="https://x.com/Amank1412/status/2044022328875700236?s=20" target="_blank">Places to launch your startup @Aman</a>
+2. <a href="https://x.com/hridoyreh/status/2043955079682896180?s=20" target="_blank">Places to launch your startup @Hridoy Rehman</a>
