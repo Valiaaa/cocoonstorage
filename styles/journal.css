@@ -620,3 +620,111 @@
 #entry-openclaw_security_101 .notebook-entry-date {
     margin-bottom: 0;
 }
+
+/* ── Prompt Block Styling ──────────────────────────────────── */
+.prompt-block {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    background: rgba(47, 37, 22, 0.05);
+    /* Subtle background based on txt-color */
+    border: 1px solid rgba(47, 37, 22, 0.1);
+    border-radius: 4px;
+    padding: 16px;
+    margin: 16px 0;
+    position: relative;
+    line-height: 1.6;
+    color: var(--txt-color);
+}
+
+/* Theme-specific overrides for visibility */
+[data-theme="retro 2077"] .prompt-block,
+[data-theme="sky in Ukiyo-e"] .prompt-block {
+    background: rgba(255, 255, 255, 0.08); /* Lighter translucent gray for dark backgrounds */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Force light-colored copy button in dark themes for better contrast */
+[data-theme="retro 2077"] .copy-prompt-btn,
+[data-theme="sky in Ukiyo-e"] .copy-prompt-btn {
+    color: #ffffff;
+    opacity: 0.6;
+}
+
+[data-theme="retro 2077"] .copy-prompt-btn:hover,
+[data-theme="sky in Ukiyo-e"] .copy-prompt-btn:hover {
+    opacity: 1;
+}
+
+
+
+.copy-prompt-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--txt-color);
+    opacity: 0.4;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+    border-radius: 4px;
+}
+
+.copy-prompt-btn:hover {
+    opacity: 0.8;
+    background: rgba(47, 37, 22, 0.08);
+}
+
+.copy-prompt-btn:active {
+    transform: scale(0.92);
+}
+
+.copy-prompt-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    /* Reset icon vertical-align from global svg rule */
+    vertical-align: unset;
+    margin-right: 0;
+    top: 0;
+}
+
+/* Feedback state */
+.copy-prompt-btn.copied {
+    color: var(--deco-color);
+    opacity: 1;
+}
+
+.prompt-text {
+    padding-right: 24px;
+    /* Space for the button */
+    padding-top: 8px;
+    /* Extra space for the indicator */
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    opacity: 0.8;
+}
+
+
+.prompt-indicator {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    background: var(--txt-color);
+    /* Standard indicator gray from image */
+    padding: 2px 10px;
+    font-size: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--bg-color);
+    border: 1px solid rgba(47, 37, 22, 0.1);
+    pointer-events: none;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+}

@@ -19,10 +19,12 @@
 
             const applyTheme = (name)=>{
                 const vars = data[name] || {};
+                document.documentElement.setAttribute('data-theme', name);
                 Object.keys(vars).forEach(k=>{
                     document.documentElement.style.setProperty(k, vars[k]);
                 });
                 localStorage.setItem('colorTheme', name);
+
 
                 // only adjust gradient for retro 2077 theme
                 if(name === 'retro 2077') {

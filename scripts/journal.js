@@ -301,3 +301,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+/**
+ * Copies the text from a .prompt-block to the clipboard.
+ * Provides visual feedback on the button.
+ */
+function copyPrompt(btn) {
+  const block = btn.closest('.prompt-block');
+  const textContainer = block.querySelector('.prompt-text');
+  const text = textContainer.innerText;
+
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    const originalHTML = btn.innerHTML;
+    
+    // Switch to checkmark icon
+    btn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L100,192.69,218.34,74.34a8,8,0,0,1,11.32,11.32Z"></path></svg>
+    `;
+
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = originalHTML;
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+  });
+}
+
