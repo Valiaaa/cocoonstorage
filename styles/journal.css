@@ -617,7 +617,8 @@
 
 #entry-note_how_build_lennyrpg .notebook-entry-date,
 #entry-app_annual_report_analysis .notebook-entry-date,
-#entry-openclaw_security_101 .notebook-entry-date {
+#entry-openclaw_security_101 .notebook-entry-date,
+#entry-code_cleansing_prompt .notebook-entry-date {
     margin-bottom: 0;
 }
 
@@ -639,7 +640,8 @@
 /* Theme-specific overrides for visibility */
 [data-theme="retro 2077"] .prompt-block,
 [data-theme="sky in Ukiyo-e"] .prompt-block {
-    background: rgba(255, 255, 255, 0.08); /* Lighter translucent gray for dark backgrounds */
+    background: rgba(255, 255, 255, 0.08);
+    /* Lighter translucent gray for dark backgrounds */
     border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -674,7 +676,9 @@
     opacity: 0.4;
     transition: opacity 0.2s ease, transform 0.1s ease;
     border-radius: 4px;
+    z-index: 10;
 }
+
 
 .copy-prompt-btn:hover {
     opacity: 0.8;
@@ -702,10 +706,8 @@
 }
 
 .prompt-text {
-    padding-right: 24px;
-    /* Space for the button */
-    padding-top: 8px;
-    /* Extra space for the indicator */
+    padding-right: 16px;
+    padding-top: 4px;
     white-space: pre-wrap;
     overflow-wrap: break-word;
     opacity: 0.8;
@@ -727,4 +729,31 @@
     line-height: 1.4;
     letter-spacing: 0.5px;
     border-radius: 4px;
+}
+
+/* Editable placeholder style */
+.prompt-input {
+    border-bottom: 1px dashed var(--txt-color);
+    background: rgba(47, 37, 22, 0.08);
+    /* Light tint for visibility */
+    padding: 0 4px;
+    margin: 0 2px;
+    color: var(--deco-color);
+    border-radius: 2px;
+    min-width: 30px;
+    display: inline-block;
+    outline: none;
+    cursor: text;
+    transition: background 0.2s ease;
+}
+
+.prompt-input:focus {
+    background: rgba(47, 37, 22, 0.12);
+    border-bottom-style: solid;
+}
+
+[data-theme="retro 2077"] .prompt-input,
+[data-theme="sky in Ukiyo-e"] .prompt-input {
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.3);
 }

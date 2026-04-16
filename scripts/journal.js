@@ -300,7 +300,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // Handle auto-select for prompt inputs
+  document.addEventListener('focusin', (e) => {
+    if (e.target.classList.contains('prompt-input')) {
+      // Small delay to ensure the browser's default cursor placement doesn't override us
+      setTimeout(() => {
+        const range = document.createRange();
+        range.selectNodeContents(e.target);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }, 0);
+    }
+  });
 });
+
 
 /**
  * Copies the text from a .prompt-block to the clipboard.

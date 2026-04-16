@@ -14,6 +14,8 @@ class CustomCursor {
         this.defaultHotspotY = options.defaultHotspotY || 0;
         this.rockHotspotX = options.rockHotspotX || 15;
         this.rockHotspotY = options.rockHotspotY || 15;
+        this.textHotspotX = options.textHotspotX || 24;
+        this.textHotspotY = options.textHotspotY || 37;
         
         // 尺寸设置
         this.defaultWidth = options.defaultWidth || 48;
@@ -23,6 +25,9 @@ class CustomCursor {
         this.rockWidth = options.rockWidth || 55;
         this.rockHeight = options.rockHeight || 75;
         
+        this.textWidth = options.textWidth || 48;
+        this.textHeight = options.textHeight || 75;
+        
         this.basePath = options.basePath || this.getBasePath();
         
         this.canvas = null;
@@ -30,15 +35,17 @@ class CustomCursor {
         this.pointerImage = null;
         this.defaultImage = null;
         this.rockImage = null;
+        this.textImage = null;
         this.mouseX = -999;
         this.mouseY = -999;
         this.isPointerMode = false;
         this.isRockMode = false;
+        this.isTextMode = false;
         this.scale = window.devicePixelRatio || 1;
         this.isVisible = false;
         this.isHiddenByElement = false;
         this.imagesLoaded = 0;
-        this.totalImagesNeeded = 3;
+        this.totalImagesNeeded = 4;
         this.animationFrameId = null;
         
         this.init();
@@ -114,11 +121,19 @@ class CustomCursor {
             this.imagesLoaded++;
             this.checkImagesReady();
         };
+
+        const textImg = new Image();
+        textImg.onload = () => {
+            this.textImage = textImg;
+            this.imagesLoaded++;
+            this.checkImagesReady();
+        };
         
         // 使用 basePath + 相对URL
         pointerImg.src = this.basePath + 'assets/icons/pointer.svg';
         defaultImg.src = this.basePath + 'assets/icons/default.svg';
         rockImg.src = this.basePath + 'assets/icons/rock.svg';
+        textImg.src = this.basePath + 'assets/icons/text.svg';
     }
 
     checkImagesReady() {
@@ -182,6 +197,11 @@ class CustomCursor {
         this.scheduleRender();
     }
 
+    setTextMode(isText) {
+        this.isTextMode = isText;
+        this.scheduleRender();
+    }
+
     draw() {
         // 如果光标在屏幕外，不绘制
         if (this.mouseX < -100 || this.mouseY < -100) {
@@ -210,6 +230,12 @@ class CustomCursor {
             hotspotY = this.pointerHotspotY;
             width = this.pointerWidth;
             height = this.pointerHeight;
+        } else if (this.isTextMode) {
+            image = this.textImage;
+            hotspotX = this.textHotspotX;
+            hotspotY = this.textHotspotY;
+            width = this.textWidth;
+            height = this.textHeight;
         }
         
         if (image && this.isVisible) {
@@ -314,22 +340,36 @@ function initCustomCursor() {
             pointerWidth: 59,
             pointerHeight: 75,
             rockWidth: 55,
-            rockHeight: 75
+            rockHeight: 75,
+            textWidth: 48,
+            textHeight: 75,
+            textHotspotX: 24,
+            textHotspotY: 37
         });
 
         // 监听所有可点击元素
         document.addEventListener('mouseenter', (e) => {
-            if (e.target instanceof Element && e.target.closest('.rock-cursor-target')) {
+            if (!(e.target instanceof Element)) return;
+            
+            const target = e.target;
+            if (target.closest('.rock-cursor-target')) {
                 customCursor.setRockMode(true);
-            } else if (isClickable(e.target)) {
+            } else if (target.closest('.prompt-input')) {
+                customCursor.setTextMode(true);
+            } else if (isClickable(target)) {
                 customCursor.setPointerMode(true);
             }
         }, true);
 
         document.addEventListener('mouseleave', (e) => {
-            if (e.target instanceof Element && e.target.closest('.rock-cursor-target')) {
+            if (!(e.target instanceof Element)) return;
+            
+            const target = e.target;
+            if (target.closest('.rock-cursor-target')) {
                 customCursor.setRockMode(false);
-            } else if (isClickable(e.target)) {
+            } else if (target.closest('.prompt-input')) {
+                customCursor.setTextMode(false);
+            } else if (isClickable(target)) {
                 customCursor.setPointerMode(false);
             }
         }, true);

@@ -22,7 +22,7 @@ date: 2026-04-15
     <ol>
         <li><span class="list-item-spaced"><b>Open-source projects searching:</b> Ask Claude Code to search for ready-made open source libraries will help speeding up initiating the product build.</li></span>
         <li><span class="list-item-spaced"><b>Working with complex libraries:</b> It might take some time for your ai agent to understand how some libraries work. To help, you can create a Markdown file for your agent to record all the action logs, so it understands better what works and what doesn’t.</li></span>
-        <li><span class="list-item-spaced"><b>Initial Testing:</b> See people's first reaction: is it easy to understand and use? What's the main emotional response when using the product?</li></span>
+        <li><span class="list-item-spaced"><b>Initial testing:</b> See people's first reaction: is it easy to understand and use? What's the main emotional response when using the product?</li></span>
     </ol>
     <li><span class="list-item-spaced"><b>Remaining Features</b> to finish the end-to-end flow</li></span>
     <ol>
