@@ -1,141 +1,203 @@
 {
   "title": "Shelf",
-  "stats": {
-    "reading": 3,
-    "read": 12
-  },
   "rows": [
     {
-      "id": "row-1",
+      "id": "row-current",
       "books": [
         {
-          "id": "b1",
-          "title": "1367",
-          "cover": "shelf/book cover/1367.png",
-          "width": 266,
-          "height": 367,
-          "status": "reading"
-        },
-        {
-          "id": "b2",
-          "title": "A Man Called Ove",
-          "cover": "shelf/book cover/A Man Called Ove.png",
-          "width": 236,
-          "height": 354,
-          "status": "reading"
-        },
-        {
-          "id": "b3",
-          "title": "Ark",
-          "cover": "shelf/book cover/Ark.png",
-          "width": 255,
-          "height": 354,
-          "status": "reading"
+          "id": "b15",
+          "number": "015",
+          "title": "Thinking, Fast and Slow",
+          "author": "Daniel Kahneman",
+          "genre": "Psychology",
+          "motif": "Got recommended",
+          "comment": "",
+          "cover": "shelf/book cover/Thinking, Fast and Slow.png",
+          "width": 253,
+          "height": 364,
+          "status": "reading",
+          "hidden": true
         },
         {
           "id": "b4",
+          "number": "014",
           "title": "Design as Art",
+          "author": "Bruno Munari",
+          "genre": "Design",
+          "motif": "Saw this cute book in MoMA PS1 bookstore and I knew I have to get it. It's the first physical book I read in a while.",
+          "comment": "",
           "cover": "shelf/book cover/Design as Art.png",
           "width": 190,
           "height": 301,
-          "status": "read"
-        },
-        {
-          "id": "b5",
-          "title": "Fight Club",
-          "cover": "shelf/book cover/Fight Club.png",
-          "width": 228,
-          "height": 347,
-          "status": "read"
-        }
-      ]
-    },
-    {
-      "id": "row-2",
-      "books": [
-        {
-          "id": "b6",
-          "title": "Holy Mother",
-          "cover": "shelf/book cover/Holy Mother.png",
-          "width": 212,
-          "height": 335,
-          "status": "read"
-        },
-        {
-          "id": "b7",
-          "title": "How to Take Smart Notes",
-          "cover": "shelf/book cover/How to Take Smart Notes.png",
-          "width": 222,
-          "height": 331,
-          "status": "read"
-        },
-        {
-          "id": "b8",
-          "title": "Klein Bottle",
-          "cover": "shelf/book cover/Klein Bottle.png",
-          "width": 256,
-          "height": 354,
-          "status": "read"
-        },
-        {
-          "id": "b9",
-          "title": "Small Team Management Manual for Less than 10 People",
-          "cover": "shelf/book cover/Small Team Management Manual for Less than 10 People.png",
-          "width": 236,
-          "height": 309,
-          "status": "read"
+          "status": "reading"
         },
         {
           "id": "b10",
+          "number": "013",
           "title": "Stories of Your Life and Others",
+          "author": "Ted Chiang",
+          "genre": "Science Fiction",
+          "motif": "It's the basis of the movie Arrival.",
+          "comment": "",
           "cover": "shelf/book cover/Stories of Your Life and Others.png",
           "width": 227,
           "height": 340,
-          "status": "read"
-        }
-      ]
-    },
-    {
-      "id": "row-3",
-      "books": [
-        {
-          "id": "b11",
-          "title": "The House Where I Died Once",
-          "cover": "shelf/book cover/The House Where I Died Once.png",
-          "width": 185,
-          "height": 254,
-          "status": "read"
+          "status": "reading"
         },
         {
-          "id": "b12",
-          "title": "The Seventh Day",
-          "cover": "shelf/book cover/The Seventh Day.png",
-          "width": 234,
-          "height": 335,
-          "status": "read"
+          "id": "b7",
+          "number": "012",
+          "title": "How to Take Smart Notes",
+          "author": "Sönke Ahrens",
+          "genre": "Non-fiction",
+          "motif": "Classic note-taking guide, wanna see if I can be further inspired.",
+          "comment": "I love how it also talks about the mindset of learning and writing.",
+          "cover": "shelf/book cover/How to Take Smart Notes.png",
+          "width": 222,
+          "height": 331,
+          "status": "reading"
         },
         {
           "id": "b13",
+          "number": "011",
           "title": "The Vegetarian",
+          "author": "Han Kang",
+          "genre": "Fiction",
+          "motif": "Asia's first international Booker Prize winner in literature",
+          "comment": "This book tells the story of a hopeless final escape. It’s about letting life return to its most innocent and stable form, so that the pain can never catch her again.​",
           "cover": "shelf/book cover/The Vegetarian.png",
           "width": 238,
           "height": 357,
           "status": "read"
         },
         {
+          "id": "b1",
+          "number": "010",
+          "title": "The Borrowed",
+          "author": "Chan Ho-Kei",
+          "genre": "Crime",
+          "motif": "Got recommended",
+          "comment": "Readers will realize just how grand this story is by the time they finish it. The interlocking plot creates an overwhelming sense of a “larger” perspective, showing how everyone is just a small part of a butterfly effect hurricane. It is definitely one of the best crime novels I’ve ever read.​",
+          "cover": "shelf/book cover/The Borrowed.png",
+          "width": 251,
+          "height": 362,
+          "status": "read"
+        },
+        {
+          "id": "b11",
+          "number": "009",
+          "title": "The House Where I Died Once With Obi",
+          "author": "Keigo Higashino",
+          "genre": "Thriller",
+          "motif": "Got recommended",
+          "comment": "Nice read. The diary format adds such a personal touch to the suspense. It makes the mystery feel more intimate, as if you’re discovering secrets right alongside the character.​",
+          "cover": "shelf/book cover/The House Where I Died Once.png",
+          "width": 185,
+          "height": 254,
+          "status": "read"
+        },
+        {
+          "id": "b3",
+          "number": "008",
+          "title": "Ark",
+          "author": "Yuki Haruo",
+          "genre": "Thriller",
+          "motif": "Got recommended",
+          "comment": "I still remember the shock of reaching the ending. The way the character switches situation from passive to aggressive is incredible. It shows how the story is truly about humanity, selfishness, and madness.\n\n​Personally, I don’t mind a hard-to-guess thriller as long as it delivers a great story.",
+          "cover": "shelf/book cover/Ark.png",
+          "width": 255,
+          "height": 354,
+          "status": "read"
+        },
+        {
+          "id": "b8",
+          "number": "007",
+          "title": "Klein Bottle",
+          "author": "Kodansha Bunko",
+          "genre": "Sci-fi",
+          "motif": "Almost fortune teller book?",
+          "comment": "It’s hard to believe that this book was published back in 1991. It feels like a prophetic book to me, as I think we are no longer far away from the technologies it described.",
+          "cover": "shelf/book cover/Klein Bottle.png",
+          "width": 190,
+          "height": 258,
+          "status": "read"
+        },
+        {
+          "id": "b12",
+          "number": "006",
+          "title": "The Seventh Day",
+          "author": "Yu Hua",
+          "genre": "Fiction",
+          "motif": "Got recommended",
+          "comment": "Yu Hua’s writing is remarkably fearless, weaving together so many tragedies and layers of pain. I believe I will return to this book in the future to see how my perspective and feelings toward the stories and characters evolve over time.​",
+          "cover": "shelf/book cover/The Seventh Day.png",
+          "width": 234,
+          "height": 335,
+          "status": "read"
+        },
+        {
+          "id": "b9",
+          "number": "005",
+          "title": "Small Team Management Manual for Less than 10 People",
+          "author": "Katsuhiko Horinouchi",
+          "genre": "Management",
+          "motif": "Wanna improve my management skill as a small team lead",
+          "comment": "It was worth the time. I got several useful insights.",
+          "cover": "shelf/book cover/Small Team Management Manual for Less than 10 People.png",
+          "width": 236,
+          "height": 309,
+          "status": "read"
+        },
+        {
+          "id": "b6",
+          "number": "004",
+          "title": "Holy Mother",
+          "author": "Akiyoshi Rikako",
+          "genre": "Thriller",
+          "motif": "Got recommended",
+          "comment": "It was worth the time. The mother-daughter bond is so strong that it gives them the ultimate power for revenge. Their connection becomes a weapon, proving that love can be just as fierce as it is tender.​",
+          "cover": "shelf/book cover/Holy Mother.png",
+          "width": 212,
+          "height": 335,
+          "status": "read"
+        },
+        {
           "id": "b14",
+          "number": "003",
           "title": "The World According to Garp",
+          "author": "John Irving",
+          "genre": "Fiction",
+          "motif": "Got recommended",
+          "comment": "The plot keeps surprising me. But I love it. It's a long long book across several generations. I enjoyed seeing how things start and then quiet down while leaving a permanent scar; and how to stick together as the most fragile individuals...",
           "cover": "shelf/book cover/The World According to Garp.png",
           "width": 213,
           "height": 297,
           "status": "read"
         },
         {
-          "id": "b15",
-          "title": "Thinking, Fast and Slow",
-          "cover": "shelf/book cover/Thinking, Fast and Slow.png",
-          "width": 253,
-          "height": 364,
+          "id": "b5",
+          "number": "002",
+          "title": "Fight Club",
+          "author": "Chuck Palahniuk",
+          "genre": "Fiction",
+          "motif": "Classic first read among Chuck's work.",
+          "comment": "I actually read the book before watching the movie. I enjoyed them equally, but in slightly different ways. The book allowed me to sense the narrator's mental state more deeply, while the movie filled in the visual gaps that my imagination had left blank.\n\nIf you loved the movie, I’d highly recommend reading the book as well!",
+          "cover": "shelf/book cover/Fight Club.png",
+          "width": 228,
+          "height": 347,
+          "status": "read"
+        },
+        {
+          "id": "b2",
+          "number": "001",
+          "title": "A Man Called Ove",
+          "author": "Fredrik Backman",
+          "genre": "Fiction",
+          "motif": "Wanna know how the book would discuss the topic of death/suicide.",
+          "comment": "Very warm book. Would recommend as a night time reading.",
+          "cover": "shelf/book cover/A Man Called Ove.png",
+          "width": 236,
+          "height": 354,
           "status": "read"
         }
       ]

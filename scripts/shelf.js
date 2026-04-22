@@ -12,6 +12,130 @@ function escapeHtml(s) {
   return div.innerHTML;
 }
 
+/* ====================================================
+   Book Card Modal
+   ==================================================== */
+
+let bookMap = {};
+
+function openBookCard(bookId) {
+  const book = bookMap[bookId];
+  if (!book) return;
+
+  const existing = document.getElementById('shelf-card-overlay');
+  if (existing) existing.remove();
+
+  // Reverse numbering: last book on shelf is No.1
+  const bookIndex = allBooks.findIndex(b => b.id === bookId);
+  const reversedNum = (allBooks.length - bookIndex).toString().padStart(3, '0');
+  const numDisplay = `NO.${reversedNum}`;
+
+  const rows = [
+    { label: 'TITLE',          value: book.title   || '' },
+    { label: 'AUTHOR',         value: book.author  || '' },
+    { label: 'GENRE',          value: book.genre   || '' },
+    { label: 'READING MOTIVE', value: book.motif   || '' },
+  ];
+
+  const tableRows = rows.map(r => `
+    <tr class="sc-row">
+      <td class="sc-label">${r.label}</td>
+      <td class="sc-value">${escapeHtml(r.value)}</td>
+    </tr>
+  `).join('');
+
+  const commentText = book.comment && book.comment.trim() ? escapeHtml(book.comment) : '<em style="opacity: 0.5;">Still working on the comments...</em>';
+
+  const overlay = document.createElement('div');
+  overlay.id = 'shelf-card-overlay';
+  overlay.innerHTML = `
+    <div class="sc-card" role="dialog" aria-modal="true">
+      <div class="sc-header" id="sc-drag-handle">
+        <span class="sc-num">${escapeHtml(numDisplay)}</span>
+        <span class="sc-site">VALIA'S&nbsp;SHELF</span>
+        <button class="sc-close" aria-label="Close">✕</button>
+      </div>
+      <div class="sc-rule sc-rule--double"></div>
+      <table class="sc-table">
+        <tbody>${tableRows}</tbody>
+      </table>
+      <div class="sc-rule sc-rule--double"></div>
+      <div class="sc-comments-wrap">
+        <div class="sc-comments-label">Comments</div>
+        <div class="sc-comments-body">${commentText}</div>
+      </div>
+      <div class="sc-rule sc-rule--bottom"></div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  const card = overlay.querySelector('.sc-card');
+  const header = overlay.querySelector('.sc-header');
+
+  // Draggable logic
+  let isDragging = false;
+  let offsetX, offsetY;
+
+  header.addEventListener('mousedown', e => {
+    if (e.target.closest('.sc-close')) return;
+    
+    isDragging = true;
+    card.classList.add('is-dragging');
+    
+    // Calculate initial offset from click point to card top-left
+    const rect = card.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    
+    // Switch to absolute positioning instead of transform centering
+    card.style.top = rect.top + 'px';
+    card.style.left = rect.left + 'px';
+    card.style.transform = 'none';
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    
+    let left = e.clientX - offsetX;
+    let top = e.clientY - offsetY;
+    
+    card.style.left = left + 'px';
+    card.style.top = top + 'px';
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+    card.classList.remove('is-dragging');
+  });
+
+  // Close handlers
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeBookCard();
+  });
+  overlay.querySelector('.sc-close').addEventListener('click', closeBookCard);
+
+  // Force transition
+  requestAnimationFrame(() => overlay.classList.add('sc-visible'));
+}
+
+function closeBookCard() {
+  const overlay = document.getElementById('shelf-card-overlay');
+  if (!overlay) return;
+  overlay.classList.remove('sc-visible');
+  overlay.addEventListener('transitionend', () => overlay.remove(), { once: true });
+  document.body.classList.remove('shelf-card-open');
+}
+
+// Close on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeBookCard();
+});
+
+/* ====================================================
+   Book rendering
+   ==================================================== */
+
 function renderBook(book) {
   const badge =
     book.status === 'reading'
@@ -22,7 +146,7 @@ function renderBook(book) {
   const h = book.height || 300;
 
   return `
-    <div class="shelf-book-item">
+    <div class="shelf-book-item" data-book-id="${escapeHtml(book.id)}">
       <div class="shelf-book-cover-wrap">
         ${badge}
         <img class="shelf-book-cover" src="${escapeHtml(book.cover)}" alt=""
@@ -118,13 +242,29 @@ async function init() {
     const res = await fetch('shelf/index.json');
     const data = await res.json();
 
-    if (shelfReadingEl) shelfReadingEl.textContent = String(data.stats?.reading ?? '—');
-    if (shelfReadEl) shelfReadEl.textContent = String(data.stats?.read ?? '—');
-
     const rows = data.rows || [];
     allBooks = rows.flatMap(r => r.books);
 
+    // Filter out hidden books
+    allBooks = allBooks.filter(b => !b.hidden);
+
+    // Calculate stats dynamically from data
+    const readingCount = allBooks.filter(b => b.status === 'reading').length;
+    const readCount = allBooks.filter(b => b.status === 'read').length;
+
+    if (shelfReadingEl) shelfReadingEl.textContent = String(readingCount);
+    if (shelfReadEl) shelfReadEl.textContent = String(readCount);
+
+    // Build lookup map for card data
+    allBooks.forEach(b => { bookMap[b.id] = b; });
+
     renderBooksDynamically();
+
+    // Click delegation: opens card when a book is clicked
+    shelfRowsEl.addEventListener('click', e => {
+      const item = e.target.closest('.shelf-book-item');
+      if (item) openBookCard(item.dataset.bookId);
+    });
 
     let resizeTimer;
     window.addEventListener('resize', () => {
