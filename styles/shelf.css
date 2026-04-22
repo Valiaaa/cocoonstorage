@@ -176,8 +176,6 @@ body.shelf-card-open {
     min-height: 180px;
     padding: 18px 16px 16px;
     flex: 1;
-    background: rgba(0, 0, 0, 0.025);
-    /* Subtle background for contrast */
 }
 
 .sc-comments-label {
