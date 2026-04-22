@@ -191,6 +191,7 @@ img.notebook-thumb-inner {
 .toc-entry-title-text {
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 16px;
 }
 
 .toc-entry-date {
@@ -528,22 +529,103 @@ img.notebook-thumb-inner {
     opacity: 0;
 }
 
+/* ── Mobile Viewer Controls ───────────────────────────────── */
+.mobile-viewer-header,
+.mobile-viewer-footer {
+    display: none;
+}
+
+.mobile-back-btn,
+.mobile-nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--txt-color);
+    font-family: var(--font-family-main), 'Inter', sans-serif;
+    font-size: 13px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: opacity 0.2s ease, background 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: auto;
+}
+
+.mobile-back-btn {
+    align-items: center;
+    justify-content: center;
+    padding: 8px; /* Square button for icon */
+}
+
+.mobile-back-btn svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.mobile-nav-btn.next {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.mobile-nav-btn .nav-dir {
+    font-size: 11px;
+    opacity: 0.5;
+    margin-bottom: 2px;
+}
+
+.mobile-nav-btn .nav-title {
+    font-size: 13px;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mobile-back-btn:hover,
+.mobile-nav-btn:hover {
+    background: rgba(47, 37, 22, 0.05);
+}
+
+.mobile-viewer-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(47, 37, 22, 0.2);
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.mobile-viewer-footer {
+    padding: 12px 16px;
+    border-top: 1px solid rgba(47, 37, 22, 0.2);
+    align-items: center;
+    justify-content: space-between;
+}
+
+[data-theme="retro 2077"] .mobile-viewer-header,
+[data-theme="retro 2077"] .mobile-viewer-footer,
+[data-theme="sky in Ukiyo-e"] .mobile-viewer-header,
+[data-theme="sky in Ukiyo-e"] .mobile-viewer-footer {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
 /* ── Responsive: mobile ───────────────────────────────────── */
 @media screen and (max-width: 768px) {
     .journal-layout {
-        flex-direction: column;
-        height: auto;
-        overflow: visible;
+        flex-direction: row;
+        height: calc(100vh - var(--body-padding) * 2 - 60px);
+        overflow: hidden;
     }
 
     .journal-sidebar {
-        flex: none;
-        border-right: none;
-        border-bottom: var(--border-width) solid var(--txt-color);
-        flex-direction: row;
-        overflow-x: auto;
-        overflow-y: hidden;
-        width: 100%;
+        flex: 0 0 35%;
+        border-bottom: none;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: auto;
+        padding-right: 12px;
     }
 
     .journal-sidebar-title {
@@ -551,24 +633,29 @@ img.notebook-thumb-inner {
     }
 
     .journal-notebook-list {
-        flex-direction: row;
-        flex: none;
-        padding: var(--body-padding);
-        gap: var(--body-padding);
+        flex-direction: column;
+        flex: 1;
+        padding: 0;
+        gap: 16px;
     }
 
     .notebook-item {
+        width: 100%;
+        padding: 4px;
         border-bottom: none;
-        width: 80px;
-        padding: 8px;
     }
 
     .journal-toc {
-        flex: none;
-        width: 100%;
+        flex: 1 1 0;
+        width: auto;
         border-right: none;
-        border-bottom: var(--border-width) solid var(--txt-color);
-        max-height: 200px;
+        border-bottom: none;
+        max-height: none;
+        padding-left: 12px;
+    }
+
+    .journal-toc-entry.active {
+        color: inherit; /* User requested removing focus color change */
     }
 
     .journal-toc.hidden {
@@ -577,8 +664,31 @@ img.notebook-thumb-inner {
     }
 
     .journal-viewer {
-        height: calc(100vh - 200px);
-        min-height: 400px;
+        display: none;
+    }
+
+    /* ── Mobile Viewer Active State ────────────────────────── */
+    .journal-layout.mobile-viewer-active .journal-sidebar,
+    .journal-layout.mobile-viewer-active .journal-toc {
+        display: none;
+    }
+
+    .journal-layout.mobile-viewer-active .journal-viewer {
+        display: flex;
+        flex: 1 1 100%;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+    }
+
+    .mobile-viewer-header {
+        display: flex;
+        flex: 0 0 auto;
+    }
+
+    .mobile-viewer-footer {
+        display: flex;
+        flex: 0 0 auto;
     }
 }
 

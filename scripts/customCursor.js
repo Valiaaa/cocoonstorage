@@ -440,7 +440,8 @@ function isClickable(element) {
         '.notebook-item',
         '.journal-toc-entry',
         '.toc-entry-title',
-        '.toc-entry-arrow'
+        '.toc-entry-arrow',
+        '.shelf-book-item'
     ];
 
     return clickableSelectors.some(selector => {

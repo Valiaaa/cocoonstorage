@@ -7,12 +7,14 @@
 let JOURNALS = [];
 let activeJournal = null;
 let activeEntry = null;
+let currentSortedEntries = [];
 
 // ── DOM refs ──────────────────────────────────────────────────
 const notebookList = document.getElementById('notebookList');
 const journalToc = document.getElementById('journalToc');
 const journalViewer = document.getElementById('journalViewer');
 const notebookPage = document.getElementById('notebookPage');
+const journalLayout = document.querySelector('.journal-layout');
 
 // ── Init: load index.json ─────────────────────────────────────
 async function init() {
@@ -176,6 +178,7 @@ async function selectJournal(journal, initialEntryId = null) {
       return d2 - d1;
     });
 
+    currentSortedEntries = entryMetas;
     renderToc(journal, entryMetas);
 
     let targetEntry = null;
@@ -194,10 +197,18 @@ async function selectJournal(journal, initialEntryId = null) {
       activeEntry = targetEntry;
       markTocActive(targetEntry.id);
       updateJournalURL(journal.id, targetEntry.id);
+      updateMobileNavButtons();
     } else {
       renderPlaceholder(journal);
       markTocActive(null);
       updateJournalURL(journal.id, null);
+    }
+
+    // On mobile, if we opened via URL deep link explicitly, show viewer
+    if (initialEntryId && targetEntry) {
+      if (journalLayout) journalLayout.classList.add('mobile-viewer-active');
+    } else {
+      if (journalLayout) journalLayout.classList.remove('mobile-viewer-active');
     }
   } else {
     journalViewer.classList.add('double-sided');
@@ -206,6 +217,8 @@ async function selectJournal(journal, initialEntryId = null) {
     // Load double-sided content
     const content = await fetchEntry(journal.id, journal.entries[0]);
     renderDoubleViewer(content);
+    // Double-sided (Sketchbook) skips landing layer and opens full screen on mobile
+    if (journalLayout) journalLayout.classList.add('mobile-viewer-active');
   }
 }
 
@@ -248,6 +261,10 @@ function markTocActive(entryId) {
 
 // ── Click a TOC entry ─────────────────────────────────────────
 async function onTocEntryClick(journal, entryId) {
+  if (journalLayout) {
+    journalLayout.classList.add('mobile-viewer-active');
+  }
+
   if (activeEntry && activeEntry.id === entryId) return; // already showing
 
   try {
@@ -261,9 +278,42 @@ async function onTocEntryClick(journal, entryId) {
     setTimeout(() => {
       renderSingleEntry(entry);
       notebookPage.classList.remove('fading');
+      updateMobileNavButtons();
     }, 200);
   } catch (e) {
     console.error('Failed to load entry:', e);
+  }
+}
+
+// ── Mobile Viewer Navigation ──────────────────────────────────
+function updateMobileNavButtons() {
+  if (!activeEntry || currentSortedEntries.length === 0) return;
+  const currentIndex = currentSortedEntries.findIndex(e => e.id === activeEntry.id);
+  if (currentIndex === -1) return;
+  
+  const prevBtn = document.getElementById('mobilePrevBtn');
+  const nextBtn = document.getElementById('mobileNextBtn');
+  const prevTitle = document.getElementById('mobilePrevTitle');
+  const nextTitle = document.getElementById('mobileNextTitle');
+  
+  if (!prevBtn || !nextBtn) return;
+
+  if (currentIndex > 0) {
+    const prevEntry = currentSortedEntries[currentIndex - 1];
+    prevBtn.style.visibility = 'visible';
+    prevBtn.dataset.targetId = prevEntry.id;
+    if (prevTitle) prevTitle.innerText = prevEntry.title;
+  } else {
+    prevBtn.style.visibility = 'hidden';
+  }
+
+  if (currentIndex < currentSortedEntries.length - 1) {
+    const nextEntry = currentSortedEntries[currentIndex + 1];
+    nextBtn.style.visibility = 'visible';
+    nextBtn.dataset.targetId = nextEntry.id;
+    if (nextTitle) nextTitle.innerText = nextEntry.title;
+  } else {
+    nextBtn.style.visibility = 'hidden';
   }
 }
 
@@ -342,6 +392,30 @@ document.addEventListener('DOMContentLoaded', () => {
         sel.removeAllRanges();
         sel.addRange(range);
       }, 0);
+    }
+  });
+
+  // Handle mobile viewer controls
+  document.getElementById('mobileBackBtn')?.addEventListener('click', () => {
+    if (journalLayout) {
+      journalLayout.classList.remove('mobile-viewer-active');
+    }
+  });
+
+  document.getElementById('mobilePrevBtn')?.addEventListener('click', (e) => {
+    const targetId = e.currentTarget.dataset.targetId;
+    if (targetId && activeJournal) {
+      onTocEntryClick(activeJournal, targetId);
+      // Ensure scrolling jumps to top quickly
+      if (notebookPage) notebookPage.scrollTop = 0;
+    }
+  });
+
+  document.getElementById('mobileNextBtn')?.addEventListener('click', (e) => {
+    const targetId = e.currentTarget.dataset.targetId;
+    if (targetId && activeJournal) {
+      onTocEntryClick(activeJournal, targetId);
+      if (notebookPage) notebookPage.scrollTop = 0;
     }
   });
 });

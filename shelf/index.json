@@ -10,50 +10,42 @@
       "books": [
         {
           "id": "b1",
-          "title": "The Design of Everyday Things",
-          "cover": "archive/projects/portrait.jpg",
-          "width": 120,
-          "height": 180,
+          "title": "1367",
+          "cover": "shelf/book cover/1367.png",
+          "width": 266,
+          "height": 367,
           "status": "reading"
         },
         {
           "id": "b2",
-          "title": "Thinking in Systems",
-          "cover": "archive/projects/haleyon.jpg",
-          "width": 110,
-          "height": 176,
-          "status": "read"
+          "title": "A Man Called Ove",
+          "cover": "shelf/book cover/A Man Called Ove.png",
+          "width": 236,
+          "height": 354,
+          "status": "reading"
         },
         {
           "id": "b3",
-          "title": "Small Team Management Manual For Less Than 10 People",
-          "cover": "archive/projects/you_may_not_ask.jpg",
-          "width": 140,
-          "height": 200,
+          "title": "Ark",
+          "cover": "shelf/book cover/Ark.png",
+          "width": 255,
+          "height": 354,
           "status": "reading"
         },
         {
           "id": "b4",
-          "title": "The Creative Act",
-          "cover": "archive/projects/moon.jpg",
-          "width": 115,
-          "height": 172,
+          "title": "Design as Art",
+          "cover": "shelf/book cover/Design as Art.png",
+          "width": 190,
+          "height": 301,
           "status": "read"
         },
         {
           "id": "b5",
-          "title": "Designing Design",
-          "cover": "archive/projects/do_not_hold_doors.jpg",
-          "width": 118,
-          "height": 178,
-          "status": "read"
-        },
-        {
-          "id": "b6",
-          "title": "Just Enough Research",
-          "cover": "archive/projects/snow print.jpg",
-          "width": 112,
-          "height": 170,
+          "title": "Fight Club",
+          "cover": "shelf/book cover/Fight Club.png",
+          "width": 228,
+          "height": 347,
           "status": "read"
         }
       ]
@@ -62,51 +54,43 @@
       "id": "row-2",
       "books": [
         {
+          "id": "b6",
+          "title": "Holy Mother",
+          "cover": "shelf/book cover/Holy Mother.png",
+          "width": 212,
+          "height": 335,
+          "status": "read"
+        },
+        {
           "id": "b7",
-          "title": "Orbiting the Giant Hairball",
-          "cover": "archive/projects/moth ring.jpg",
-          "width": 125,
-          "height": 185,
+          "title": "How to Take Smart Notes",
+          "cover": "shelf/book cover/How to Take Smart Notes.png",
+          "width": 222,
+          "height": 331,
           "status": "read"
         },
         {
           "id": "b8",
-          "title": "The Humane Interface",
-          "cover": "archive/projects/cat_tape.jpg",
-          "width": 108,
-          "height": 165,
-          "status": "reading"
+          "title": "Klein Bottle",
+          "cover": "shelf/book cover/Klein Bottle.png",
+          "width": 256,
+          "height": 354,
+          "status": "read"
         },
         {
           "id": "b9",
-          "title": "Notes on the Synthesis of Form",
-          "cover": "archive/projects/moth puff.jpg",
-          "width": 130,
-          "height": 190,
+          "title": "Small Team Management Manual for Less than 10 People",
+          "cover": "shelf/book cover/Small Team Management Manual for Less than 10 People.png",
+          "width": 236,
+          "height": 309,
           "status": "read"
         },
         {
           "id": "b10",
-          "title": "A Pattern Language",
-          "cover": "archive/projects/ring1.jpg",
-          "width": 95,
-          "height": 200,
-          "status": "read"
-        },
-        {
-          "id": "b11",
-          "title": "The Timeless Way of Building",
-          "cover": "archive/projects/anti white cube.jpg",
-          "width": 122,
-          "height": 182,
-          "status": "read"
-        },
-        {
-          "id": "b12",
-          "title": "Seeing with Fresh Eyes",
-          "cover": "archive/projects/moth puff2.jpg",
-          "width": 116,
-          "height": 174,
+          "title": "Stories of Your Life and Others",
+          "cover": "shelf/book cover/Stories of Your Life and Others.png",
+          "width": 227,
+          "height": 340,
           "status": "read"
         }
       ]
@@ -115,27 +99,43 @@
       "id": "row-3",
       "books": [
         {
+          "id": "b11",
+          "title": "The House Where I Died Once",
+          "cover": "shelf/book cover/The House Where I Died Once.png",
+          "width": 185,
+          "height": 254,
+          "status": "read"
+        },
+        {
+          "id": "b12",
+          "title": "The Seventh Day",
+          "cover": "shelf/book cover/The Seventh Day.png",
+          "width": 234,
+          "height": 335,
+          "status": "read"
+        },
+        {
           "id": "b13",
-          "title": "How Buildings Learn",
-          "cover": "archive/projects/cat_necklace.jpg",
-          "width": 128,
-          "height": 188,
+          "title": "The Vegetarian",
+          "cover": "shelf/book cover/The Vegetarian.png",
+          "width": 238,
+          "height": 357,
           "status": "read"
         },
         {
           "id": "b14",
-          "title": "The Laws of Simplicity",
-          "cover": "archive/projects/ring2.jpg",
-          "width": 114,
-          "height": 168,
+          "title": "The World According to Garp",
+          "cover": "shelf/book cover/The World According to Garp.png",
+          "width": 213,
+          "height": 297,
           "status": "read"
         },
         {
           "id": "b15",
-          "title": "Living in Information",
-          "cover": "archive/projects/moth cut.jpg",
-          "width": 120,
-          "height": 180,
+          "title": "Thinking, Fast and Slow",
+          "cover": "shelf/book cover/Thinking, Fast and Slow.png",
+          "width": 253,
+          "height": 364,
           "status": "read"
         }
       ]

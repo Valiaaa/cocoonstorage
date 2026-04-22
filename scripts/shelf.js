@@ -12,44 +12,103 @@ function escapeHtml(s) {
   return div.innerHTML;
 }
 
-function renderCover(book) {
-  const ratio = book.width && book.height ? book.height / book.width : 1.45;
+function renderBook(book) {
   const badge =
     book.status === 'reading'
       ? '<span class="shelf-book-badge" aria-label="Reading">reading</span>'
       : '';
 
+  const w = book.width || 200;
+  const h = book.height || 300;
+
   return `
-    <div class="shelf-book-cover-wrap" style="--shelf-book-aspect: ${ratio};">
-      ${badge}
-      <img class="shelf-book-cover" src="${escapeHtml(book.cover)}" alt="" loading="lazy" width="${book.width || ''}" height="${book.height || ''}">
+    <div class="shelf-book-item">
+      <div class="shelf-book-cover-wrap">
+        ${badge}
+        <img class="shelf-book-cover" src="${escapeHtml(book.cover)}" alt=""
+             loading="lazy"
+             style="--book-w: ${w}px; --book-h: ${h}px;">
+      </div>
+      <div class="shelf-book-title">${escapeHtml(book.title)}</div>
     </div>
   `;
 }
 
-function renderTitle(book) {
-  return `<div class="shelf-book-title">${escapeHtml(book.title)}</div>`;
+function getThemeName() {
+  return document.documentElement.getAttribute('data-theme') || 'white cube';
 }
 
-function renderRow(row) {
-  const n = row.books.length;
-  /* Grid row-major: all covers in row 1, all titles in row 2 */
-  const booksHtml = row.books.map(renderCover).join('') + row.books.map(renderTitle).join('');
+function updateShelfTextures() {
+  const theme = getThemeName();
+  const themeUri = encodeURIComponent(theme);
+  document.querySelectorAll('.shelf-row-deco picture').forEach(pic => {
+    const source = pic.querySelector('.shelf-texture-phone');
+    const img = pic.querySelector('.shelf-texture-pc');
+    if (source) source.srcset = `shelf/shelf/${themeUri}_phone.svg`;
+    if (img) img.src = `shelf/shelf/${themeUri}_pc.svg`;
+  });
+}
+
+let allBooks = [];
+
+function getScale() {
+  const ww = window.innerWidth;
+  if (ww <= 480) return 0.40;
+  if (ww <= 768) return 0.45;
+  if (ww <= 1024) return 0.48;
+  return 0.5;
+}
+
+function generateRowHtml(rowBooks, themeUri) {
+  const booksHtml = rowBooks.map(renderBook).join('');
   return `
-    <section class="shelf-row" data-row-id="${escapeHtml(row.id)}" style="--shelf-cols: ${n};">
+    <section class="shelf-row">
       <div class="shelf-row-books" aria-label="Bookshelf row">
         ${booksHtml}
       </div>
       <div class="shelf-row-deco" aria-hidden="true">
-        <!-- Replace inner SVG in shelf.html or here when your asset is ready -->
-        <svg class="shelf-row-deco-svg" viewBox="0 0 1200 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path fill="rgba(47, 37, 22, 0.08)" stroke="currentColor" stroke-width="1.2" opacity="0.45"
-            d="M0 8 L40 4 L1160 4 L1200 8 L1200 40 L1160 44 L40 44 L0 40 Z"/>
-          <line x1="0" y1="12" x2="1200" y2="12" stroke="currentColor" stroke-width="0.8" opacity="0.25"/>
-        </svg>
+        <picture>
+          <img class="shelf-row-deco-img shelf-texture-pc" src="shelf/shelf/${themeUri}_pc.svg" alt="" style="width: 100%; object-fit: fill; display: block;">
+        </picture>
       </div>
     </section>
   `;
+}
+
+function renderBooksDynamically() {
+  if (!allBooks || allBooks.length === 0 || !shelfRowsEl) return;
+  
+  const layoutEl = document.querySelector('.shelf-layout');
+  const containerWidth = layoutEl.clientWidth * 0.9;
+  
+  const scale = getScale();
+  const gap = 60;
+  const theme = getThemeName();
+  const themeUri = encodeURIComponent(theme);
+  
+  let rowsHtml = '';
+  let currentRowBooks = [];
+  let currentWidth = 0;
+  
+  for (let i = 0; i < allBooks.length; i++) {
+      const book = allBooks[i];
+      const bookW = (book.width || 200) * scale;
+      const addWidth = currentRowBooks.length === 0 ? bookW : gap + bookW;
+      
+      if (currentWidth + addWidth > containerWidth - 5 && currentRowBooks.length > 0) {
+          rowsHtml += generateRowHtml(currentRowBooks, themeUri);
+          currentRowBooks = [book];
+          currentWidth = bookW;
+      } else {
+          currentRowBooks.push(book);
+          currentWidth += addWidth;
+      }
+  }
+  if (currentRowBooks.length > 0) {
+      rowsHtml += generateRowHtml(currentRowBooks, themeUri);
+  }
+  
+  shelfRowsEl.innerHTML = rowsHtml;
 }
 
 async function init() {
@@ -63,7 +122,26 @@ async function init() {
     if (shelfReadEl) shelfReadEl.textContent = String(data.stats?.read ?? '—');
 
     const rows = data.rows || [];
-    shelfRowsEl.innerHTML = rows.map(renderRow).join('');
+    allBooks = rows.flatMap(r => r.books);
+
+    renderBooksDynamically();
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(renderBooksDynamically, 150);
+    });
+    
+    // Listen for theme changes to swap the shelf textures dynamically
+    const observer = new MutationObserver(mlist => {
+        for (let m of mlist) {
+            if (m.type === 'attributes' && m.attributeName === 'data-theme') {
+                updateShelfTextures();
+            }
+        }
+    });
+    observer.observe(document.documentElement, { attributes: true });
+
   } catch (e) {
     console.error('Failed to load shelf/index.json:', e);
     shelfRowsEl.innerHTML =
