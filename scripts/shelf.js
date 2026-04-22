@@ -29,7 +29,6 @@ function renderBook(book) {
              loading="lazy"
              style="--book-w: ${w}px; --book-h: ${h}px;">
       </div>
-      <div class="shelf-book-title">${escapeHtml(book.title)}</div>
     </div>
   `;
 }
@@ -52,11 +51,9 @@ function updateShelfTextures() {
 let allBooks = [];
 
 function getScale() {
-  const ww = window.innerWidth;
-  if (ww <= 480) return 0.40;
-  if (ww <= 768) return 0.45;
-  if (ww <= 1024) return 0.48;
-  return 0.5;
+  const rootScale = getComputedStyle(document.documentElement).getPropertyValue('--shelf-book-scale');
+  const parsed = parseFloat(rootScale);
+  return isNaN(parsed) ? 0.5 : parsed;
 }
 
 function generateRowHtml(rowBooks, themeUri) {
@@ -68,6 +65,7 @@ function generateRowHtml(rowBooks, themeUri) {
       </div>
       <div class="shelf-row-deco" aria-hidden="true">
         <picture>
+          <source media="(max-width: 768px)" srcset="shelf/shelf/${themeUri}_phone.svg" class="shelf-texture-phone">
           <img class="shelf-row-deco-img shelf-texture-pc" src="shelf/shelf/${themeUri}_pc.svg" alt="" style="width: 100%; object-fit: fill; display: block;">
         </picture>
       </div>
@@ -79,7 +77,9 @@ function renderBooksDynamically() {
   if (!allBooks || allBooks.length === 0 || !shelfRowsEl) return;
   
   const layoutEl = document.querySelector('.shelf-layout');
-  const containerWidth = layoutEl.clientWidth * 0.9;
+  const ww = window.innerWidth;
+  const containerRatio = ww <= 768 ? 0.96 : 0.9;
+  const containerWidth = layoutEl.clientWidth * containerRatio;
   
   const scale = getScale();
   const gap = 60;
