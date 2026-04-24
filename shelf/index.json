@@ -6,7 +6,7 @@
       "books": [
         {
           "id": "b15",
-          "number": "015",
+          "number": "016",
           "title": "Thinking, Fast and Slow",
           "author": "Daniel Kahneman",
           "genre": "Psychology",
@@ -20,7 +20,7 @@
         },
         {
           "id": "b4",
-          "number": "014",
+          "number": "015",
           "title": "Design as Art",
           "author": "Bruno Munari",
           "genre": "Design",
@@ -33,7 +33,7 @@
         },
         {
           "id": "b10",
-          "number": "013",
+          "number": "014",
           "title": "Stories of Your Life and Others",
           "author": "Ted Chiang",
           "genre": "Science Fiction",
@@ -46,7 +46,7 @@
         },
         {
           "id": "b7",
-          "number": "012",
+          "number": "013",
           "title": "How to Take Smart Notes",
           "author": "Sönke Ahrens",
           "genre": "Non-fiction",
@@ -59,7 +59,7 @@
         },
         {
           "id": "b13",
-          "number": "011",
+          "number": "012",
           "title": "The Vegetarian",
           "author": "Han Kang",
           "genre": "Fiction",
@@ -72,7 +72,7 @@
         },
         {
           "id": "b1",
-          "number": "010",
+          "number": "011",
           "title": "The Borrowed",
           "author": "Chan Ho-Kei",
           "genre": "Crime",
@@ -85,7 +85,7 @@
         },
         {
           "id": "b11",
-          "number": "009",
+          "number": "010",
           "title": "The House Where I Died Once With Obi",
           "author": "Keigo Higashino",
           "genre": "Thriller",
@@ -98,7 +98,7 @@
         },
         {
           "id": "b3",
-          "number": "008",
+          "number": "009",
           "title": "Ark",
           "author": "Yuki Haruo",
           "genre": "Thriller",
@@ -111,7 +111,7 @@
         },
         {
           "id": "b8",
-          "number": "007",
+          "number": "008",
           "title": "Klein Bottle",
           "author": "Kodansha Bunko",
           "genre": "Sci-fi",
@@ -124,7 +124,7 @@
         },
         {
           "id": "b12",
-          "number": "006",
+          "number": "007",
           "title": "The Seventh Day",
           "author": "Yu Hua",
           "genre": "Fiction",
@@ -137,7 +137,7 @@
         },
         {
           "id": "b9",
-          "number": "005",
+          "number": "006",
           "title": "Small Team Management Manual for Less than 10 People",
           "author": "Katsuhiko Horinouchi",
           "genre": "Management",
@@ -150,7 +150,7 @@
         },
         {
           "id": "b6",
-          "number": "004",
+          "number": "005",
           "title": "Holy Mother",
           "author": "Akiyoshi Rikako",
           "genre": "Thriller",
@@ -163,7 +163,7 @@
         },
         {
           "id": "b14",
-          "number": "003",
+          "number": "004",
           "title": "The World According to Garp",
           "author": "John Irving",
           "genre": "Fiction",
@@ -176,7 +176,7 @@
         },
         {
           "id": "b5",
-          "number": "002",
+          "number": "003",
           "title": "Fight Club",
           "author": "Chuck Palahniuk",
           "genre": "Fiction",
@@ -189,7 +189,7 @@
         },
         {
           "id": "b2",
-          "number": "001",
+          "number": "002",
           "title": "A Man Called Ove",
           "author": "Fredrik Backman",
           "genre": "Fiction",
@@ -198,6 +198,19 @@
           "cover": "shelf/book cover/A Man Called Ove.png",
           "width": 236,
           "height": 354,
+          "status": "read"
+        },
+        {
+          "id": "b16",
+          "number": "001",
+          "title": "Journey Under the Midnight Sun",
+          "author": "Keigo Higashino",
+          "genre": "Crime",
+          "motif": "One of Higashino's most ambitious masterpieces.",
+          "comment": "I really like the ending of the book. There's nothing, and then everything, and then nothing, with no hesitation or mercy.",
+          "cover": "shelf/book cover/Journey Under the Midnight Sun.png",
+          "width": 230,
+          "height": 299,
           "status": "read"
         }
       ]

@@ -242,7 +242,6 @@
     --shelf-book-scale: 0.5;
 }
 
-/* Content flows with the document; scrollbar is on the viewport (see base.css), nav stays fixed */
 
 .shelf-layout {
     position: relative;
