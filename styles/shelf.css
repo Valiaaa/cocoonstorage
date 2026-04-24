@@ -498,6 +498,10 @@ textarea.sc-input {
     color: var(--default-bg-color);
 }
 
+[data-theme="sky in Ukiyo-e"] .sc-btn:hover {
+    color: #9BB1D9;
+}
+
 .sc-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
