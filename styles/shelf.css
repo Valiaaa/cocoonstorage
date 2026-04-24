@@ -1,76 +1,101 @@
 /* ============================================================
-   shelf.css — Shelf page (row-based books, single main column)
+   Book Card — floating draggable notes (no overlay, multiple coexist)
    ============================================================ */
 
-/* ============================================================
-   Book Card Overlay
-   ============================================================ */
+/* Keyframe: slide in from above */
+@keyframes sc-slide-in {
+    0% {
+        transform: translateX(calc(-50% + var(--sc-scatter, 0px))) translateY(-120%) rotate(0deg);
+        opacity: 0;
+    }
 
-body.shelf-card-open {
-    overflow: hidden;
+    70% {
+        opacity: 1;
+    }
+
+    85% {
+        transform: translateX(calc(-50% + var(--sc-scatter, 0px))) translateY(-44%) rotate(calc(var(--sc-tilt, 2deg) * 1.4));
+    }
+
+    100% {
+        transform: translateX(calc(-50% + var(--sc-scatter, 0px))) translateY(-46%) rotate(var(--sc-tilt, 2deg));
+        opacity: 1;
+    }
 }
 
-#shelf-card-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9000;
-    display: block;
-    /* Removed flex-centering to allow independent movement */
-    background: rgba(0, 0, 0, 0.25);
-    opacity: 0;
-    transition: opacity 0.25s ease;
-    pointer-events: auto;
-}
-
-#shelf-card-overlay.sc-visible {
-    opacity: 1;
-}
-
+/* Base card state — offscreen above */
 .sc-card {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -46%) scale(0.97);
+
+    /* Before animation: parked above viewport */
+    transform: translateX(calc(-50% + var(--sc-scatter, 0px))) translateY(-120%);
+    opacity: 0;
+
     background: var(--default-bg-color);
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.10);
     width: 380px;
     height: auto;
     aspect-ratio: 1 / 1.48;
-    /* Matching the provided screenshot ratio */
     display: flex;
     flex-direction: column;
     padding: 12px 24px 14px;
     border-radius: 2px;
-    transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.34, 1.36, 0.64, 1);
-    overflow: hidden;
+
+    /* No transition by default; animation handles slide-in */
+    transition: opacity 0.3s ease;
+
+    /* Drag cursor on whole card */
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
-#shelf-card-overlay.sc-visible .sc-card {
+/* Slide-in animation fires once class is added */
+.sc-card.sc-visible {
+    animation: sc-slide-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* After animation settles, hold final position */
+.sc-card.sc-visible:not(.sc-positioned) {
+    transform: translateX(calc(-50% + var(--sc-scatter, 0px))) translateY(-46%) rotate(var(--sc-tilt, 2deg));
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Once manually positioned (after first drag) drop the centering transforms */
+.sc-card.sc-positioned {
+    animation: none;
+    transform: rotate(var(--sc-tilt, 0deg)) !important;
+    opacity: 1;
+}
+
+/* Closing */
+.sc-card.sc-closing {
+    animation: none !important;
+    opacity: 0;
+    transition: opacity 0.22s ease;
 }
 
 .sc-card.is-dragging {
+    cursor: grabbing;
     transition: none;
-    /* No transition while dragging */
+    animation: none;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28), 0 4px 12px rgba(0, 0, 0, 0.14);
 }
 
 /* ---- Header row ---- */
 .sc-header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     padding-bottom: 12px;
     font-family: var(--font-family-secondary);
     font-size: 11px;
     letter-spacing: 0.8px;
     color: var(--txt-color);
-    cursor: grab;
-    /* Indicating it's draggable */
-}
-
-.sc-header:active {
-    cursor: grabbing;
+    /* Header no longer the exclusive drag handle — whole card drags */
+    cursor: inherit;
 }
 
 .sc-num {
@@ -89,18 +114,25 @@ body.shelf-card-open {
 .sc-close {
     background: none;
     border: none;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0;
     font-family: var(--font-family-secondary);
-    font-size: 11px;
+    font-size: 13px;
     color: var(--txt-color);
     cursor: pointer;
     line-height: 1;
-    opacity: 0.7;
+    opacity: 1;
     transition: opacity 0.15s;
+    flex-shrink: 0;
+    transform: scale(1.2);
 }
 
 .sc-close:hover {
-    opacity: 1;
+    opacity: 0.5;
 }
 
 /* ---- Rules ---- */
@@ -388,6 +420,7 @@ body.shelf-card-open {
 
     .shelf-row-deco {
         right: 0;
+        bottom: -10px;
     }
 
     .shelf-rows {

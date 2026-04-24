@@ -13,17 +13,31 @@ function escapeHtml(s) {
 }
 
 /* ====================================================
-   Book Card Modal
+   Book Card — floating draggable notes, multiple coexist
    ==================================================== */
 
 let bookMap = {};
+let cardZCounter = 9000;
+let openCards = {}; // Track open bookId -> card element
+
+// Slight random tilt on landing: alternates left/right each card
+let cardTiltSeed = 0;
+
+function bringCardToFront(card) {
+  card.style.zIndex = ++cardZCounter;
+}
 
 function openBookCard(bookId) {
+  // If card is already open, just bring to front
+  if (openCards[bookId]) {
+    const existing = openCards[bookId];
+    bringCardToFront(existing);
+    // Optional: could add a tiny "ping" animation here if needed
+    return;
+  }
+
   const book = bookMap[bookId];
   if (!book) return;
-
-  const existing = document.getElementById('shelf-card-overlay');
-  if (existing) existing.remove();
 
   // Reverse numbering: last book on shelf is No.1
   const bookIndex = allBooks.findIndex(b => b.id === bookId);
@@ -44,92 +58,183 @@ function openBookCard(bookId) {
     </tr>
   `).join('');
 
-  const commentText = book.comment && book.comment.trim() ? escapeHtml(book.comment) : '<em style="opacity: 0.5;">Still working on the comments...</em>';
+  const commentText = book.comment && book.comment.trim()
+    ? escapeHtml(book.comment)
+    : '<em style="opacity: 0.5;">Still working on the comments...</em>';
 
-  const overlay = document.createElement('div');
-  overlay.id = 'shelf-card-overlay';
-  overlay.innerHTML = `
-    <div class="sc-card" role="dialog" aria-modal="true">
-      <div class="sc-header" id="sc-drag-handle">
-        <span class="sc-num">${escapeHtml(numDisplay)}</span>
-        <span class="sc-site">VALIA'S&nbsp;SHELF</span>
-        <button class="sc-close" aria-label="Close">✕</button>
-      </div>
-      <div class="sc-rule sc-rule--double"></div>
-      <table class="sc-table">
-        <tbody>${tableRows}</tbody>
-      </table>
-      <div class="sc-rule sc-rule--double"></div>
-      <div class="sc-comments-wrap">
-        <div class="sc-comments-label">Comments</div>
-        <div class="sc-comments-body">${commentText}</div>
-      </div>
-      <div class="sc-rule sc-rule--bottom"></div>
+  // Determine landing tilt (alternating slight left/right)
+  cardTiltSeed++;
+  const tiltDeg = cardTiltSeed % 2 === 0 ? -1.8 : 1.8;
+
+  // Horizontal scatter: center ± small offset so cards don't perfectly stack
+  const scatterX = (Math.random() - 0.5) * 80; // –40px … +40px
+
+  const card = document.createElement('div');
+  card.className = 'sc-card';
+  card.setAttribute('role', 'dialog');
+  card.dataset.bookId = bookId;
+  card.style.zIndex = ++cardZCounter;
+  card.style.setProperty('--sc-tilt', `${tiltDeg}deg`);
+  card.style.setProperty('--sc-scatter', `${scatterX}px`);
+
+  card.innerHTML = `
+    <div class="sc-header">
+      <span class="sc-num">${escapeHtml(numDisplay)}</span>
+      <span class="sc-site">VALIA'S&nbsp;SHELF</span>
+      <button class="sc-close" aria-label="Close">✕</button>
     </div>
+    <div class="sc-rule sc-rule--double"></div>
+    <table class="sc-table">
+      <tbody>${tableRows}</tbody>
+    </table>
+    <div class="sc-rule sc-rule--double"></div>
+    <div class="sc-comments-wrap">
+      <div class="sc-comments-label">Comments</div>
+      <div class="sc-comments-body">${commentText}</div>
+    </div>
+    <div class="sc-rule sc-rule--bottom"></div>
   `;
 
-  document.body.appendChild(overlay);
+  document.body.appendChild(card);
+  openCards[bookId] = card;
 
-  const card = overlay.querySelector('.sc-card');
-  const header = overlay.querySelector('.sc-header');
-
-  // Draggable logic
+  // ---- Draggable: whole card is the drag surface ----
   let isDragging = false;
-  let offsetX, offsetY;
+  let startX, startY, startLeft, startTop;
+  let hasMoved = false;
 
-  header.addEventListener('mousedown', e => {
+  function bringToFront() {
+    bringCardToFront(card);
+  }
+
+  function onPointerDown(e) {
     if (e.target.closest('.sc-close')) return;
     
+    // Stop bubbling so parent containers (like shelfRows) don't get the click
+    e.stopPropagation();
+    
+    e.preventDefault(); // prevent text selection
+    bringToFront();
     isDragging = true;
+    hasMoved = false;
     card.classList.add('is-dragging');
-    
-    // Calculate initial offset from click point to card top-left
+
+    // Capture current rendered position
     const rect = card.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-    
-    // Switch to absolute positioning instead of transform centering
-    card.style.top = rect.top + 'px';
-    card.style.left = rect.left + 'px';
-    card.style.transform = 'none';
-  });
+    startLeft = rect.left;
+    startTop  = rect.top;
+    startX = e.clientX;
+    startY = e.clientY;
 
-  window.addEventListener('mousemove', e => {
+    // Switch from CSS transform centering to fixed pixel coords
+    card.style.left = startLeft + 'px';
+    card.style.top  = startTop  + 'px';
+    card.classList.add('sc-positioned');
+
+    // Add window listeners only while dragging
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+  }
+
+  function onPointerMove(e) {
     if (!isDragging) return;
-    
-    let left = e.clientX - offsetX;
-    let top = e.clientY - offsetY;
-    
-    card.style.left = left + 'px';
-    card.style.top = top + 'px';
-  });
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasMoved = true;
+    card.style.left = (startLeft + dx) + 'px';
+    card.style.top  = (startTop  + dy) + 'px';
+  }
 
-  window.addEventListener('mouseup', () => {
+  function onPointerUp() {
+    if (!isDragging) return;
     isDragging = false;
     card.classList.remove('is-dragging');
+    
+    // Remove listeners when drag ends
+    window.removeEventListener('mousemove', onPointerMove);
+    window.removeEventListener('mouseup', onPointerUp);
+  }
+
+  card.addEventListener('mousedown', onPointerDown);
+
+  // Prevent clicks from bubbling up to document
+  card.addEventListener('click', e => {
+    e.stopPropagation();
   });
 
-  // Close handlers
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) closeBookCard();
+  // Touch support
+  card.addEventListener('touchstart', e => {
+    if (e.target.closest('.sc-close')) return;
+    e.stopPropagation();
+    const t = e.touches[0];
+    
+    // Mocking onPointerDown for touch
+    isDragging = true;
+    hasMoved = false;
+    bringToFront();
+    card.classList.add('is-dragging');
+    const rect = card.getBoundingClientRect();
+    startLeft = rect.left;
+    startTop  = rect.top;
+    startX = t.clientX;
+    startY = t.clientY;
+    card.style.left = startLeft + 'px';
+    card.style.top  = startTop  + 'px';
+    card.classList.add('sc-positioned');
+
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd);
+  }, { passive: false });
+
+  function onTouchMove(e) {
+    if (!isDragging) return;
+    e.preventDefault(); // Stop scrolling while dragging card
+    const t = e.touches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    card.style.left = (startLeft + dx) + 'px';
+    card.style.top  = (startTop  + dy) + 'px';
+  }
+
+  function onTouchEnd() {
+    isDragging = false;
+    card.classList.remove('is-dragging');
+    window.removeEventListener('touchmove', onTouchMove);
+    window.removeEventListener('touchend', onTouchEnd);
+  }
+
+  // Close button
+  card.querySelector('.sc-close').addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeCard(card);
   });
-  overlay.querySelector('.sc-close').addEventListener('click', closeBookCard);
 
-  // Force transition
-  requestAnimationFrame(() => overlay.classList.add('sc-visible'));
+  // Slide-in animation: trigger on next frame
+  requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('sc-visible')));
 }
 
-function closeBookCard() {
-  const overlay = document.getElementById('shelf-card-overlay');
-  if (!overlay) return;
-  overlay.classList.remove('sc-visible');
-  overlay.addEventListener('transitionend', () => overlay.remove(), { once: true });
-  document.body.classList.remove('shelf-card-open');
+function closeCard(card) {
+  const bId = card.dataset.bookId;
+  if (bId && openCards[bId]) {
+    delete openCards[bId];
+  }
+
+  card.classList.remove('sc-visible');
+  card.classList.add('sc-closing');
+  card.addEventListener('transitionend', () => card.remove(), { once: true });
 }
 
-// Close on Escape key
+// Close topmost card on Escape
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeBookCard();
+  if (e.key === 'Escape') {
+    // Find the card with the highest z-index
+    const cards = [...document.querySelectorAll('.sc-card')];
+    if (!cards.length) return;
+    const top = cards.reduce((a, b) =>
+      parseInt(a.style.zIndex) >= parseInt(b.style.zIndex) ? a : b
+    );
+    closeCard(top);
+  }
 });
 
 /* ====================================================
