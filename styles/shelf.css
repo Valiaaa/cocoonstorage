@@ -52,6 +52,12 @@
     -webkit-user-select: none;
 }
 
+/* Theme override: sky in Ukiyo-e needs a lighter card for readability */
+[data-theme="sky in Ukiyo-e"] .sc-card,
+[data-theme="sky in Ukiyo-e"] .sc-comments-label {
+    background: #9BB1D9;
+}
+
 /* Slide-in animation fires once class is added */
 .sc-card.sc-visible {
     animation: sc-slide-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
