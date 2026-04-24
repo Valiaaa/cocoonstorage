@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (isMP4) {
               mediaItems.push(
                 '<div class="' + wrapperClass + '">' +
-                '<video class="media-item hoverZoom" autoplay muted loop playsinline webkit-playsinline disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"><source src="' + project.video + '" type="video/mp4"></video>' +
+                '<video src="' + project.video + '" class="media-item hoverZoom" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"></video>' +
                 '</div>'
               );
             } else {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (isMP4) {
               mediaItems.push(
                 '<div class="media-box">' +
-                '<video class="' + ratioClass + ' hoverZoom" autoplay muted loop playsinline webkit-playsinline disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"><source src="' + project.video + '" type="video/mp4"></video>' +
+                '<video src="' + project.video + '" class="' + ratioClass + ' hoverZoom" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"></video>' +
                 '</div>'
               );
             } else {
@@ -246,5 +246,13 @@ document.addEventListener('DOMContentLoaded', function(){
           });
         }, 100);
       });
+
+      // Looping fallback for mobile browsers
+      document.body.addEventListener('ended', function(e) {
+        if (e.target.tagName === 'VIDEO' && e.target.hasAttribute('loop')) {
+          e.target.play();
+        }
+      }, true); // Use capture phase because 'ended' doesn't bubble
+
     });
 });
