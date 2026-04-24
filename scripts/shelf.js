@@ -303,8 +303,14 @@ function openRecommendCard() {
     const rect = card.getBoundingClientRect();
     startLeft = rect.left;
     startTop = rect.top;
-    startX = e.clientX;
-    startY = e.clientY;
+    if (e.type === 'touchstart') {
+      const touch = e.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+    } else {
+      startX = e.clientX;
+      startY = e.clientY;
+    }
 
     card.style.left = startLeft + 'px';
     card.style.top = startTop + 'px';
@@ -312,6 +318,8 @@ function openRecommendCard() {
 
     window.addEventListener('mousemove', onPointerMove);
     window.addEventListener('mouseup', onPointerUp);
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchend', onTouchEnd);
   }
 
   function onPointerMove(e) {
@@ -323,21 +331,49 @@ function openRecommendCard() {
     card.style.top = (startTop + dy) + 'px';
   }
 
+  function onTouchMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    const touch = e.touches[0];
+    const dx = touch.clientX - startX;
+    const dy = touch.clientY - startY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasMoved = true;
+    card.style.left = (startLeft + dx) + 'px';
+    card.style.top = (startTop + dy) + 'px';
+  }
+
   function onPointerUp() {
     if (!isDragging) return;
     isDragging = false;
     card.classList.remove('is-dragging');
     window.removeEventListener('mousemove', onPointerMove);
     window.removeEventListener('mouseup', onPointerUp);
+    window.removeEventListener('touchmove', onTouchMove);
+    window.removeEventListener('touchend', onTouchEnd);
+  }
+
+  function onTouchEnd() {
+    onPointerUp();
   }
 
   card.addEventListener('mousedown', onPointerDown);
-  card.addEventListener('click', e => e.stopPropagation());
+  card.addEventListener('touchstart', onPointerDown, { passive: false });
+  card.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (typeof customCursor !== 'undefined' && customCursor && customCursor.isTouchDevice) {
+      customCursor.setRecommendMode(false);
+      customCursor.hide();
+    }
+  });
 
   // Close button
   card.querySelector('.sc-close').addEventListener('click', (e) => {
     e.stopPropagation();
     closeCard(card);
+    if (typeof customCursor !== 'undefined' && customCursor && customCursor.isTouchDevice) {
+      customCursor.setRecommendMode(false);
+      customCursor.hide();
+    }
   });
 
   // Slide-in animation
@@ -501,8 +537,24 @@ async function init() {
     // Recommend Form Trigger
     const statsContainer = document.querySelector('.shelf-stats');
     if (statsContainer) {
-      statsContainer.addEventListener('click', () => {
+      statsContainer.addEventListener('click', (e) => {
         openRecommendCard();
+
+        if (typeof customCursor !== 'undefined' && customCursor && customCursor.isTouchDevice) {
+          const x = e.clientX;
+          const y = e.clientY;
+          customCursor.setRecommendMode(true);
+          customCursor.showAt(x, y);
+        }
+      });
+    }
+
+    if (typeof customCursor !== 'undefined' && customCursor) {
+      document.addEventListener('click', (e) => {
+        if (!customCursor.isTouchDevice) return;
+        if (e.target.closest('.shelf-stats') || e.target.closest('.sc-card')) return;
+        customCursor.setRecommendMode(false);
+        customCursor.hide();
       });
     }
 

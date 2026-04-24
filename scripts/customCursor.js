@@ -49,6 +49,7 @@ class CustomCursor {
         this.isTextMode = false;
         this.isRecommendMode = false;
         this.scale = window.devicePixelRatio || 1;
+        this.isTouchDevice = isTouchDevice();
         this.isVisible = false;
         this.isHiddenByElement = false;
         this.imagesLoaded = 0;
@@ -83,13 +84,14 @@ class CustomCursor {
         // 加载图像
         this.loadImages();
         
-        // 隐藏默认光标
-        document.body.style.cursor = 'none';
-        
-        // 监听鼠标移动
-        document.addEventListener('mousemove', (e) => this.onMouseMove(e));
-        document.addEventListener('mouseenter', () => this.onMouseEnter());
-        document.addEventListener('mouseleave', () => this.onMouseLeave());
+        if (!this.isTouchDevice) {
+            // 隐藏默认光标
+            document.body.style.cursor = 'none';
+            // 监听鼠标移动
+            document.addEventListener('mousemove', (e) => this.onMouseMove(e));
+            document.addEventListener('mouseenter', () => this.onMouseEnter());
+            document.addEventListener('mouseleave', () => this.onMouseLeave());
+        }
         
         // 监听文档焦点变化
         document.addEventListener('focus', () => this.scheduleRender(), true);
@@ -200,6 +202,16 @@ class CustomCursor {
         this.animationFrameId = requestAnimationFrame(() => {
             this.draw();
         });
+    }
+
+    showAt(x, y) {
+        this.mouseX = x;
+        this.mouseY = y;
+        this.isVisible = true;
+        if (this.canvas) {
+            this.canvas.style.opacity = '1';
+        }
+        this.scheduleRender();
     }
 
     setPointerMode(isPointer) {
@@ -321,7 +333,9 @@ class CustomCursor {
         if (this.canvas) {
             this.canvas.style.opacity = '0';
         }
-        document.body.style.cursor = 'auto';
+        if (!this.isTouchDevice) {
+            document.body.style.cursor = 'auto';
+        }
     }
 
     show() {
@@ -329,7 +343,9 @@ class CustomCursor {
         if (this.canvas) {
             this.canvas.style.opacity = '1';
         }
-        document.body.style.cursor = 'none';
+        if (!this.isTouchDevice) {
+            document.body.style.cursor = 'none';
+        }
     }
 }
 
@@ -352,30 +368,29 @@ const defaultCursorSelectors = [
 
 // 初始化自定义光标（即时执行，不依赖 DOMContentLoaded）
 function initCustomCursor() {
-    // 只在桌面设备上启用自定义光标
-    if (!isTouchDevice()) {
-        customCursor = new CustomCursor({
-            pointerImageUrl: 'assets/icons/pointer.svg',
-            defaultImageUrl: 'assets/icons/default.svg',
-            rockImageUrl: 'assets/icons/rock.svg',
-            pointerHotspotX: 15,
-            pointerHotspotY: 0,
-            defaultHotspotX: 0,
-            defaultHotspotY: 0,
-            rockHotspotX: 27,
-            rockHotspotY: 37,
-            defaultWidth: 48,
-            defaultHeight: 75,
-            pointerWidth: 59,
-            pointerHeight: 75,
-            rockWidth: 55,
-            rockHeight: 75,
-            textWidth: 48,
-            textHeight: 75,
-            textHotspotX: 24,
-            textHotspotY: 37
-        });
+    customCursor = new CustomCursor({
+        pointerImageUrl: 'assets/icons/pointer.svg',
+        defaultImageUrl: 'assets/icons/default.svg',
+        rockImageUrl: 'assets/icons/rock.svg',
+        pointerHotspotX: 15,
+        pointerHotspotY: 0,
+        defaultHotspotX: 0,
+        defaultHotspotY: 0,
+        rockHotspotX: 27,
+        rockHotspotY: 37,
+        defaultWidth: 48,
+        defaultHeight: 75,
+        pointerWidth: 59,
+        pointerHeight: 75,
+        rockWidth: 55,
+        rockHeight: 75,
+        textWidth: 48,
+        textHeight: 75,
+        textHotspotX: 24,
+        textHotspotY: 37
+    });
 
+    if (!isTouchDevice()) {
         // 监听所有可点击元素
         document.addEventListener('mouseenter', (e) => {
             if (!(e.target instanceof Element)) return;
