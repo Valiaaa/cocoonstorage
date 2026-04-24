@@ -45,10 +45,10 @@ function openBookCard(bookId) {
   const numDisplay = `NO.${reversedNum}`;
 
   const rows = [
-    { label: 'TITLE',          value: book.title   || '' },
-    { label: 'AUTHOR',         value: book.author  || '' },
-    { label: 'GENRE',          value: book.genre   || '' },
-    { label: 'READING MOTIVE', value: book.motif   || '' },
+    { label: 'TITLE', value: book.title || '' },
+    { label: 'AUTHOR', value: book.author || '' },
+    { label: 'GENRE', value: book.genre || '' },
+    { label: 'READING MOTIVE', value: book.motif || '' },
   ];
 
   const tableRows = rows.map(r => `
@@ -109,10 +109,10 @@ function openBookCard(bookId) {
 
   function onPointerDown(e) {
     if (e.target.closest('.sc-close')) return;
-    
+
     // Stop bubbling so parent containers (like shelfRows) don't get the click
     e.stopPropagation();
-    
+
     e.preventDefault(); // prevent text selection
     bringToFront();
     isDragging = true;
@@ -122,13 +122,13 @@ function openBookCard(bookId) {
     // Capture current rendered position
     const rect = card.getBoundingClientRect();
     startLeft = rect.left;
-    startTop  = rect.top;
+    startTop = rect.top;
     startX = e.clientX;
     startY = e.clientY;
 
     // Switch from CSS transform centering to fixed pixel coords
     card.style.left = startLeft + 'px';
-    card.style.top  = startTop  + 'px';
+    card.style.top = startTop + 'px';
     card.classList.add('sc-positioned');
 
     // Add window listeners only while dragging
@@ -142,14 +142,14 @@ function openBookCard(bookId) {
     const dy = e.clientY - startY;
     if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasMoved = true;
     card.style.left = (startLeft + dx) + 'px';
-    card.style.top  = (startTop  + dy) + 'px';
+    card.style.top = (startTop + dy) + 'px';
   }
 
   function onPointerUp() {
     if (!isDragging) return;
     isDragging = false;
     card.classList.remove('is-dragging');
-    
+
     // Remove listeners when drag ends
     window.removeEventListener('mousemove', onPointerMove);
     window.removeEventListener('mouseup', onPointerUp);
@@ -167,7 +167,7 @@ function openBookCard(bookId) {
     if (e.target.closest('.sc-close')) return;
     e.stopPropagation();
     const t = e.touches[0];
-    
+
     // Mocking onPointerDown for touch
     isDragging = true;
     hasMoved = false;
@@ -175,11 +175,11 @@ function openBookCard(bookId) {
     card.classList.add('is-dragging');
     const rect = card.getBoundingClientRect();
     startLeft = rect.left;
-    startTop  = rect.top;
+    startTop = rect.top;
     startX = t.clientX;
     startY = t.clientY;
     card.style.left = startLeft + 'px';
-    card.style.top  = startTop  + 'px';
+    card.style.top = startTop + 'px';
     card.classList.add('sc-positioned');
 
     window.addEventListener('touchmove', onTouchMove, { passive: false });
@@ -193,7 +193,7 @@ function openBookCard(bookId) {
     const dx = t.clientX - startX;
     const dy = t.clientY - startY;
     card.style.left = (startLeft + dx) + 'px';
-    card.style.top  = (startTop  + dy) + 'px';
+    card.style.top = (startTop + dy) + 'px';
   }
 
   function onTouchEnd() {
@@ -236,6 +236,133 @@ document.addEventListener('keydown', e => {
     closeCard(top);
   }
 });
+
+/* ====================================================
+   Recommendation Form Card
+   ==================================================== */
+function openRecommendCard() {
+  if (openCards['recommend_form']) {
+    bringCardToFront(openCards['recommend_form']);
+    return;
+  }
+
+  cardTiltSeed++;
+  const tiltDeg = cardTiltSeed % 2 === 0 ? -1.8 : 1.8;
+  const scatterX = (Math.random() - 0.5) * 80;
+
+  const card = document.createElement('div');
+  card.className = 'sc-card';
+  card.setAttribute('role', 'dialog');
+  card.dataset.bookId = 'recommend_form';
+  card.style.zIndex = ++cardZCounter;
+  card.style.setProperty('--sc-tilt', `${tiltDeg}deg`);
+  card.style.setProperty('--sc-scatter', `${scatterX}px`);
+
+  card.innerHTML = `
+    <div class="sc-header">
+      <span class="sc-num" style="opacity: 1; font-weight: 500;">Recommend me a book</span>
+      <button class="sc-close" aria-label="Close">✕</button>
+    </div>
+    <div class="sc-rule sc-rule--top"></div>
+    <form id="recommend-form" class="sc-form" style="flex: 1; width: 96%; margin: 0 auto;">
+      <input type="text" name="name" class="sc-input" placeholder="Your Name" required>
+      <input type="email" name="email" class="sc-input" placeholder="Your Email" required>
+      <input type="text" name="book_title" class="sc-input" placeholder="Book Title" required>
+      <input type="text" name="author" class="sc-input" placeholder="Author (optional)">
+      
+      <div class="sc-comments-wrap" style="margin-top: 12px; margin-bottom: 4px; min-height: 120px;">
+        <div class="sc-comments-label">Reading recommendation</div>
+        <textarea name="message" class="sc-input sc-input--noborder" placeholder="I like this book because..." required style="flex: 1; height: 100%; width: 100%;"></textarea>
+      </div>
+        
+      <div style="display: flex; justify-content: flex-end; width: 100%; margin-bottom: 20px;">
+        <button type="submit" class="sc-btn">Send Recommendation</button>
+      </div>
+    </form>
+    <div class="sc-rule sc-rule--bottom"></div>
+  `;
+
+  document.body.appendChild(card);
+  openCards['recommend_form'] = card;
+
+  // --- Drag Logic ---
+  let isDragging = false;
+  let startX, startY, startLeft, startTop;
+  let hasMoved = false;
+
+  function onPointerDown(e) {
+    if (e.target.closest('.sc-close') || e.target.closest('.sc-input') || e.target.closest('.sc-btn')) return;
+
+    e.stopPropagation();
+    e.preventDefault();
+    bringCardToFront(card);
+    isDragging = true;
+    hasMoved = false;
+    card.classList.add('is-dragging');
+
+    const rect = card.getBoundingClientRect();
+    startLeft = rect.left;
+    startTop = rect.top;
+    startX = e.clientX;
+    startY = e.clientY;
+
+    card.style.left = startLeft + 'px';
+    card.style.top = startTop + 'px';
+    card.classList.add('sc-positioned');
+
+    window.addEventListener('mousemove', onPointerMove);
+    window.addEventListener('mouseup', onPointerUp);
+  }
+
+  function onPointerMove(e) {
+    if (!isDragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasMoved = true;
+    card.style.left = (startLeft + dx) + 'px';
+    card.style.top = (startTop + dy) + 'px';
+  }
+
+  function onPointerUp() {
+    if (!isDragging) return;
+    isDragging = false;
+    card.classList.remove('is-dragging');
+    window.removeEventListener('mousemove', onPointerMove);
+    window.removeEventListener('mouseup', onPointerUp);
+  }
+
+  card.addEventListener('mousedown', onPointerDown);
+  card.addEventListener('click', e => e.stopPropagation());
+
+  // Close button
+  card.querySelector('.sc-close').addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeCard(card);
+  });
+
+  // Slide-in animation
+  requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('sc-visible')));
+
+  // Form Submission
+  const form = card.querySelector('#recommend-form');
+  const btn = card.querySelector('.sc-btn');
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    emailjs.sendForm('service_eq5vyqa', 'template_ldmee2j', this)
+      .then(() => {
+        btn.textContent = 'Your recommendation is well received. Thank you.';
+        setTimeout(() => closeCard(card), 2500);
+      }, (error) => {
+        console.error('FAILED...', error);
+        btn.textContent = 'Failed. Try again.';
+        btn.disabled = false;
+      });
+  });
+}
 
 /* ====================================================
    Book rendering
@@ -304,39 +431,39 @@ function generateRowHtml(rowBooks, themeUri) {
 
 function renderBooksDynamically() {
   if (!allBooks || allBooks.length === 0 || !shelfRowsEl) return;
-  
+
   const layoutEl = document.querySelector('.shelf-layout');
   const ww = window.innerWidth;
   const containerRatio = ww <= 768 ? 0.96 : 0.9;
   const containerWidth = layoutEl.clientWidth * containerRatio;
-  
+
   const scale = getScale();
   const gap = 60;
   const theme = getThemeName();
   const themeUri = encodeURIComponent(theme);
-  
+
   let rowsHtml = '';
   let currentRowBooks = [];
   let currentWidth = 0;
-  
+
   for (let i = 0; i < allBooks.length; i++) {
-      const book = allBooks[i];
-      const bookW = (book.width || 200) * scale;
-      const addWidth = currentRowBooks.length === 0 ? bookW : gap + bookW;
-      
-      if (currentWidth + addWidth > containerWidth - 5 && currentRowBooks.length > 0) {
-          rowsHtml += generateRowHtml(currentRowBooks, themeUri);
-          currentRowBooks = [book];
-          currentWidth = bookW;
-      } else {
-          currentRowBooks.push(book);
-          currentWidth += addWidth;
-      }
+    const book = allBooks[i];
+    const bookW = (book.width || 200) * scale;
+    const addWidth = currentRowBooks.length === 0 ? bookW : gap + bookW;
+
+    if (currentWidth + addWidth > containerWidth - 5 && currentRowBooks.length > 0) {
+      rowsHtml += generateRowHtml(currentRowBooks, themeUri);
+      currentRowBooks = [book];
+      currentWidth = bookW;
+    } else {
+      currentRowBooks.push(book);
+      currentWidth += addWidth;
+    }
   }
   if (currentRowBooks.length > 0) {
-      rowsHtml += generateRowHtml(currentRowBooks, themeUri);
+    rowsHtml += generateRowHtml(currentRowBooks, themeUri);
   }
-  
+
   shelfRowsEl.innerHTML = rowsHtml;
 }
 
@@ -371,19 +498,27 @@ async function init() {
       if (item) openBookCard(item.dataset.bookId);
     });
 
+    // Recommend Form Trigger
+    const statsContainer = document.querySelector('.shelf-stats');
+    if (statsContainer) {
+      statsContainer.addEventListener('click', () => {
+        openRecommendCard();
+      });
+    }
+
     let resizeTimer;
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(renderBooksDynamically, 150);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(renderBooksDynamically, 150);
     });
-    
+
     // Listen for theme changes to swap the shelf textures dynamically
     const observer = new MutationObserver(mlist => {
-        for (let m of mlist) {
-            if (m.type === 'attributes' && m.attributeName === 'data-theme') {
-                updateShelfTextures();
-            }
+      for (let m of mlist) {
+        if (m.type === 'attributes' && m.attributeName === 'data-theme') {
+          updateShelfTextures();
         }
+      }
     });
     observer.observe(document.documentElement, { attributes: true });
 

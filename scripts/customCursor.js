@@ -5,9 +5,10 @@
 
 class CustomCursor {
     constructor(options = {}) {
-        this.pointerImageUrl = options.pointerImageUrl || '../assets/icons/pointer.svg';
-        this.defaultImageUrl = options.defaultImageUrl || '../assets/icons/default.svg';
-        this.rockImageUrl = options.rockImageUrl || '../assets/icons/rock.svg';
+        this.pointerImageUrl = options.pointerImageUrl || 'assets/icons/pointer.svg';
+        this.defaultImageUrl = options.defaultImageUrl || 'assets/icons/default.svg';
+        this.rockImageUrl = options.rockImageUrl || 'assets/icons/rock.svg';
+        this.recommendImageUrl = options.recommendImageUrl || 'assets/icons/recommend.svg';
         this.pointerHotspotX = options.pointerHotspotX || 15;
         this.pointerHotspotY = options.pointerHotspotY || 0;
         this.defaultHotspotX = options.defaultHotspotX || 0;
@@ -16,6 +17,8 @@ class CustomCursor {
         this.rockHotspotY = options.rockHotspotY || 15;
         this.textHotspotX = options.textHotspotX || 24;
         this.textHotspotY = options.textHotspotY || 37;
+        this.recommendHotspotX = options.recommendHotspotX || 0;
+        this.recommendHotspotY = options.recommendHotspotY || 0;
         
         // 尺寸设置
         this.defaultWidth = options.defaultWidth || 48;
@@ -24,6 +27,8 @@ class CustomCursor {
         this.pointerHeight = options.pointerHeight || 75;
         this.rockWidth = options.rockWidth || 55;
         this.rockHeight = options.rockHeight || 75;
+        this.recommendWidth = options.recommendWidth || 48;
+        this.recommendHeight = options.recommendHeight || 75;
         
         this.textWidth = options.textWidth || 48;
         this.textHeight = options.textHeight || 75;
@@ -35,17 +40,19 @@ class CustomCursor {
         this.pointerImage = null;
         this.defaultImage = null;
         this.rockImage = null;
+        this.recommendImage = null;
         this.textImage = null;
         this.mouseX = -999;
         this.mouseY = -999;
         this.isPointerMode = false;
         this.isRockMode = false;
         this.isTextMode = false;
+        this.isRecommendMode = false;
         this.scale = window.devicePixelRatio || 1;
         this.isVisible = false;
         this.isHiddenByElement = false;
         this.imagesLoaded = 0;
-        this.totalImagesNeeded = 4;
+        this.totalImagesNeeded = 5;
         this.animationFrameId = null;
         
         this.init();
@@ -103,6 +110,7 @@ class CustomCursor {
         const pointerImg = new Image();
         const defaultImg = new Image();
         const rockImg = new Image();
+        const recommendImg = new Image();
         
         pointerImg.onload = () => {
             this.pointerImage = pointerImg;
@@ -122,6 +130,12 @@ class CustomCursor {
             this.checkImagesReady();
         };
 
+        recommendImg.onload = () => {
+            this.recommendImage = recommendImg;
+            this.imagesLoaded++;
+            this.checkImagesReady();
+        };
+
         const textImg = new Image();
         textImg.onload = () => {
             this.textImage = textImg;
@@ -130,9 +144,10 @@ class CustomCursor {
         };
         
         // 使用 basePath + 相对URL
-        pointerImg.src = this.basePath + 'assets/icons/pointer.svg';
-        defaultImg.src = this.basePath + 'assets/icons/default.svg';
-        rockImg.src = this.basePath + 'assets/icons/rock.svg';
+        pointerImg.src = this.basePath + this.pointerImageUrl;
+        defaultImg.src = this.basePath + this.defaultImageUrl;
+        rockImg.src = this.basePath + this.rockImageUrl;
+        recommendImg.src = this.basePath + this.recommendImageUrl;
         textImg.src = this.basePath + 'assets/icons/text.svg';
     }
 
@@ -202,6 +217,11 @@ class CustomCursor {
         this.scheduleRender();
     }
 
+    setRecommendMode(isRecommend) {
+        this.isRecommendMode = isRecommend;
+        this.scheduleRender();
+    }
+
     draw() {
         // 如果光标在屏幕外，不绘制
         if (this.mouseX < -100 || this.mouseY < -100) {
@@ -230,6 +250,17 @@ class CustomCursor {
             hotspotY = this.pointerHotspotY;
             width = this.pointerWidth;
             height = this.pointerHeight;
+        } else if (this.isRecommendMode) {
+            image = this.recommendImage || this.textImage || this.pointerImage;
+            hotspotX = this.recommendHotspotX;
+            hotspotY = this.recommendHotspotY;
+            height = Math.round(this.recommendHeight / 1.5);
+            if (image && image.naturalWidth && image.naturalHeight) {
+                const ratio = image.naturalWidth / image.naturalHeight;
+                width = Math.round(height * ratio);
+            } else {
+                width = Math.round(this.recommendWidth / 1.5);
+            }
         } else if (this.isTextMode) {
             image = this.textImage;
             hotspotX = this.textHotspotX;
@@ -309,8 +340,6 @@ let customCursor = null;
 const defaultCursorSelectors = [
     'video',
     'iframe',
-    'input',
-    'textarea',
     'select',
     'option',
     '[role="combobox"]',
@@ -354,7 +383,9 @@ function initCustomCursor() {
             const target = e.target;
             if (target.closest('.rock-cursor-target')) {
                 customCursor.setRockMode(true);
-            } else if (target.closest('.prompt-input')) {
+            } else if (target.closest('.recommend-cursor-target')) {
+                customCursor.setRecommendMode(true);
+            } else if (target.closest('.prompt-input') || target.closest('.sc-input')) {
                 customCursor.setTextMode(true);
             } else if (isClickable(target)) {
                 customCursor.setPointerMode(true);
@@ -367,7 +398,9 @@ function initCustomCursor() {
             const target = e.target;
             if (target.closest('.rock-cursor-target')) {
                 customCursor.setRockMode(false);
-            } else if (target.closest('.prompt-input')) {
+            } else if (target.closest('.recommend-cursor-target')) {
+                customCursor.setRecommendMode(false);
+            } else if (target.closest('.prompt-input') || target.closest('.sc-input')) {
                 customCursor.setTextMode(false);
             } else if (isClickable(target)) {
                 customCursor.setPointerMode(false);
@@ -426,10 +459,7 @@ function isClickable(element) {
         'input[type="submit"]',
         'input[type="checkbox"]',
         'input[type="radio"]',
-        'input[type="text"]',
-        'input[type="email"]',
         'input[type="password"]',
-        'textarea',
         'select',
         'label',
         '[onclick]',

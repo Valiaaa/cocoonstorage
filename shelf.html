@@ -27,6 +27,15 @@
         gtag('js', new Date());
         gtag('config', 'G-YB3PB2KE3B');
     </script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+              publicKey: "U02PZ1j3RHn7rc5Qi",
+            });
+        })();
+    </script>
 </head>
 
 <body>
@@ -49,7 +58,7 @@
             <div class="shelf-layout">
                 <header class="shelf-header">
                     <h1 class="shelf-header-title">Shelf</h1>
-                    <div class="shelf-stats">
+                    <div class="shelf-stats recommend-cursor-target">
                         <span class="shelf-stat shelf-stat--reading">
                             <span class="shelf-stat-label">reading</span>
                             <span class="shelf-stat-num" id="shelfStatReading">—</span>
