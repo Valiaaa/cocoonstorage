@@ -6,11 +6,6 @@
 @keyframes sc-slide-in {
     0% {
         transform: translateX(calc(-50% + var(--sc-scatter, 0px))) translateY(-120%) rotate(0deg);
-        opacity: 0;
-    }
-
-    70% {
-        opacity: 1;
     }
 
     85% {
@@ -19,7 +14,6 @@
 
     100% {
         transform: translateX(calc(-50% + var(--sc-scatter, 0px))) translateY(-46%) rotate(var(--sc-tilt, 2deg));
-        opacity: 1;
     }
 }
 
@@ -31,7 +25,6 @@
 
     /* Before animation: parked above viewport */
     transform: translateX(calc(-50% + var(--sc-scatter, 0px))) translateY(-120%);
-    opacity: 0;
 
     background: var(--default-bg-color);
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.10);
@@ -44,7 +37,7 @@
     border-radius: 2px;
 
     /* No transition by default; animation handles slide-in */
-    transition: opacity 0.3s ease;
+    transition: none;
 
     /* Drag cursor on whole card */
     cursor: grab;
@@ -66,21 +59,19 @@
 /* After animation settles, hold final position */
 .sc-card.sc-visible:not(.sc-positioned) {
     transform: translateX(calc(-50% + var(--sc-scatter, 0px))) translateY(-46%) rotate(var(--sc-tilt, 2deg));
-    opacity: 1;
 }
 
 /* Once manually positioned (after first drag) drop the centering transforms */
 .sc-card.sc-positioned {
     animation: none;
     transform: rotate(var(--sc-tilt, 0deg)) !important;
-    opacity: 1;
 }
 
 /* Closing */
 .sc-card.sc-closing {
     animation: none !important;
-    opacity: 0;
-    transition: opacity 0.22s ease;
+    transform: translateY(-120vh) !important;
+    transition: transform 0.3s cubic-bezier(0.55, 0, 1, 0.45);
 }
 
 .sc-card.is-dragging {
