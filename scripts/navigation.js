@@ -31,12 +31,17 @@ function getScriptBasePath() {
     // Collapse work-categories on archive / journal / shelf after page load
     if (workCategories) {
       if (currentPage === 'archive.html' || currentPage === 'journal.html' || currentPage === 'shelf.html') {
-        window.addEventListener('load', () => {
-          // Add small delay to ensure transition works
+        const doCollapse = () => {
           setTimeout(() => {
             workCategories.classList.add('collapsed');
           }, 100);
-        });
+        };
+        
+        if (document.readyState === 'complete') {
+          doCollapse();
+        } else {
+          window.addEventListener('load', doCollapse);
+        }
       } else {
         workCategories.classList.remove('collapsed');
       }
