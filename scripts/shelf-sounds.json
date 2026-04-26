@@ -1,0 +1,76 @@
+{
+  "$schema": "../packages/audio/schemas/patch.schema.json",
+  "name": "core-shelf",
+  "author": "Raphael Salaja",
+  "version": "3.1.0",
+  "description": "Subset of core sounds for shelf page",
+  "sounds": {
+    "slide-down": {
+      "source": {
+        "type": "noise",
+        "color": "pink"
+      },
+      "filter": {
+        "type": "bandpass",
+        "frequency": 2500,
+        "resonance": 1,
+        "envelope": {
+          "decay": 0.12,
+          "peak": 500
+        }
+      },
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.15,
+        "sustain": 0,
+        "release": 0.05
+      },
+      "gain": 0.06
+    },
+    "slide": {
+      "source": {
+        "type": "noise",
+        "color": "white"
+      },
+      "filter": {
+        "type": "bandpass",
+        "frequency": 500,
+        "resonance": 1,
+        "envelope": {
+          "attack": 0.02,
+          "peak": 3000,
+          "decay": 0.12
+        }
+      },
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.15,
+        "sustain": 0,
+        "release": 0.05
+      },
+      "gain": 0.07
+    },
+    "page-exit": {
+      "source": {
+        "type": "noise",
+        "color": "pink"
+      },
+      "filter": {
+        "type": "bandpass",
+        "frequency": 2500,
+        "resonance": 1.2,
+        "envelope": {
+          "decay": 0.18,
+          "peak": 400
+        }
+      },
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.2,
+        "sustain": 0,
+        "release": 0.06
+      },
+      "gain": 0.07
+    }
+  }
+}
