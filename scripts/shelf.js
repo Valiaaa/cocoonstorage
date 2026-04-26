@@ -209,8 +209,11 @@ function openBookCard(bookId) {
     closeCard(card);
   });
 
-  // Slide-in animation: trigger on next frame
-  requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('sc-visible')));
+  // Slide-in animation: trigger on next frame + play "slide" sound
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    card.classList.add('sc-visible');
+    if (typeof playShelfSound === 'function') playShelfSound('slide');
+  }));
 }
 
 function closeCard(card) {
@@ -218,6 +221,9 @@ function closeCard(card) {
   if (bId && openCards[bId]) {
     delete openCards[bId];
   }
+
+  // Play "page-exit" sound on close
+  if (typeof playShelfSound === 'function') playShelfSound('page-exit');
 
   card.classList.remove('sc-visible');
   card.classList.add('sc-closing');
@@ -376,8 +382,11 @@ function openRecommendCard() {
     }
   });
 
-  // Slide-in animation
-  requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('sc-visible')));
+  // Slide-in animation + play "slide" sound
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    card.classList.add('sc-visible');
+    if (typeof playShelfSound === 'function') playShelfSound('slide');
+  }));
 
   // Form Submission
   const form = card.querySelector('#recommend-form');
@@ -527,6 +536,19 @@ async function init() {
     allBooks.forEach(b => { bookMap[b.id] = b; });
 
     renderBooksDynamically();
+
+    // Hover sound: play "slide-down" when hovering over a book
+    shelfRowsEl.addEventListener('mouseover', e => {
+      const item = e.target.closest('.shelf-book-item');
+      if (item && !item.dataset.hoverPlayed) {
+        item.dataset.hoverPlayed = '1';
+        if (typeof playShelfSound === 'function') playShelfSound('slide-down');
+      }
+    });
+    shelfRowsEl.addEventListener('mouseout', e => {
+      const item = e.target.closest('.shelf-book-item');
+      if (item) delete item.dataset.hoverPlayed;
+    });
 
     // Click delegation: opens card when a book is clicked
     shelfRowsEl.addEventListener('click', e => {
