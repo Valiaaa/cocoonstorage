@@ -537,19 +537,6 @@ async function init() {
 
     renderBooksDynamically();
 
-    // Hover sound: play "slide-down" when hovering over a book
-    shelfRowsEl.addEventListener('mouseover', e => {
-      const item = e.target.closest('.shelf-book-item');
-      if (item && !item.dataset.hoverPlayed) {
-        item.dataset.hoverPlayed = '1';
-        if (typeof playShelfSound === 'function') playShelfSound('slide-down', typeof randomSoundOpts === 'function' ? randomSoundOpts() : undefined);
-      }
-    });
-    shelfRowsEl.addEventListener('mouseout', e => {
-      const item = e.target.closest('.shelf-book-item');
-      if (item) delete item.dataset.hoverPlayed;
-    });
-
     // Click delegation: opens card when a book is clicked
     shelfRowsEl.addEventListener('click', e => {
       const item = e.target.closest('.shelf-book-item');

@@ -1,6 +1,6 @@
 /* ============================================================
    shelfSounds.js — @web-kits/audio integration for Shelf page
-   Sounds: hover → slide-down, card open → slide, card close → page-exit
+   Sounds: card open → slide, card close → page-exit
    ============================================================ */
 
 let shelfPatch = null;
