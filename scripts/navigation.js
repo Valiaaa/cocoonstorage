@@ -1,3 +1,58 @@
+/* ============================================================
+   Navigation click sound — "blur" from @web-kits/audio core
+   Loaded inline so it works on every page without extra <script> tags.
+   ============================================================ */
+(function initNavSound() {
+  let _navPatch = null;
+  let _navAudioReady = false;
+
+  const blurPatch = {
+    name: "nav-blur",
+    author: "Raphael Salaja",
+    version: "3.1.0",
+    description: "Navigation click sound",
+    sounds: {
+      blur: {
+        source: {
+          type: "sine",
+          frequency: 1100,
+          fm: { ratio: 0.5, depth: 30 }
+        },
+        envelope: { attack: 0, decay: 0.018, sustain: 0, release: 0.008 },
+        gain: 0.04
+      }
+    }
+  };
+
+  import("https://esm.sh/@web-kits/audio@0.1.0").then(function (mod) {
+    _navPatch = mod.definePatch(blurPatch);
+
+    // Try immediate unlock
+    try { mod.ensureReady().then(function () { _navAudioReady = true; }); } catch (_) {}
+
+    // Unlock on earliest user gestures
+    var unlock = function () {
+      if (_navAudioReady) return;
+      mod.ensureReady().then(function () { _navAudioReady = true; }).catch(function () {});
+    };
+    ["mousedown", "pointerdown", "keydown", "touchstart"].forEach(function (evt) {
+      document.addEventListener(evt, unlock, { once: true, capture: true });
+    });
+  }).catch(function () {});
+
+  // Expose globally for navigation.js to call
+  window._playNavBlur = function () {
+    if (_navPatch && _navAudioReady) {
+      try {
+        _navPatch.play("blur", {
+          detune: (Math.random() - 0.5) * 120,
+          volume: 0.85 + Math.random() * 0.3
+        });
+      } catch (_) {}
+    }
+  };
+})();
+
 function getScriptBasePath() {
     let scriptSrc = document.currentScript ? document.currentScript.src : "";
     return scriptSrc.substring(0, scriptSrc.lastIndexOf("/") + 1);
@@ -67,6 +122,7 @@ function getScriptBasePath() {
     if (goHome) {
       goHome.addEventListener("click", e => {
         e.preventDefault();
+        if (typeof _playNavBlur === 'function') _playNavBlur();
 
         if (window.innerWidth <= 768) {
           checkboxes.forEach(cb => cb.checked = true);
@@ -109,18 +165,21 @@ function getScriptBasePath() {
 
     if (archive) {
       archive.addEventListener("click", () => {
+        if (typeof _playNavBlur === 'function') _playNavBlur();
         goTo(depthPrefix + "archive.html");
       });
     }
 
     if (shelf) {
       shelf.addEventListener("click", () => {
+        if (typeof _playNavBlur === 'function') _playNavBlur();
         goTo(depthPrefix + "shelf.html");
       });
     }
 
     if (about) {
       about.addEventListener("click", () => {
+        if (typeof _playNavBlur === 'function') _playNavBlur();
         goTo(depthPrefix + "about.html");
       });
     }
