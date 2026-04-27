@@ -212,7 +212,7 @@ function openBookCard(bookId) {
   // Slide-in animation: trigger on next frame + play "slide" sound
   requestAnimationFrame(() => requestAnimationFrame(() => {
     card.classList.add('sc-visible');
-    if (typeof playShelfSound === 'function') playShelfSound('slide');
+    if (typeof playShelfSound === 'function') playShelfSound('slide', typeof randomSoundOpts === 'function' ? randomSoundOpts() : undefined);
   }));
 }
 
@@ -223,7 +223,7 @@ function closeCard(card) {
   }
 
   // Play "page-exit" sound on close
-  if (typeof playShelfSound === 'function') playShelfSound('page-exit');
+  if (typeof playShelfSound === 'function') playShelfSound('page-exit', typeof randomSoundOpts === 'function' ? randomSoundOpts() : undefined);
 
   card.classList.remove('sc-visible');
   card.classList.add('sc-closing');
@@ -385,7 +385,7 @@ function openRecommendCard() {
   // Slide-in animation + play "slide" sound
   requestAnimationFrame(() => requestAnimationFrame(() => {
     card.classList.add('sc-visible');
-    if (typeof playShelfSound === 'function') playShelfSound('slide');
+    if (typeof playShelfSound === 'function') playShelfSound('slide', typeof randomSoundOpts === 'function' ? randomSoundOpts() : undefined);
   }));
 
   // Form Submission
@@ -542,7 +542,7 @@ async function init() {
       const item = e.target.closest('.shelf-book-item');
       if (item && !item.dataset.hoverPlayed) {
         item.dataset.hoverPlayed = '1';
-        if (typeof playShelfSound === 'function') playShelfSound('slide-down');
+        if (typeof playShelfSound === 'function') playShelfSound('slide-down', typeof randomSoundOpts === 'function' ? randomSoundOpts() : undefined);
       }
     });
     shelfRowsEl.addEventListener('mouseout', e => {
