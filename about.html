@@ -61,39 +61,58 @@
         <main class="content about">
             <div class="about-container">
                 <div class="about-text">
-                    <h1>
-                        is a <s style="margin-right: 4px;">Shanghai</s> <s style="margin-right: 2px;">Providence</s> New
-                        York-based graphic designer working between image, language, and code. Focused on shaping brand
-                        narratives and digital experiences through visual and technical systems. <br><br>Currently Brand
-                        Lead @<a href="https://www.mymonthly.io/" target="_blank" class="hoverZoom">My
-                            Monthly</a>.<br>Now working on <a href="archive/spring_swing/spring_swing.html"
-                            class="hoverZoom">My Monthly's latest campaign</a> and designing 1 additional page for this
-                        site.
+                    <h1 class="about-lede">
+                        I like building things with a strong personality, clear logic, and just the right amount of mood. I work across image, language, and code, with design as the key throughline.
                     </h1>
 
-                    <h3>
-                        <br><br><br><br><br><br><br><br>
-                        <a href="mailto:valialiuwork@gmail.com" target="_blank" class="hoverZoom">Contact</a> for
-                        work-related inquiries. Resume and portfolio available upon request.
-                        <br>
-                        This is a self-coded site with some AI magic, of course.
-                        <br><br>
-                        BFA(2023) in Graphic Design @<a href="https://risd.gd/" target="_blank" class="hoverZoom">Rhode
-                            Island School of Design</a>.
-                        <ul class="social-links">
-                            <li><span class="no-emoji-arrow">&#8599;</span><a href="mailto:valialiuwork@gmail.com"
-                                    target="_blank" class="hoverZoom">valialiuwork@gmail.com</a></li>
-                            <li><span class="no-emoji-arrow">&#8599;</span><a
-                                    href="https://www.linkedin.com/in/valialiu/" target="_blank"
-                                    class="hoverZoom">Linkedin</a></li>
-                            <li><span class="no-emoji-arrow">&#8599;</span><a href="https://x.com/valiadesigning"
-                                    target="_blank" class="hoverZoom">X</a></li>
+                    <div class="about-notes">
+                        <div class="about-note-column">
+                            <section class="about-note">
+                                <p class="about-note-label">Right now</p>
+                                <h3>Brand Lead at <a href="https://www.mymonthly.io/" target="_blank"
+                                        rel="noopener noreferrer" class="hoverZoom">My Monthly</a> by day, and building 水子地藏 (Mizuko Jizō), a web-based interactive visual novel after sunset.<br><br>I also mentor on <a href="https://adplist.org/mentors/valia-liu" target="_blank" rel="noopener noreferrer" class="hoverZoom">ADPList</a>. Book a session if you’d like to talk!</h3>
+                            </section>
+                        </div>
+
+                        <div class="about-note-column">
+                            <section class="about-note">
+                                <p class="about-note-label">Off screen</p>
+                                <h3>Cat mom (to a 3-yr-old Tabby girl); from one hobby to another; always trying new recipes or saying yes to one more plan.</h3>
+                            </section><br>
+
+                            <section class="about-note">
+                                <p class="about-note-label">Good things lately</p>
+                                <h3>Late sunsets, museum visits, handmade jewelry, sketching, concerts, cocktail flights, etc.</h3>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="about-meta">
+                        <h3>
+                            <a href="mailto:valialiuwork@gmail.com" class="hoverZoom">Contact</a> for work-related inquiries. Resume and portfolio available upon request.
+                            <br>
+                            This is a self-coded site with some AI magic, of course.
+                            <br><br>
+                            BFA (2023) in Graphic Design @<a href="https://risd.gd/" target="_blank"
+                                rel="noopener noreferrer" class="hoverZoom">Rhode Island School of Design</a>.
+
+                            <ul class="social-links">
+                                <li><span class="no-emoji-arrow">&#8599;</span><a href="mailto:valialiuwork@gmail.com"
+                                        class="hoverZoom">valialiuwork@gmail.com</a></li>
+                                <li><span class="no-emoji-arrow">&#8599;</span><a
+                                        href="https://www.linkedin.com/in/valialiu/" target="_blank" rel="noopener noreferrer"
+                                        class="hoverZoom">Linkedin</a></li>
+                                <li><span class="no-emoji-arrow">&#8599;</span><a href="https://adplist.org/mentors/valia-liu" target="_blank" rel="noopener noreferrer" class="hoverZoom">ADPList</a></li>
                         </ul>
-                    </h3>
+                        </h3>
+                    </div>
                 </div>
                 <div class="about-image">
-                    <img src="assets/images/portrait.jpg" alt="Valia Liu" id="portrait-image"
-                        class="rock-cursor-target">
+                    <button class="portrait-stack rock-cursor-target confetti-cursor-target" id="portrait-stack"
+                        type="button" aria-label="Shuffle through photos of Valia Liu">
+                        <span class="portrait-card" aria-hidden="true"></span>
+                        <img src="assets/images/portrait.jpg" alt="Valia Liu" id="portrait-image">
+                    </button>
                 </div>
             </div>
         </main>
@@ -117,47 +136,7 @@
     <script src="scripts/pageTransition.js"></script>
     <script src="scripts/navigation.js"></script>
     <script src="scripts/customCursor.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const portraitImg = document.getElementById('portrait-image');
-            if (portraitImg) {
-                const images = [
-                    'assets/images/portrait.jpg',
-                    'assets/images/2.jpg',
-                    'assets/images/3.jpg',
-                    'assets/images/4.jpg',
-                    'assets/images/5.jpg',
-                    'assets/images/6.jpg'
-                ];
-
-                // Preload images for smooth transition
-                images.forEach(src => {
-                    if (src !== images[0]) {
-                        const img = new Image();
-                        img.src = src;
-                    }
-                });
-
-                let intervalId = null;
-                let currentIndex = 0;
-
-                portraitImg.addEventListener('mouseenter', () => {
-                    if (intervalId) clearInterval(intervalId);
-                    intervalId = setInterval(() => {
-                        currentIndex = (currentIndex + 1) % images.length;
-                        portraitImg.src = images[currentIndex];
-                    }, 400);
-                });
-
-                portraitImg.addEventListener('mouseleave', () => {
-                    if (intervalId) clearInterval(intervalId);
-                    intervalId = null;
-                    currentIndex = 0;
-                    portraitImg.src = images[0];
-                });
-            }
-        });
-    </script>
+    <script src="scripts/aboutPortrait.js"></script>
 </body>
 
 </html>
