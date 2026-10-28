@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     const particles = [];
-    const borderColor = getComputedStyle(document.body).color;
     const colors = ['#2f80ff', '#ffe923', '#ff6fb5', '#acff1d', '#ff9d14', '#bd94ff', '#ffffff'];
     let animationFrameId = null;
     let lastSpawnX = 0;
@@ -110,19 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
         context.save();
         context.globalAlpha = Math.max(0, particle.life);
         context.fillStyle = particle.color;
-        context.strokeStyle = borderColor;
-        context.lineWidth = 1;
         context.translate(particle.x, particle.y);
         context.rotate(particle.rotation);
 
         if (particle.shape === 0) {
             context.fillRect(-particle.size / 2, -particle.size / 4, particle.size, particle.size / 2);
-            context.strokeRect(-particle.size / 2, -particle.size / 4, particle.size, particle.size / 2);
         } else if (particle.shape === 1) {
             context.beginPath();
             context.arc(0, 0, particle.size / 2, 0, Math.PI * 2);
             context.fill();
-            context.stroke();
         } else {
             context.beginPath();
             context.moveTo(0, -particle.size / 1.4);
@@ -135,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
             context.lineTo(-particle.size / 4, -particle.size / 4);
             context.closePath();
             context.fill();
-            context.stroke();
         }
 
         context.restore();
