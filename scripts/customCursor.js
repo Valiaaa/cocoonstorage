@@ -493,3 +493,28 @@ function isClickable(element) {
         return element.matches(selector) || element.closest(selector);
     });
 }
+
+function createClickBurst(x, y) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const burst = document.createElement('span');
+    burst.className = 'click-burst';
+    burst.setAttribute('aria-hidden', 'true');
+    burst.style.transform = `translate(${x}px, ${y}px)`;
+
+    const sparkCount = 8;
+    for (let index = 0; index < sparkCount; index++) {
+        const spark = document.createElement('span');
+        spark.className = 'click-burst__spark';
+        spark.style.setProperty('--spark-angle', `${index * (360 / sparkCount)}deg`);
+        burst.appendChild(spark);
+    }
+
+    document.body.appendChild(burst);
+    window.setTimeout(() => burst.remove(), 330);
+}
+
+document.addEventListener('click', event => {
+    if (event.detail === 0 && event.clientX === 0 && event.clientY === 0) return;
+    createClickBurst(event.clientX, event.clientY);
+}, true);

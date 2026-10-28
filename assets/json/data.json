@@ -6,12 +6,13 @@
         "iconTitle": "My Monthly",
         "video": "archive/my_monthly/mm ver1.mp4",
         "categories": ["identity","web","print","video"],
-        "medium": "identity",
-        "tags": ["motion", "merch"],
+        "tags": ["brand identity", "tech/app", "health/wellness", "AI-assisted coding"],
         "dimension": "",
-        "date": "Mar 2025",
-        "credit": ["(Illustration) Vivian Xu", "(Trailer Collab) Shanshan Wang"],
+        "date": "ongoing",
+        "role": "brand lead",
+        "credit": ["(Illustration Help) Vivian Xu, Lynn Chen", "(Trailer Collab) Shanshan Wang"],
         "feature": true,
+        "homeDescription": "0 to 1 brand identity for a cycle-tracking app that supports communication between partners.",
         "description": "<a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a> is a cycle-tracking app designed to deepen communication in romantic relationships by reframing cycle care as a shared emotional space. The Branding team focused on expressing the core mission through a balance of soft and structured visuals by utilizing calm color palette that softens the communication and mood-based characters that make emotion feel tangible. These elements compose a system that is recognizably 'My Monthly.'<br><br>As the Brand Lead, I am responsible for the clarity and cohesion of the brand's visual identity across all digital and physical platforms. My role centers on developing fresh visual directions—ranging from event-driven campaigns and animated brand stories to modular systems for social content—that create expressive moments to surprise and engage, while staying grounded in the brand's core identity."
       },
       {
@@ -20,13 +21,14 @@
         "iconTitle": "Swing Fling",
         "cover": "cover.jpg",
         "categories": ["identity","campaign","print"],
-        "medium": "campaign",
-        "tags": ["identity", "event"],
+        "tags": ["creative direction", "campaign/event"],
         "dimension": "",
         "date": "Jul 2026, Apr 2026",
+        "role": "creative lead",
         "credit": ["(Design Intern) Olivia Qiu, Sreenidhi Senthil Kumar", "(Illustration) Sirius Zhao, Aki An"],
         "feature": true,
-        "description": "“Swing Fling” (used to be “Spring Swing”) is a seasonal golf event series co-hosted by <a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a> and <a href='https://www.instagram.com/droopysand/' target='_blank' style='text-decoration:underline;display:inline;'>Droopy Sand</a>, bringing matchmaking onto the course. Inspired by vintage golf clubs, embroidered patches, and country-club ephemera, the identity combines nostalgic typography, playful golf motifs, and structured editorial layouts. These elements extend across campaign graphics, social content, event signage, and on-course materials, creating a cohesive system that feels social, collectible, and distinctly Swing Fling.<br><br>As the Brand Lead, I established the visual system for the event series. I guided the team through the development process, bringing together individual explorations, merging ideas across contributors, and refining the final system to ensure consistency across both promotional and on-site touchpoints."
+        "homeDescription": "Creative direction for a seasonal golf matchmaking event series.",
+        "description": "“Swing Fling” (used to be “Spring Swing”) is a seasonal golf event series co-hosted by <a href='https://www.mymonthly.io/' target='_blank' style='text-decoration:underline;display:inline;'>My Monthly</a> and <a href='https://www.instagram.com/droopysand/' target='_blank' style='text-decoration:underline;display:inline;'>Droopy Sand</a>, bringing matchmaking onto the course. Inspired by vintage golf clubs, embroidered patches, and country-club ephemera, the identity combines nostalgic typography, playful golf motifs, and structured editorial layouts. These elements extend across campaign graphics, social content, event signage, and on-course materials, creating a cohesive system that feels social, collectible, and distinctly Swing Fling.<br><br>As the Creative Lead, I established the visual system for the event series. I guided the team through the development process, bringing together individual explorations, merging ideas across contributors, and refining the final system to ensure consistency across both promotional and on-site touchpoints."
       },
       {
         "title": "Altoona",
@@ -36,12 +38,13 @@
         "videoRatio": "1-1",
         "cover": "cover.jpg",
         "categories": ["video"],
-        "medium": "album",
-        "tags": ["identity", "3d"],
+        "tags": ["art direction", "concept development", "album visual", "3D modeling"],
         "dimension": "",
         "date": "Jun 2024",
+        "role": "art direction",
         "credit": "",
         "feature": true,
+        "homeDescription": "Art direction and 3D album visuals for “Altoona.”",
         "description": "Visual direction for Harry's album Altoona, centered on a 3D visualization of his lived space, reframed as a preserved memory. The contrast between precise modeling and a graphic and bold palette establishes a tone that is part archive, part dream. The project treats environment as narrative, with variations created for remix and reinterpretation."
       },
       {
@@ -51,12 +54,13 @@
         "video": "archive/second_best/trailer.mp4",
         "videoRatio": "4-3",
         "categories": ["video"],
-        "medium": "video",
-        "tags": ["frame-to-frame", "conceptual"],
+        "tags": ["frame-to-frame animation", "concept development"],
         "dimension": "1440px × 1080px",
         "date": "May 2020",
+        "role": "Art Direction, Animation",
         "credit": "",
         "feature": true,
+        "homeDescription": "Frame-to-frame animation exploring originality and self-worth.",
         "description": "This stop-motion animation explores themes of originality and self-worth through symbolic imagery and a restrained visual language. Grayscale visuals set a black-humor tone, while recurring motifs like pearls and eyes express the internal tension between self-perception and outside expectations. The piece reflects on the process of self-definition and the quiet strength of embracing one's own voice."
       },
       {
@@ -66,13 +70,14 @@
         "video": "archive/last_words/last words spotify.mp4",
         "videoRatio": "1-1",
         "categories": ["video"],
-        "medium": "album",
-        "tags": ["identity"],
+        "tags": ["art direction", "album visual"],
         "cover": "cover.jpg",
         "dimension": "",
         "date": "Jan 2023",
+        "role": "Art Direction",
         "credit": "",
         "feature": true,
+        "homeDescription": "A cover reinterpretation for Kenny Beats’ “Last Words.”",
         "description": "This project is a visual remake of the album cover for Kenny Beats' “Last Words.” Inspired by the texture of aged, dusted photographs, the design adopts a faded and abstract aesthetic that echoes the haziness of memory. The composition evokes a sense of nostalgia and quiet introspection, aligning with the emotional tone of the track."
       },
       {
@@ -80,13 +85,16 @@
         "filename": "charting_the_present",
         "iconTitle": "Chart Present",
         "categories": ["print"],
-        "medium": "print",
-        "tags": ["editorial"],
+        "tags": ["editorial design", "art direction", "publication"],
         "cover": "cover.jpg",
+        "coverWidth": 2500,
+        "coverHeight": 1669,
         "dimension": "8.5\" × 11\"",
         "date": "Apr 2022",
+        "role": "Art Direction",
         "credit": "",
         "feature": true,
+        "homeDescription": "Editorial design and art direction for a magazine collecting essays on East Asian contemporary art.",
         "description": "A curated magazine archiving a collection of essays on East Asian contemporary art. The design follows a systematic approach—guided by an underlying grid system and precise margins, which lend a contemporary structure while subtly diverging from classical typographic conventions. Within this structure, each spread is designed to offer moments of visual tension and quiet surprise. The cover introduces a linear motif that echoes the internal grid, extending the system outward while alluding to the passage of time."
       },
       {
@@ -95,12 +103,13 @@
         "iconTitle": "Lost Memories",
         "cover": "cover.jpg",
         "categories": ["video"],
-        "medium": "Digital Collage",
         "tags": ["dreamcore", "surreal"],
         "dimension": "1920px × 1080px",
         "date": "Apr 2023",
+        "role": "",
         "credit": "",
         "feature": false,
+        "homeDescription": "A short-form digital collage exploring dreamcore aesthetics through spatial tension and temporal compression. The piece blurs the boundary between real and rendered, evoking an eerie familiarity that lingers without resolution, like a place once visited but never fully seen...",
         "description": "A short-form digital collage exploring dreamcore aesthetics through spatial tension and temporal compression. The piece blurs the boundary between real and rendered, evoking an eerie familiarity that lingers without resolution, like a place once visited but never fully seen."
       }
     ]

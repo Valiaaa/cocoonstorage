@@ -37,23 +37,17 @@ body {
     overflow: hidden;
 }
 
-/* Status Bar */
-.status-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-    padding: 12px 0;
-    margin-bottom: 40px;
+.phone-frame .nyc-time {
+    fill: var(--svg-primary);
     font-weight: 600;
-    color: var(--deco-color);
     font-family: 'Arial Narrow', sans-serif;
+    font-size: 12.5px;
     letter-spacing: 0.3px;
 }
 
-.nyc-time {
-    min-width: 60px;
-    font-size: 18px;
+.status-spacer {
+    height: 80px;
+    flex: 0 0 80px;
 }
 
 /* App Grid */
@@ -136,38 +130,50 @@ body {
     .phone-screen {
         position: absolute;
         top: 26px;
-        left: 48px;
+        left: 24px;
         bottom: 60px;
-        width: calc(100% - 96px);
+        width: calc(100% - 48px);
         display: flex;
         flex-direction: column;
         z-index: 2;
         overflow: hidden;
     }
 
-    .nyc-time {
-        font-size: 14px;
+    .status-spacer {
+        height: 70px;
+        flex-basis: 70px;
     }
     
     .app-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        padding: 4px 8px;
+        column-gap: 26px;
+        row-gap: 20px;
+        padding: 12px 18px;
         height: fit-content;
         flex: initial;
+    }
+
+    .app-icon {
+        width: 100%;
+    }
+
+    .app-icon-image {
+        width: min(124%, 56px);
+        max-width: none;
+        flex: 0 0 auto;
     }
     
     .app-icon-label {
         font-size: 11px;
         bottom: -22px;
         letter-spacing: 0.3px;
+        width: max-content;
+        max-width: none;
+        overflow: visible;
+        z-index: 3;
+        text-align: center;
     }
 
-    .status-bar {
-        padding: 12px 0;
-        margin-bottom: 30px;
-        width: 39%;
-    }
 }
 
 @media (max-width: 393px) {
@@ -178,8 +184,8 @@ body {
     }
 
     .phone-screen {
-        left: calc(2% + 36px);
-        width: calc(96% - 72px);
+        left: calc(2% + 12px);
+        width: calc(96% - 24px);
         top: 22px;
         margin-top: calc(240px - 61vw);
     }

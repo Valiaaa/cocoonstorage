@@ -1,15 +1,17 @@
+let nycTimeTimer;
+
 function updateNYCTime() {
-    // Get current time in NYC timezone
-    const nycTime = new Date().toLocaleString('en-US', { 
+    const nycTime = new Intl.DateTimeFormat('en-US', {
         timeZone: 'America/New_York',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false
-    });
+        hour12: false,
+        hourCycle: 'h23'
+    }).format(new Date());
     
     const timeEl = document.getElementById('nyc-time');
     if (timeEl) {
-        timeEl.textContent = `${nycTime}`;
+        timeEl.textContent = nycTime;
     }
 }
 
@@ -46,9 +48,10 @@ function renderProjects() {
         const statsText = `<span class="filter-stats-number">(${filteredProjects.length})</span> matching results for <span class="filter-stats-number">(${selectedFilters.length})</span> tags selected`;
         statsEl.innerHTML = statsText;
         
-        // 更新 NYC 时间
+        // Keep the fixed New York time current.
         updateNYCTime();
-        setInterval(updateNYCTime, 1000);
+        clearInterval(nycTimeTimer);
+        nycTimeTimer = setInterval(updateNYCTime, 1000);
 
         // 渲染 APP ICONS
         const appGrid = document.getElementById('app-icons-grid');

@@ -116,6 +116,51 @@ img.lazy-fade.loaded {
     opacity: 1;
 }
 
+/* Small decoration-color firework shown at the click point. */
+.click-burst {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    z-index: 999998;
+    pointer-events: none;
+}
+
+.click-burst__spark {
+    position: absolute;
+    left: -0.8px;
+    top: 0;
+    width: 1.6px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--deco-color);
+    transform-origin: 50% 0;
+    transform: rotate(var(--spark-angle)) translateY(-4.8px) scaleY(0.55);
+    animation: click-burst-spark 280ms ease-out forwards;
+}
+
+@keyframes click-burst-spark {
+    0% {
+        opacity: 0;
+        transform: rotate(var(--spark-angle)) translateY(-4.8px) scaleY(0.55);
+    }
+    18% {
+        opacity: 1;
+        transform: rotate(var(--spark-angle)) translateY(-8px) scaleY(1);
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(var(--spark-angle)) translateY(-18.4px) scaleY(0.7);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .click-burst {
+        display: none;
+    }
+}
+
 /* ==== Shared media classes (used by home + project pages) ==== */
 .media-box {
     flex: 0 0 auto;
@@ -342,6 +387,12 @@ hr {
     .title, h1 {
         font-size: 5.4vw;
         -webkit-text-stroke: 0.28vw;
+    }
+
+    h3 {
+        font-size: clamp(14px, 3.6vw, 16px);
+        line-height: 1.4;
+        -webkit-text-stroke: 0.2px;
     }
 
     .project-info h2, .tag, .tag-secondary {

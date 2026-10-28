@@ -87,6 +87,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
+  loadScript(`${basePath}scripts/fitProjectTitles.js`);
+
   // Load navigation
   fetch(`${basePath}components/navigation.html`)
     .then(r => r.text())
@@ -125,10 +127,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("project-title").textContent = project.title;
       document.getElementById("project-description").innerHTML = project.description || "";
 
-      ["medium", "dimension", "date", "credit"].forEach(field => {
-        const block = document.querySelector(`.data-block[data-field="${field}"]`);
+      ["role", "dimension", "date", "credit"].forEach(field => {
+        const row = document.querySelector(`.project-meta-row[data-field="${field}"]`);
         const valueEl = document.getElementById(field);
-        const labelEl = document.getElementById("title-" + field);
         const content = project[field];
 
         let displayContent = "";
@@ -154,31 +155,28 @@ document.addEventListener("DOMContentLoaded", async () => {
               valueEl.textContent = displayContent;
             }
           }
-          if (labelEl) labelEl.style.display = "block";
-          if (valueEl) valueEl.style.display = "block";
-          if (block) block.style.display = "block";
+          if (row) row.style.display = "grid";
         } else {
-          if (labelEl) labelEl.style.display = "none";
-          if (valueEl) valueEl.style.display = "none";
-          if (block) block.style.display = "none";
+          if (row) row.style.display = "none";
         }
       });
 
       // Handle tags separately
-      const tagsBlock = document.querySelector(`.data-block[data-field="tags"]`);
       const tagsContainer = document.getElementById("tags");
-      const tagsLabel = document.getElementById("title-tags");
       const tags = project.tags;
 
       if (tags && Array.isArray(tags) && tags.length > 0) {
-        tagsContainer.innerHTML = tags.join(", ");
-        if (tagsLabel) tagsLabel.style.display = "block";
-        if (tagsContainer) tagsContainer.style.display = "block";
-        if (tagsBlock) tagsBlock.style.display = "block";
+        const tagElements = tags.map((tag, index) => {
+          const tagEl = document.createElement("span");
+          tagEl.className = index === 0 ? "tag" : "tag-secondary";
+          tagEl.setAttribute("role", "listitem");
+          tagEl.textContent = tag;
+          return tagEl;
+        });
+        tagsContainer.replaceChildren(...tagElements);
+        tagsContainer.hidden = false;
       } else {
-        if (tagsLabel) tagsLabel.style.display = "none";
-        if (tagsContainer) tagsContainer.style.display = "none";
-        if (tagsBlock) tagsBlock.style.display = "none";
+        tagsContainer.hidden = true;
       }
     });
 

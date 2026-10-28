@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function(){
+  function escapeHTML(value) {
+    const element = document.createElement('div');
+    element.textContent = value == null ? '' : String(value);
+    return element.innerHTML;
+  }
+
   fetch("assets/json/data.json")
     .then(response => response.json())
     .then(data => {
@@ -65,7 +71,11 @@ document.addEventListener('DOMContentLoaded', function(){
         }                     
 
         if (project.cover) {
-          const coverHTML = '<img class="media-item hoverZoom lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover + '" alt="' + project.title + ' - cover" onload="this.classList.add(\'loaded\')">'
+          const coverDimensions = Number.isFinite(project.coverWidth) && project.coverWidth > 0 &&
+            Number.isFinite(project.coverHeight) && project.coverHeight > 0
+            ? ' width="' + project.coverWidth + '" height="' + project.coverHeight + '"'
+            : '';
+          const coverHTML = '<img class="media-item hoverZoom lazy-fade" loading="lazy"' + coverDimensions + ' src="archive/' + folderName + '/' + project.cover + '" alt="' + project.title + ' - cover" onload="this.classList.add(\'loaded\')">'
           mediaItems.push('<div class="media-box hoverZoom">' + coverHTML + '</div>');
         }
 
@@ -84,53 +94,32 @@ document.addEventListener('DOMContentLoaded', function(){
 
         let tagsHTML = '';
         if (project.tags && Array.isArray(project.tags) && project.tags.length > 0) {
-          tagsHTML = project.tags.map(tag => 
-            '<span class="tag-secondary">' + tag + '</span>'
-          ).join('');
+          tagsHTML = '<h2>' + escapeHTML(project.tags[0]) + '</h2>' +
+            project.tags.slice(1).map(tag =>
+              '<span class="tag-secondary">' + escapeHTML(tag) + '</span>'
+            ).join('');
         }
 
         const tagsWrapperClass = 'tags-wrapper';
+        const descriptionPreview = typeof project.homeDescription === 'string'
+          ? project.homeDescription.trim()
+          : '';
 
         const html =
-          '<a href="' + projectLink + '" class="featured-project-link">' +
             '<div class="featured-project ' + isLast + '">' +
-              '<div class="media-container" style="width: 100%;">' + mediaContent + '</div>' +
-              '<div class="project-info hoverZoom">' +
-                '<h1>' + project.title + '</h1>' +
+              '<a href="' + projectLink + '" class="media-container" style="width: 100%;">' + mediaContent + '</a>' +
+              '<div class="project-info">' +
+                '<a href="' + projectLink + '" class="project-title-link hoverZoom">' +
+                '<h1>' + escapeHTML(project.title) + '</h1>' +
                 '<div class="' + tagsWrapperClass + '">' +
-                  '<h2>' + (project.medium || '') + '</h2>' +
                   tagsHTML +
                 '</div>' +
+                '</a>' +
+                (descriptionPreview ? '<p class="project-description-preview"><a href="' + projectLink + '" class="project-description-link hoverZoom">' + escapeHTML(descriptionPreview) + '</a></p>' : '') +
               '</div>' +
-            '</div>' +
-          '</a>';
+            '</div>';
 
         featuredContainer.insertAdjacentHTML('beforeend', html);
-      });
-
-      document.querySelectorAll(".project-info").forEach(info => {
-        const h1 = info.querySelector("h1");
-        const tagsWrapper = info.querySelector(".tags-wrapper");
-
-        if (h1 && tagsWrapper) {
-          h1.addEventListener("mouseenter", () => {
-            tagsWrapper.classList.add("hover-effect");
-            h1.classList.add("hover-effect");
-          });
-          h1.addEventListener("mouseleave", () => {
-            tagsWrapper.classList.remove("hover-effect");
-            h1.classList.remove("hover-effect");
-          });
-
-          tagsWrapper.addEventListener("mouseenter", () => {
-            h1.classList.add("hover-effect");
-            tagsWrapper.classList.add("hover-effect");
-          });
-          tagsWrapper.addEventListener("mouseleave", () => {
-            h1.classList.remove("hover-effect");
-            tagsWrapper.classList.remove("hover-effect");
-          });
-        }
       });
 
       const mediaLayoutScript = document.createElement("script");

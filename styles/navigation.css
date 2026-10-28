@@ -40,8 +40,8 @@
     font-size: var(--checkbox-font);
     color: var(--txt-color);
     margin-left: 16%;
-    -webkit-text-stroke: 0.5px;
-    font-weight: bold;
+    font-weight: normal;
+    -webkit-text-stroke: 0.6px;
 }
   
 .category input[type="checkbox"] {
@@ -89,7 +89,8 @@
   
 .filter-controls button {
     font-family: var(--font-family-secondary);
-    font-weight: bolder;
+    font-weight: normal;
+    -webkit-text-stroke: 0.6px;
     padding: 2.5px 12px;
     border: 2px solid var(--txt-color);
     background: transparent;
@@ -144,8 +145,8 @@
 }
 
 #colortheme {
-    font-weight: 100;
-    -webkit-text-stroke: 0.8px;
+    font-weight: 400;
+    -webkit-text-stroke: 0.5px;
 }
 
 
@@ -227,6 +228,7 @@
     .nav-label-desktop {
         display: none;
     }
+
 }
 
 @media screen and (min-width: 768px) { 

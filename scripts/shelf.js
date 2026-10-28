@@ -48,7 +48,7 @@ function openBookCard(bookId) {
     { label: 'TITLE', value: book.title || '' },
     { label: 'AUTHOR', value: book.author || '' },
     { label: 'GENRE', value: book.genre || '' },
-    { label: 'READING MOTIVE', value: book.motif || '' },
+    { label: 'INTRO', value: book.intro || '' },
   ];
 
   const tableRows = rows.map(r => `
@@ -58,10 +58,6 @@ function openBookCard(bookId) {
     </tr>
   `).join('');
 
-  const commentText = book.comment && book.comment.trim()
-    ? escapeHtml(book.comment)
-    : '<em style="opacity: 0.5;">Still working on the comments...</em>';
-
   // Determine landing tilt (alternating slight left/right)
   cardTiltSeed++;
   const tiltDeg = cardTiltSeed % 2 === 0 ? -1.8 : 1.8;
@@ -70,7 +66,7 @@ function openBookCard(bookId) {
   const scatterX = (Math.random() - 0.5) * 80; // –40px … +40px
 
   const card = document.createElement('div');
-  card.className = 'sc-card';
+  card.className = 'sc-card sc-card--book';
   card.setAttribute('role', 'dialog');
   card.dataset.bookId = bookId;
   card.style.zIndex = ++cardZCounter;
@@ -87,11 +83,6 @@ function openBookCard(bookId) {
     <table class="sc-table">
       <tbody>${tableRows}</tbody>
     </table>
-    <div class="sc-rule sc-rule--double"></div>
-    <div class="sc-comments-wrap">
-      <div class="sc-comments-label">Comments</div>
-      <div class="sc-comments-body">${commentText}</div>
-    </div>
     <div class="sc-rule sc-rule--bottom"></div>
   `;
 

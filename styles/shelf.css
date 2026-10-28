@@ -45,6 +45,21 @@
     -webkit-user-select: none;
 }
 
+.sc-card--book {
+    aspect-ratio: auto;
+    min-height: 0;
+    padding-bottom: 12px;
+}
+
+.sc-card--book .sc-table {
+    margin-bottom: 0;
+}
+
+.sc-card--book .sc-rule--bottom {
+    margin-top: -1px;
+    margin-bottom: 0;
+}
+
 /* Theme override: sky in Ukiyo-e needs a lighter card for readability */
 [data-theme="sky in Ukiyo-e"] .sc-card,
 [data-theme="sky in Ukiyo-e"] .sc-comments-label {

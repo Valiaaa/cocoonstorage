@@ -18,7 +18,7 @@
     margin-bottom: calc(var(--body-padding) * 1);
     padding-bottom: calc(var(--body-padding) * 1.5);
     flex-wrap: nowrap;
-    align-items: flex-start;
+    align-items: stretch;
     border-bottom: var(--border-width) solid var(--txt-color);
 }
   
@@ -53,6 +53,9 @@
 
 .featured-project .project-info {
     width: 44%;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
 }
 
 .tags-wrapper {
@@ -69,6 +72,33 @@
 
 .tags-wrapper.three-line {
     margin-top: 32px;
+}
+
+.project-description-preview {
+    max-width: 38rem;
+    margin: auto 0 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    line-height: 1.35;
+    opacity: 0.6;
+    padding-top: 24px;
+    padding-right: 24px;
+}
+
+.project-title-link {
+    max-width: 100%;
+}
+
+.featured-project .project-title-link h1 {
+    min-width: 0;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    -webkit-text-stroke: 0.05em;
+}
+
+.project-description-link {
+    width: auto;
 }
 
 
@@ -138,6 +168,17 @@
 
 
 @media screen and (max-width: 768px) {
+    /* Keep the mobile intro close to the fixed header. The display type is
+       vertically stretched, so it needs extra flow-space below to prevent the
+       first project title from visually crowding the paragraph. */
+    body.is-home .home.content {
+        padding-top: 28px;
+    }
+
+    body.is-home .home > .title {
+        margin-bottom: calc(var(--gap) * 6) !important;
+    }
+
     /* On mobile, only show the first media item in a pair (home page) */
     .featured-project .media-pair > .media-box:not(:first-child) {
         display: none !important;
@@ -163,24 +204,71 @@
         display: block;
     }
 
+    .featured-project {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 16px;
+        align-items: start;
+    }
+
     .featured-project .project-info {
-        width: 64%;
+        grid-row: 1;
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 14px;
+        align-items: start;
+    }
+
+    .featured-project .project-title-link {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--gap);
+        width: 100%;
+        max-width: 100%;
+        min-height: calc(5.4vw * 1.4);
+    }
+
+    .featured-project .project-title-link h1 {
+        flex: 0 1 auto;
+        max-width: 45%;
+        overflow-wrap: normal;
+    }
+
+    .featured-project .media-container {
+        grid-row: 2;
+        width: 100% !important;
+    }
+
+    .featured-project .media-container > *,
+    .featured-project .media-box,
+    .featured-project .media-item {
+        width: 100% !important;
     }
 
     .tags-wrapper .tag-secondary {
-        display: none;
+        display: inline-block;
     }
 
-    .tags-wrapper.two-line {
-        margin-top: 16px;
+    .featured-project .tags-wrapper {
+        flex: 1;
+        min-width: 0;
+        margin-top: 0;
+        gap: 6px;
     }
 
-    .tags-wrapper.three-line {
-        margin-top: 24px;
+    .featured-project .tags-wrapper > * {
+        max-width: 100%;
+        overflow-wrap: anywhere;
     }
 
-    .tags-wrapper {
-        margin-top: 10px;
+    .project-description-preview {
+        width: 100%;
+        max-width: none;
+        align-self: start;
+        margin: 0;
+        padding: 0;
+        font-size: 11px;
     }
 }
 
@@ -196,6 +284,7 @@
 #filter-stats {
     font-weight: bold;
     -webkit-text-stroke: 0;
+    font-size: max(12px, calc(1vw + 4px));
 }
 
 .filter-media-container {
