@@ -125,7 +125,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       document.title = `${project.title} - Valia Liu`;
       document.getElementById("project-title").textContent = project.title;
-      document.getElementById("project-description").innerHTML = project.description || "";
+      const description = document.getElementById("project-description");
+      description.innerHTML = project.description || "";
+      description.querySelectorAll("a").forEach(link => {
+        link.classList.add("hoverZoom");
+      });
 
       ["role", "dimension", "date", "credit"].forEach(field => {
         const row = document.querySelector(`.project-meta-row[data-field="${field}"]`);
