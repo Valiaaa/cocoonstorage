@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', function(){
         
             if (isMP4) {
               mediaItems.push(
-                '<div class="' + wrapperClass + '">' +
-                '<video src="' + project.video + '" class="media-item hoverZoom" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"></video>' +
+                '<div class="' + wrapperClass + ' media-hover">' +
+                '<video src="' + project.video + '" class="media-item" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"></video>' +
                 '</div>'
               );
             } else {
               mediaItems.push(
-                '<div class="' + wrapperClass + '">' +
+                '<div class="' + wrapperClass + ' media-hover">' +
                 '<iframe src="' + project.video + '" frameborder="0" allow="autoplay" title="' + project.title + '"></iframe>' +
                 '</div>'
               );
@@ -56,13 +56,13 @@ document.addEventListener('DOMContentLoaded', function(){
             // 两个媒体项目或有cover时需要比例类
             if (isMP4) {
               mediaItems.push(
-                '<div class="media-box">' +
-                '<video src="' + project.video + '" class="' + ratioClass + ' hoverZoom" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"></video>' +
+                '<div class="media-box media-hover">' +
+                '<video src="' + project.video + '" class="' + ratioClass + '" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture controlsList="nodownload nofullscreen noremoteplayback"></video>' +
                 '</div>'
               );
             } else {
               mediaItems.push(
-                '<div class="media-box">' +
+                '<div class="media-box media-hover">' +
                 '<iframe class="' + ratioClass + '" src="' + project.video + '" frameborder="0" allow="autoplay" title="' + project.title + '"></iframe>' +
                 '</div>'
               );
@@ -75,14 +75,14 @@ document.addEventListener('DOMContentLoaded', function(){
             Number.isFinite(project.coverHeight) && project.coverHeight > 0
             ? ' width="' + project.coverWidth + '" height="' + project.coverHeight + '"'
             : '';
-          const coverHTML = '<img class="media-item hoverZoom lazy-fade" loading="lazy"' + coverDimensions + ' src="archive/' + folderName + '/' + project.cover + '" alt="' + project.title + ' - cover" onload="this.classList.add(\'loaded\')">'
-          mediaItems.push('<div class="media-box hoverZoom">' + coverHTML + '</div>');
+          const coverHTML = '<img class="media-item lazy-fade" loading="lazy"' + coverDimensions + ' src="archive/' + folderName + '/' + project.cover + '" alt="' + project.title + ' - cover" onload="this.classList.add(\'loaded\')">'
+          mediaItems.push('<div class="media-box media-hover">' + coverHTML + '</div>');
         }
 
         // Only load cover2 on desktop/tablet (> 768px width)
         if (project.cover2 && window.innerWidth > 768) {
-          const cover2HTML = '<img class="media-item hoverZoom lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover2 + '" alt="' + project.title + ' - cover2" onload="this.classList.add(\'loaded\')">'
-          mediaItems.push('<div class="media-box hoverZoom">' + cover2HTML + '</div>');
+          const cover2HTML = '<img class="media-item lazy-fade" loading="lazy" src="archive/' + folderName + '/' + project.cover2 + '" alt="' + project.title + ' - cover2" onload="this.classList.add(\'loaded\')">'
+          mediaItems.push('<div class="media-box media-hover">' + cover2HTML + '</div>');
         }
 
         const boxCount = mediaItems.filter(item => item.includes("media-box")).length;
@@ -124,28 +124,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
       const mediaLayoutScript = document.createElement("script");
       mediaLayoutScript.src = "scripts/mediaLayout.js";
+      mediaLayoutScript.onload = () => layoutMediaPairsByHeight();
       document.body.appendChild(mediaLayoutScript);
-      
-      mediaLayoutScript.onload = () => {
-        setTimeout(() => {
-          const mediaElements = document.querySelectorAll(".media-pair img, .media-pair iframe");
-          const promises = Array.from(mediaElements).map(media => {
-            return new Promise(resolve => {
-              if (media.tagName === "IMG") {
-                if (media.complete) return resolve();
-                media.onload = () => resolve();
-                media.onerror = () => resolve();
-              } else {
-                resolve();
-              }
-            });
-          });
-
-          Promise.all(promises).then(() => {
-            layoutMediaPairsByHeight();
-          });
-        }, 100);
-      };
 
       // 根据实际渲染的h1高度来动态调整tags的margin-top
       setTimeout(() => {

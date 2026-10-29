@@ -44,8 +44,14 @@ function layoutMediaPairsByHeight() {
           if (media.complete) {
             resolve();
           } else {
-            media.onload = () => resolve();
-            media.onerror = () => resolve();
+            // Preserve the image's existing fade-in handler and other listeners.
+            const settled = () => {
+              media.removeEventListener("load", settled);
+              media.removeEventListener("error", settled);
+              resolve();
+            };
+            media.addEventListener("load", settled);
+            media.addEventListener("error", settled);
           }
         } else {
           resolve();

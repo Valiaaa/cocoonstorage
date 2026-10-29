@@ -40,6 +40,14 @@
     object-fit: contain;
 }
 
+.featured-project .media-hover {
+    transition: opacity 0.3s ease;
+}
+
+.featured-project .media-hover:hover {
+    opacity: 0.6;
+}
+
 .featured-project-link {
     display: block;
     color: inherit;
